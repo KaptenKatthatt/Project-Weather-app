@@ -138,15 +138,46 @@
 - Hur ska UI:et se ut för favorites?
 - Var i HTML ska favoriter visas?
 - Hur lägger man till/tar bort favoriter?
+- Behövs "Add to favorites" knapp?
+- Hur visas favorit-listan (dropdown, sidebar, modal)?
 
 #### Implementation Strategy:
 
-1. Design HTML structure för favorites
-2. Implement add/remove logic
-3. Create favorites display
+1. Design HTML structure för favorites lista
+2. Skapa add/remove favorites funktionalitet
+3. Implement favorites display med delete-knappar
 4. Integrate med existing weather fetching
+5. Spara favorites i localStorage
+6. Quick-access till favorites från huvudsidan
 
-### **C. Enhanced User Experience**
+### **C. Animated Wind Indicator**
+
+**Lärmoment**: CSS animations, wind data visualization, kompass-orientering
+
+#### Planering:
+
+- Hur ska vindflöjeln se ut (SVG, CSS, image)?
+- Hur konverterar man vindrikning (grader) till kompassriktning?
+- Hur kopplar man vindhastighet till animationshastighet?
+- Var ska vindflöjeln placeras i UI:et?
+
+#### Implementation Strategy:
+
+1. Skapa/hitta vindflöjel SVG/ikon
+2. Implement CSS rotations baserat på `weather.wind.deg`
+3. Skapa spinning animation baserat på `weather.wind.speed`
+4. Smooth transitions mellan riktningsändringar
+5. Visa vindhastighet och riktning i text också
+6. Responsive design för mobil
+
+#### Technical Details:
+
+- **Wind Direction**: `weather.wind.deg` (0-360 grader)
+- **Wind Speed**: `weather.wind.speed` (m/s)
+- **CSS Transform**: `rotate(${windDeg}deg)`
+- **Animation Speed**: Baserat på wind.speed värdet
+
+### **D. Enhanced User Experience**
 
 **Lärmoment**: UI/UX design, responsiveness
 
@@ -156,7 +187,7 @@
 - Better error messages
 - Keyboard navigation
 - Mobile optimization
-- Weather icons/animations
+- Smooth transitions och micro-animations
 
 ---
 
