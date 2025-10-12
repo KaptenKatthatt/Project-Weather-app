@@ -49,11 +49,20 @@ cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   //Get city value
-  const city = cityForm.city.value.trim();
+  const city = cityForm.city.value.trim().toLowerCase();
   cityForm.reset();
 
-  //Update UI with the new city
+  //Update the UI with the new city
   updateCity(city)
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
+
+  //set local storage
+  localStorage.setItem("city", city);
 });
+
+if (localStorage.getItem("city")) {
+  updateCity(localStorage.getItem("city"))
+    .then((data) => updateUI(data))
+    .catch((err) => console.log(err));
+}
