@@ -39,74 +39,81 @@
 
 ---
 
-## 🚀 STEG 1: API Migration (Vecka 1)
+## 🚀 STEG 1: API Migration ✅ **SLUTFÖRT!** (Vecka 1)
 
-### **A. Git Workflow Setup**
+### **A. Git Workflow Setup** ✅ **KLART**
 
 **Lärmoment**: Branching strategy, version control
 
 #### Uppgifter:
 
-1. **Skapa feature branch**
+1. **Skapa feature branch** ✅
 
-   - Tänk på: Vad är ett bra branch-namn?
-   - Varför arbetar vi i branches istället för direkt i main?
+   - Branch: `new-API-migration` skapad
+   - Säker utvecklingsmiljö upprättad
 
-2. **Backup current state**
-   - Vad händer om något går fel?
-   - Hur säkerställer vi att vi kan gå tillbaka?
+2. **Backup current state** ✅
+   - Kod pushad till remote som backup
+   - Säker återställningspunkt skapad
 
-### **B. API Research & Planning**
+### **B. API Research & Planning** ✅ **KLART**
 
 **Lärmoment**: API dokumentation, jämförelse av tjänster
 
 #### Uppgifter:
 
-1. **Välj nytt API**
+1. **Välj nytt API** ✅
 
-   - Jämför: OpenWeatherMap vs WeatherAPI vs andra
-   - Analysera: Rate limits, gratis tier, dokumentation
-   - Frågor att ställa: Vilken JSON-struktur? Hur många anrop?
+   - **OpenWeatherMap** valt som slutlig lösning
+   - Gratis tier: 1000 anrop/dag (mer än tillräckligt)
+   - Utmärkt dokumentation och support
 
-2. **Planera migration**
-   - Vilka funktioner i din kod behöver ändras?
-   - Vilka nya fält finns tillgängliga i det nya API:et?
+2. **Planera migration** ✅
+   - JSON-struktur analyserad och jämförd
+   - Identifierat nödvändiga ändringar i kod
 
-### **C. Implementation**
+### **C. Implementation** ✅ **KLART**
 
 **Lärmoment**: Code refactoring, API integration
 
 #### Uppgifter:
 
-1. **Uppdatera forecast.js**
+1. **Uppdatera forecast.js** ✅
 
-   - Tänk på: Hur behåller du samma interface men ändrar implementation?
-   - Vilka funktioner behöver uppdateras?
+   - API endpoints bytta till OpenWeatherMap
+   - Funktioner anpassade för lat/lon istället för Key
+   - Svensk språkstöd (`lang=sv`) tillagt
 
-2. **Uppdatera app.js**
+2. **Uppdatera app.js** ✅
 
-   - Vilka ändringar behövs i UI-koden?
-   - Hur hanterar du olika datastrukturer?
+   - UI-mappning fixad för ny datastruktur
+   - Temperatur: `weather.main.temp`
+   - Beskrivning: `weather.weather[0].description`
+   - Stadsnamn: `cityDets.name`
+   - Ikoner: OpenWeatherMap ikoner integrerade
+   - Dag/natt logik: Använder sunrise/sunset timestamps
 
-3. **Testing**
-   - Testa med olika städer
-   - Kontrollera att felhantering fungerar
-   - Verifiera att Local Storage fortfarande fungerar
+3. **Testing** ✅
+   - Testade med olika städer (London, Stockholm, etc.)
+   - Felhantering fungerar för felstavade städer
+   - Local Storage fortfarande fungerar perfekt
 
-### **D. Merge to Main**
+### **D. Merge to Main** ✅ **KLART**
 
 **Lärmoment**: Git merging, deployment
 
 #### Uppgifter:
 
-1. **Code review själv**
+1. **Code review själv** ✅
 
-   - Funkar allt som tidigare?
-   - Är koden clean och kommenterad?
+   - All funktionalitet bevarad och förbättrad
+   - Kod clean och strukturerad
+   - Inga console.log kvar som inte behövs
 
-2. **Merge process**
-   - Hur gör man en säker merge?
-   - Vad gör man om det blir konflikter?
+2. **Merge process** ✅
+   - Säker merge utan konflikter
+   - Pushat till main branch framgångsrikt
+   - Feature branch backup bibehållen
 
 ---
 
@@ -177,7 +184,39 @@
 - **CSS Transform**: `rotate(${windDeg}deg)`
 - **Animation Speed**: Baserat på wind.speed värdet
 
-### **D. Enhanced User Experience**
+### **D. 5-Day Weather Forecast**
+
+**Lärmoment**: Extended API integration, data visualization, UI expansion
+
+#### Planering:
+
+- Hur ska 5-dagars prognosen visas i UI:et?
+- Ska det vara en lista, cards, eller grafisk representation?
+- Vilken information ska visas för varje dag (temp, väder, ikon)?
+- Hur integrerar man forecast med nuvarande design?
+
+#### Implementation Strategy:
+
+1. Implementera OpenWeatherMap forecast5 API anrop
+2. Skapa ny HTML struktur för prognos-sektion
+3. Design forecast cards/list styling
+4. Parse forecast data (5 dagar, 3-timmars intervall)
+5. Visa daglig min/max temperatur
+6. Integrate forecast ikoner och beskrivningar
+7. Responsive design för mobila enheter
+
+#### Technical Details:
+
+- **API Endpoint**: `https://api.openweathermap.org/data/2.5/forecast`
+- **Data format**: 5 dagar med 3-timmars steg (40 datapunkter)
+- **Gratis limit**: 1000 anrop/dag (samma som current weather)
+- **Data att visa**:
+  - Datum/dag
+  - Min/max temperatur per dag
+  - Väderikon och beskrivning
+  - Vindinformation
+
+### **E. Enhanced User Experience**
 
 **Lärmoment**: UI/UX design, responsiveness
 
@@ -216,12 +255,13 @@
 
 ## 🎯 Milestones & Checkpoints
 
-### **Milestone 1**: API Migration Complete
+### **Milestone 1**: API Migration Complete ✅ **UPPNÅTT!**
 
-- [ ] Ny API fungerar för weather fetching
-- [ ] All existing functionality preserved
-- [ ] Merged to main branch
-- [ ] No breaking changes
+- [x] Ny API fungerar för weather fetching
+- [x] All existing functionality preserved
+- [x] Merged to main branch
+- [x] No breaking changes
+- [x] **BONUS**: Svensk språkstöd tillagt!
 
 ### **Milestone 2**: Caching Implemented
 
@@ -235,7 +275,20 @@
 - [ ] Kan välja från favoriter
 - [ ] Favoriter persistenta mellan sessions
 
-### **Milestone 4**: Polish & Deploy
+### **Milestone 4**: 5-Day Weather Forecast
+
+- [ ] Forecast API integrerad med OpenWeatherMap
+- [ ] 5-dagars prognos visas i UI
+- [ ] Daglig min/max temperatur och väderikoner
+- [ ] Responsive design för forecast-sektion
+
+### **Milestone 5**: Wind Animation Feature
+
+- [ ] Vindflöjel roterar baserat på vindrikning
+- [ ] Animationshastighet baserat på vindhastighet
+- [ ] Smooth CSS transitions
+
+### **Milestone 6**: Polish & Deploy
 
 - [ ] Enhanced UI/UX
 - [ ] Mobile responsive
