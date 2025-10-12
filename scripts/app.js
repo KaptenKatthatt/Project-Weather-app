@@ -8,7 +8,7 @@ const updateUI = (data) => {
   //   const cityDets = data.cityDets;
   //   const weather = data.weather;
 
-  // Destructure properties. Gör samma sak som ovan.
+  // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
   const { cityDets, weather } = data;
 
   //update details template
@@ -54,15 +54,16 @@ cityForm.addEventListener("submit", (e) => {
 
   //Update the UI with the new city
   updateCity(city)
-    .then((data) => updateUI(data))
+    .then((data) => {
+      updateUI(data);
+      localStorage.setItem("city", city); //Save city in local storage so it shows up next time page is opened.
+    })
     .catch((err) => console.log(err));
-
-  //set local storage
-  localStorage.setItem("city", city);
 });
 
-if (localStorage.getItem("city")) {
-  updateCity(localStorage.getItem("city"))
+let savedCity = localStorage.getItem("city");
+if (savedCity) {
+  updateCity(savedCity)
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 }
