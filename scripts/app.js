@@ -13,19 +13,26 @@ const updateUI = (data) => {
 
   //update details template
   details.innerHTML = `
-        <h5 class="my-3">${cityDets.EnglishName}</h5>
-        <div class="my-3">${weather.WeatherText}</div>
+        <h5 class="my-3">${cityDets.name}</h5>
+        <div class="my-3">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
-          <span>${weather.Temperature.Metric.Value}</span>
+          <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
         </div>
   `;
 
   //update the night/day & icon images
-  const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+  const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+
   icon.setAttribute("src", iconSrc);
 
-  let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg";
+  let timeSrc = Math.floor(Date.now() / 1000);
+  console.log("Local time ", timeSrc);
+  console.log("Sunrise", weather.sys.sunrise);
+  timeSrc =
+    timeSrc > weather.sys.sunrise && timeSrc < weather.sys.sunset
+      ? "img/day.svg"
+      : "img/night.svg";
 
   time.setAttribute("src", timeSrc);
 
@@ -37,7 +44,8 @@ const updateUI = (data) => {
 
 const updateCity = async (city) => {
   const cityDets = await getCity(city);
-  const weather = await getWeather(cityDets.Key);
+  const weather = await getWeather(cityDets.lat, cityDets.lon);
+  console.log(cityDets.lat, cityDets.lon);
 
   return {
     cityDets, //Om både nyckeln och värdet har samma namn räcker det att man skriver det en gång.
@@ -67,3 +75,7 @@ if (savedCity) {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 }
+
+/* 
+{cod: 401, message: 'Please note that using One Call 3.0 requires a sep…://openweathermap.org/faq#error401 for more info.'}cod: 401message: "Please note that using One Call 3.0 requires a separate subscription to the One Call by Call plan. Learn more here https://openweathermap.org/price. If you have a valid subscription to the One Call by Call plan, but still receive this error, then please see https://openweathermap.org/faq#error401 for more info."[[Prototype]]: Object
+ */

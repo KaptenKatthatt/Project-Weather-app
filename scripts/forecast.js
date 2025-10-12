@@ -1,24 +1,27 @@
 //Get weather information
-const getWeather = async (id) => {
-  const base = "https://dataservice.accuweather.com/currentconditions/v1/";
-  const query = `${id}?apikey=${key}`;
+const getWeather = async (lat, lon) => {
+  const base = `https://api.openweathermap.org/data/2.5/weather?`;
+  const query = `lat=${lat}&lon=${lon}&units=metric&appid=${key}&lang=sv`;
+
+  /* https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&&unit=metric&appid=a8ce3a9d3851c8bd1a775190c33a067e
+   */
 
   const response = await fetch(base + query);
   const data = await response.json();
 
   console.log(data);
-  return data[0];
+  return data;
 };
 
 //Get city information. Gets Key that is then used in getWeather to get the weather for that city.
 const getCity = async (city) => {
-  const base = "https://dataservice.accuweather.com/locations/v1/cities/search";
-  const query = `?apikey=${key}&q=${city}`;
+  const base = "http://api.openweathermap.org/geo/1.0/direct";
+  const query = `?q=${city}&limit=1&appid=${key}`;
 
   const response = await fetch(base + query);
   const data = await response.json();
 
-  //   console.log(data[0]);
+  console.log(data[0]);
 
   return data[0];
 };
