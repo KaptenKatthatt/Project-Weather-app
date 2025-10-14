@@ -10,7 +10,7 @@ const updateUI = (data) => {
 
   // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
   const { cityDets, weather } = data;
-
+  // let lang = sv; Gör en if check på om där finns local_names först
   //update details template
   details.innerHTML = `
         <h5 class="my-3">${cityDets.name}</h5>
