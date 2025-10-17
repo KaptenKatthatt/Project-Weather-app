@@ -12,7 +12,7 @@ const updateUI = (data) => {
   //   const weather = data.weather;
 
   // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
-  const { cityDets, weather } = data;
+  const { cityDets, weather, forecast } = data;
   // let lang = sv; Gör en if check på om där finns local_names först
   //update details template
   details.innerHTML = `
@@ -22,12 +22,25 @@ const updateUI = (data) => {
           <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
         </div>`;
-
-  forecastContainer.innerHTML += `
+  // 5 day forecast presentation
+  forecastContainer.innerHTML = `
   <h5 class="my-3">5 day </h5>
-  
-    
+  <p>${forecast.list[0].dt_txt}</p>
+  <p>Temp: ${Math.floor(forecast.list[0].main.temp)}</p>
+  <p>% chance for rain ${forecast.list[0].pop}</p>
+  <p>mm of rain ${forecast.list[0].rain}</p>
+ 
   `;
+  /* 
+  <p>${forecast.list[8].dt_txt}</p>
+  <p>Temp: ${Math.floor(forecast.list[8].main.temp)}</p>
+    <p>${forecast.list[16].dt_txt}</p>
+  <p>Temp: ${Math.floor(forecast.list[16].main.temp)}</p>
+      <p>${forecast.list[24].dt_txt}</p>
+  <p>Temp: ${Math.floor(forecast.list[24].main.temp)}</p>
+    <p>${forecast.list[32].dt_txt}</p>
+  <p>Temp: ${Math.floor(forecast.list[32].main.temp)}</p> 
+ */
 
   //update the night/day & icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
@@ -53,6 +66,7 @@ const updateUI = (data) => {
 const updateCity = async (city) => {
   const cityDets = await getCity(city);
   const weather = await getWeather(cityDets.lat, cityDets.lon);
+  const forecast = await getForecast(cityDets.lat, cityDets.lon);
   console.log(cityDets.lat, cityDets.lon);
 
   return {
