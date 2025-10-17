@@ -16,6 +16,10 @@ const getForecast = async (lat, lon) => {
 
   const response = await fetch(base + query);
   const data = await response.json();
+
+  console.log("Forecast", data);
+
+  return data;
 };
 
 //Get city information. Gets Key that is then used in getWeather to get the weather for that city.

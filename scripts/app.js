@@ -1,6 +1,9 @@
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
+
 const details = document.querySelector(".details");
+const forecastContainer = document.querySelector(".forecast-container");
+
 const time = document.querySelector("img.time");
 const icon = document.querySelector(".icon img");
 
@@ -18,7 +21,12 @@ const updateUI = (data) => {
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
-        </div>
+        </div>`;
+
+  forecastContainer.innerHTML += `
+  <h5 class="my-3">5 day </h5>
+  
+    
   `;
 
   //update the night/day & icon images
@@ -50,6 +58,7 @@ const updateCity = async (city) => {
   return {
     cityDets, //Om både nyckeln och värdet har samma namn räcker det att man skriver det en gång.
     weather: weather,
+    forecast,
   };
 };
 
@@ -75,7 +84,3 @@ if (savedCity) {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 }
-
-/* 
-{cod: 401, message: 'Please note that using One Call 3.0 requires a sep…://openweathermap.org/faq#error401 for more info.'}cod: 401message: "Please note that using One Call 3.0 requires a separate subscription to the One Call by Call plan. Learn more here https://openweathermap.org/price. If you have a valid subscription to the One Call by Call plan, but still receive this error, then please see https://openweathermap.org/faq#error401 for more info."[[Prototype]]: Object
- */
