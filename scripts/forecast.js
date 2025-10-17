@@ -6,16 +6,20 @@ const getWeather = async (lat, lon) => {
   const response = await fetch(base + query);
   const data = await response.json();
 
-  console.log(data);
+  console.log("GetWeather: ", data);
   return data;
 };
-
+// Get 5-day forecast
 const getForecast = async (lat, lon) => {
-  const base = `api.openweathermap.org/data/2.5/forecast?`;
-  const query = `lat=${lat}&lon=${lon}&appid=${key}`;
+  const base = `https://api.openweathermap.org/data/2.5/forecast`;
+  const query = `?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=sv`;
 
   const response = await fetch(base + query);
   const data = await response.json();
+
+  console.log("Forecast: ", data);
+
+  return data;
 };
 
 //Get city information. Gets Key that is then used in getWeather to get the weather for that city.
@@ -26,7 +30,7 @@ const getCity = async (city) => {
   const response = await fetch(base + query);
   const data = await response.json();
 
-  console.log(data[0]);
+  console.log("City: ", data[0]);
 
   return data[0];
 };
