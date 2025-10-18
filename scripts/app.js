@@ -38,8 +38,7 @@ const updateUI = (data) => {
   <p>Temp: ${Math.floor(forecast.list[16].main.temp)}</p>
       <p>${forecast.list[24].dt_txt}</p>
   <p>Temp: ${Math.floor(forecast.list[24].main.temp)}</p>
-    <p>${forecast.list[32].dt_txt}</p>
-  <p>Temp: ${Math.floor(forecast.list[32].main.temp)}</p> 
+    <p>${forecast.list[32].dt_txt}</p> emp)}</p> 
  */
 
   //update the night/day & icon images

@@ -120,22 +120,11 @@
 
 ## 🚀 STEG 2: Advanced Features (Vecka 2-3)
 
-### **A. Caching System**
+### AA Bygg ett GUI likt SMHI
 
-**Lärmoment**: Performance optimization, data management
-
-#### Planering:
-
-- Hur länge ska väderdata cachas?
-- Vad händer om API:et är nere?
-- Hur visar du för användaren att data är cachad?
-
-#### Implementation Strategy:
-
-1. Design cache structure
-2. Implement cache logic
-3. Add cache indicators to UI
-4. Test cache expiry
+- Mobile first
+- Se figma skiss
+- Använd vindikoner från Erik Flowers
 
 ### **B. Favorite Cities Feature**
 
