@@ -7,19 +7,38 @@ const forecastContainer = document.querySelector(".forecast-container");
 const time = document.querySelector("img.time");
 const icon = document.querySelector(".icon img");
 
+const locationContainer = document.querySelector(".locationContainer");
+const currentWeatherContainer = document.querySelector(
+  ".currentWeatherContainer"
+);
+//Update UI
 const updateUI = (data) => {
   //   const cityDets = data.cityDets;
   //   const weather = data.weather;
 
   // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
   const { cityDets, weather, forecast } = data;
-  // let lang = sv; Gör en if check på om där finns local_names först
+  //Get local time and local hour
+  const timestamp = weather.dt;
+  const timezone = weather.timezone;
+  let localTime = new Date(timestamp * 1000 + timezone * 1000);
+  const localHours = localTime.getUTCHours();
+  //Location
+  locationContainer.innerHTML = `<h3 class="my-3">${cityDets.name}</h3>`;
+  //Current weather
+
+  currentWeatherContainer.innerHTML += `
+  <p>Kl. ${localHours}</p>
+  <span>${Math.floor(weather.main.temp)}&deg;</span>
+  Känns som ${Math.floor(weather.main.feels_like)}&deg;
+  `;
+
   //update details template
   details.innerHTML = `
         <h5 class="my-3">${cityDets.name}</h5>
         <div class="my-3">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
-          <span>${Math.round(weather.main.temp)}</span>
+          <span>${Math.floor(weather.main.temp)}</span>
           <span>&deg;C</span>
         </div>`;
   // 5 day forecast presentation
@@ -41,11 +60,11 @@ const updateUI = (data) => {
     <p>${forecast.list[32].dt_txt}</p> emp)}</p> 
  */
 
-  //update the night/day & icon images
+  //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-
+  console.log("iconSrc: ", iconSrc);
   icon.setAttribute("src", iconSrc);
-
+  //update night/day background
   let timeSrc = Math.floor(Date.now() / 1000);
   console.log("Local time ", timeSrc);
   console.log("Sunrise", weather.sys.sunrise);

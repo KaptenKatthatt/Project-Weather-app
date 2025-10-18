@@ -7,13 +7,63 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  <title>Ninja Weather</title>
+  <title>JMHI Weather</title>
 </head>
 
 <body>
+  <div class="container my-5 mx-auto border border-secondary rounded ">
+    <div class="locationContainer"></div>
+    <div class="toolBar my-4">
+      <div class="favoriteTool mr-1 p-1">Favos</div>
+      <div class="homeTool mr-2 p-1">Hem</div>
+      <div class="searchContainer">
+        <input type="text" name="citySearch" id="city" class=" form-control p-4 citySearch" placeholder="Sök...">
+      </div>
+    </div>
+    <div class="currentWeatherContainer">
+      <div class="icon bg-light mx-auto text-center">
+        <img src="" alt="">
+      </div>
+    </div>
+    <div class="weatherTable">
+      Grid 1 row 4 col
+      Col1
+      Kväll
+      WeatherIcon
+      CurrentTemp
+      FeelsLike
+      icon: windDirection
+      windCurrent(windGusts)
+      Rain mm
+
+      Col2
+      Natt
+      Col3
+      Fm
+      Col4
+      Em
+    </div>
+    <div class="forecast">
+      <h3>5-dygn</h3>
+      <div class="dayForecast">
+        <h4><span class="bold">Lördag</span> 18 oktober</h4>
+        icon: predictedWeather
+        temp low/high
+        windDirection
+        icon: windDirection
+        windStrength(windGusts)
+        Rain
+        sunUp
+        sunDown
+      </div>
+    </div>
+
+  </div>
+
+
 
   <div class="container my-5 mx-auto ">
-    <h1 class=" text-muted text-center my-4">Ninja Weather</h1>
+    <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
 
     <form class="change-location my-4 text-center text-muted">
       <label for="city">Enter a location for weather information</label>
