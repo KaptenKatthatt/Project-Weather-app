@@ -26,16 +26,6 @@ const updateUI = (data) => {
   let localTime = new Date(timestamp * 1000 + timezone * 1000);
   const localHour = localTime.getUTCHours();
 
-  //Location
-  /*  locationContainer.innerHTML = `<h3 class="my-3">${cityDets.name}</h3>`;
-  //Current weather
-
-  currentWeatherContainer.innerHTML += `
-  <p>Kl. ${localHour}</p>
-  <span>${Math.round(weather.main.temp)}&deg;</span>
-  Känns som ${Math.round(weather.main.feels_like)}&deg;
-  `; */
-
   //update details template
   details.innerHTML = `
         <h5 class="my-3">${cityDets.name}</h5>
@@ -51,14 +41,14 @@ const updateUI = (data) => {
 
   // 18 hour forecast presentation
   forecastContainer.innerHTML = `
-  <h5 class="my-3">Nu</h5>
-  ${daysForecast(forecast.list[0])}
-<h4>Nu+6h</h4>
-${daysForecast(forecast.list[2])}
-<h4>Nu+12h</h4>
-${daysForecast(forecast.list[4])}
-<h4>Nu+18h</h4>
-${daysForecast(forecast.list[6])}
+    <h4 class="my-3">Nu</h4>
+    ${daysForecast(forecast.list[0])}
+    <h4>Nu+6h</h4>
+    ${daysForecast(forecast.list[2])}
+    <h4>Nu+12h</h4>
+    ${daysForecast(forecast.list[4])}
+    <h4>Nu+18h</h4>
+    ${daysForecast(forecast.list[6])}
 
 `;
 
