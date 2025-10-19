@@ -46,21 +46,27 @@ const updateUI = (data) => {
   // 5 day forecast presentation
   forecastContainer.innerHTML = `
   <h5 class="my-3">5 day </h5>
+  <!-- Time & Date -->
   <p>${forecast.list[0].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[0].main.temp)}</p>
+  <!-- Temp -->
+  <p>Temp: ${Math.round(forecast.list[0].main.temp)}&deg;C</p>
+  <!-- Feels like -->
   <p>Känns som ${Math.round(forecast.list[0].main.feels_like)}</p>
-  <p>% chance for rain ${forecast.list[0].pop}</p>
-  <p>mm of rain ${forecast.list[0].rain}</p>
-    <p>${forecast.list[8].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[8].main.temp)}</p>
-    <p>${forecast.list[16].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[16].main.temp)}</p>
-      <p>${forecast.list[24].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[24].main.temp)}</p>
-    <p>${forecast.list[32].dt_txt}</p> 
- 
+  <!-- If rain, & chance rain -->
+  Regn ${forecast.list[0].pop === undefined ? "0mm" : forecast.list[0].pop}mm
+  <br><br>
+  Vind nu 
+  Vinkel ${weather.wind.deg}&deg;
+  Hastighet ${weather.wind.speed}(${weather.wind.gust}) m/s
+
+
   `;
   /* 
+
+    <p>% chance for rain ${forecast.list[0].pop}</p>
+  <p>mm of rain ${forecast.list[0].rain}</p>
+
+
   <p>${forecast.list[8].dt_txt}</p>
   <p>Temp: ${Math.round(forecast.list[8].main.temp)}</p>
     <p>${forecast.list[16].dt_txt}</p>
@@ -91,6 +97,7 @@ const updateUI = (data) => {
   }
 };
 
+//Calls city and weather functions to get data from API
 const updateCity = async (city) => {
   const cityDets = await getCity(city);
   const weather = await getWeather(cityDets.lat, cityDets.lon);
