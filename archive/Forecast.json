@@ -1,0 +1,56 @@
+{
+  "cod": "200",
+  "message": 0,
+  "cnt": 40,
+  "city": {
+    "id": 2643123,
+    "name": "Manchester",
+    "coord": {
+      "lat": 53.4795,
+      "lon": -2.2451
+    },
+    "country": "GB",
+    "population": 395515,
+    "timezone": 3600,
+    "sunrise": 1760683173,
+    "sunset": 1760720924
+  },
+  "list": [
+    {
+      "dt": 1760713200,
+      "dt_txt": "2025-10-17 15:00:00",
+      "main": {
+        "temp": 14.11,
+        "feels_like": 13.3,
+        "temp_min": 13.28,
+        "temp_max": 14.11,
+        "pressure": 1025,
+        "sea_level": 1025,
+        "grnd_level": 1015,
+        "humidity": 66,
+        "temp_kf": 0.83
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "mulet",
+          "icon": "04d"
+        }
+      ],
+      "clouds": {
+        "all": 100
+      },
+      "wind": {
+        "speed": 0.74,
+        "deg": 196,
+        "gust": 1.22
+      },
+      "visibility": 10000,
+      "pop": 0,
+      "sys": {
+        "pod": "d"
+      }
+    }
+  ]
+}
