@@ -1,6 +1,10 @@
 export function ForecastTable(weatherList, icon) {
   // Dygnets nederbörd räknas från sön 08:00 till sön 23:00.
-  //Vind kl 12.00 på dagen
+  //function daysRain
+
+  //Vind kl 12.00 på dagen eller högsta vind/byar under dagen
+  //function highestWind som tar in alla vindvärden för den dagen och plockar ut det högsta
+
   return `
 
 <thead>
@@ -9,7 +13,7 @@ export function ForecastTable(weatherList, icon) {
       Dygn
     </th>
     <th>
-      weatherIcon
+      
     </th>
     <th>
       L/H
@@ -21,17 +25,23 @@ export function ForecastTable(weatherList, icon) {
 </thead>
 <tbody class="table-group-divider">
   <tr>
-    <td>Idag</td>
+    <td>${weatherList[0].dt_txt}</td>
     <td>
       <img src="${icon}" alt="Icon of the weather">
     </td>
     <td>${Math.round(weatherList[0].main.temp_min)}/${Math.round(
     weatherList[0].main.temp_max
   )}</td>
-    <td>${Math.round(weatherList[0].wind.speed)}(${Math.round(
-    weatherList[0].wind.gust
-  )})</td>
-    <td>${Math.round(weatherList[0].rain["3h"])}</td>
+    <td>${Math.round(weatherList[0].wind.speed)}(${
+    weatherList[0].wind.gust === undefined
+      ? "0"
+      : Math.round(weatherList[0].wind.gust)
+  })</td>
+    <td>${
+      weatherList[0].rain === undefined
+        ? "0"
+        : Math.round(weatherList[0].rain["3h"])
+    }</td>
   </tr>
 
   <tr>
