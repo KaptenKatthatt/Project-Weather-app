@@ -7,17 +7,20 @@ const forecastContainer = document.querySelector(".forecast-container");
 const backgroundImg = document.querySelector("img.time");
 const icon = document.querySelector(".icon");
 const iconImg = document.querySelector(".icon img");
+const windArrow = document.querySelector(".windArrow");
 
 const locationContainer = document.querySelector(".locationContainer");
 const currentWeatherContainer = document.querySelector(
   ".currentWeatherContainer"
 );
+
+/* //Wind arrow transformation
+function windArrowDir(deg) {
+  <i class="windArrow wi wi-wind towards-n"></i>;
+} */
+
 //Update UI
 const updateUI = (data) => {
-  //   const cityDets = data.cityDets;
-  //   const weather = data.weather;
-
-  // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
   const { cityDets, weather, forecast } = data;
   //Get local time and local hour
   const timestamp = weather.dt;
@@ -42,7 +45,11 @@ const updateUI = (data) => {
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
-        </div>`;
+        </div>
+        <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg"></i>
+         <p>${Math.round(weather.wind.speed)} m/s</p>
+        `;
+
   // 5 day forecast presentation
   forecastContainer.innerHTML = `
   <h5 class="my-3">5 day </h5>
@@ -58,8 +65,7 @@ const updateUI = (data) => {
   Vind nu 
   Vinkel ${weather.wind.deg}&deg;
   Hastighet ${weather.wind.speed}(${weather.wind.gust}) m/s
-
-
+<i class="windArrow wi wi-wind from-${weather.wind.deg}-deg"></i>
   `;
   /* 
 
@@ -78,7 +84,6 @@ const updateUI = (data) => {
 
   //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-  console.log("iconSrc: ", iconSrc);
   iconImg.setAttribute("src", iconSrc);
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
