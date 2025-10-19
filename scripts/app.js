@@ -14,19 +14,16 @@ const currentWeatherContainer = document.querySelector(
   ".currentWeatherContainer"
 );
 
-/* //Wind arrow transformation
-function windArrowDir(deg) {
-  <i class="windArrow wi wi-wind towards-n"></i>;
-} */
-
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
+
   //Get local time and local hour
   const timestamp = weather.dt;
   const timezone = weather.timezone;
   let localTime = new Date(timestamp * 1000 + timezone * 1000);
   const localHour = localTime.getUTCHours();
+
   //Location
   /*  locationContainer.innerHTML = `<h3 class="my-3">${cityDets.name}</h3>`;
   //Current weather
@@ -52,7 +49,7 @@ const updateUI = (data) => {
 
   // 5 day forecast presentation
   forecastContainer.innerHTML = `
-  <h5 class="my-3">5 day </h5>
+  <h5 class="my-3">Nu</h5>
   <!-- Time & Date -->
   <p>${forecast.list[0].dt_txt}</p>
   <!-- Temp -->
@@ -61,11 +58,21 @@ const updateUI = (data) => {
   <p>Känns som ${Math.round(forecast.list[0].main.feels_like)}</p>
   <!-- If rain, & chance rain -->
   Regn ${forecast.list[0].pop === undefined ? "0mm" : forecast.list[0].pop}mm
-  <br><br>
-  Vind nu 
-  Vinkel ${weather.wind.deg}&deg;
-  Hastighet ${weather.wind.speed}(${weather.wind.gust}) m/s
-<i class="windArrow wi wi-wind from-${weather.wind.deg}-deg"></i>
+  <p>
+    Vind ${forecast.list[0].wind.deg}&deg;
+  </p>
+  <p>Hastighet ${Math.round(forecast.list[0].wind.speed)}
+  <!-- check if gust -->
+  ${
+    forecast.list[0].wind.gust === undefined
+      ? ""
+      : `(${Math.round(forecast.list[0].wind.gust)})`
+  } m/s</p>
+  <i class="windArrow wi wi-wind from-${forecast.list[0].wind.deg}-deg"></i>
+<h4>Nu+6h</h4>
+<p>${daysForecast(2)}</p>
+<h4>Nu+12h</h4>
+<h4>Nu+18h</h4>
   `;
   /* 
 
