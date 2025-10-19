@@ -41,13 +41,13 @@ const updateUI = (data) => {
 
   // 18 hour forecast presentation
   forecastContainer.innerHTML = `
-    <h4 class="my-3">Nu</h4>
+    <h4 class="my-3">Förmiddag</h4>
     ${daysForecast(forecast.list[0])}
-    <h4>Nu+6h</h4>
+    <h4>Eftermiddag</h4>
     ${daysForecast(forecast.list[2])}
-    <h4>Nu+12h</h4>
+    <h4>Ikväll</h4>
     ${daysForecast(forecast.list[4])}
-    <h4>Nu+18h</h4>
+    <h4>Inatt</h4>
     ${daysForecast(forecast.list[6])}
 
 `;
