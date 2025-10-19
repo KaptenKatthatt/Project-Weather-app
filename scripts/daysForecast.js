@@ -1,30 +1,26 @@
-function daysForecast(weatherListItem) {
+export function daysForecast(weatherListItem) {
   return `
-    <!-- Time & Date -->
-  <p>${forecast.list[timeOfDay].dt_txt}</p>
+  <!-- Time & Date -->
+  <p>${weatherListItem.dt_txt}</p>
   <!-- Temp -->
-  <p>Temp: ${Math.round(forecast.list[timeOfDay].main.temp)}&deg;C</p>
+  <p>Temp: ${Math.round(weatherListItem.main.temp)}&deg;C</p>
   <!-- Feels like -->
-  <p>Känns som ${Math.round(forecast.list[timeOfDay].main.feels_like)}</p>
+  <p>Känns som ${Math.round(weatherListItem.main.feels_like)}</p>
   <!-- If rain, & chance rain -->
   Regn ${
-    forecast.list[timeOfDay].pop === undefined
-      ? "0mm"
-      : forecast.list[timeOfDay].pop
+    weatherListItem.rain === undefined ? "0mm" : weatherListItem.rain["3h"]
   }mm
   <p>
-    Vind ${forecast.list[timeOfDay].wind.deg}&deg;
+    Vind ${weatherListItem.wind.deg}&deg;
   </p>
-  <p>Hastighet ${Math.round(forecast.list[timeOfDay].wind.speed)}
+  <p>Hastighet ${Math.round(weatherListItem.wind.speed)}
   <!-- check if gust -->
   ${
-    forecast.list[timeOfDay].wind.gust === undefined
+    weatherListItem.wind.gust === undefined
       ? ""
-      : `(${Math.round(forecast.list[timeOfDay].wind.gust)})`
+      : `(${Math.round(weatherListItem.wind.gust)})`
   } m/s</p>
-  <i class="windArrow wi wi-wind from-${
-    forecast.list[timeOfDay].wind.deg
-  }-deg"></i>
+  <i class="windArrow wi wi-wind from-${weatherListItem.wind.deg}-deg"></i>
     
     `;
 }

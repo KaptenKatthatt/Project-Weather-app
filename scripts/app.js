@@ -1,3 +1,5 @@
+import { daysForecast } from "./daysForecast.js";
+
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
 
@@ -50,44 +52,15 @@ const updateUI = (data) => {
   // 5 day forecast presentation
   forecastContainer.innerHTML = `
   <h5 class="my-3">Nu</h5>
-  <!-- Time & Date -->
-  <p>${forecast.list[0].dt_txt}</p>
-  <!-- Temp -->
-  <p>Temp: ${Math.round(forecast.list[0].main.temp)}&deg;C</p>
-  <!-- Feels like -->
-  <p>Känns som ${Math.round(forecast.list[0].main.feels_like)}</p>
-  <!-- If rain, & chance rain -->
-  Regn ${forecast.list[0].pop === undefined ? "0mm" : forecast.list[0].pop}mm
-  <p>
-    Vind ${forecast.list[0].wind.deg}&deg;
-  </p>
-  <p>Hastighet ${Math.round(forecast.list[0].wind.speed)}
-  <!-- check if gust -->
-  ${
-    forecast.list[0].wind.gust === undefined
-      ? ""
-      : `(${Math.round(forecast.list[0].wind.gust)})`
-  } m/s</p>
-  <i class="windArrow wi wi-wind from-${forecast.list[0].wind.deg}-deg"></i>
+  <p>${daysForecast(forecast.list[0])}</p>
 <h4>Nu+6h</h4>
-<p>${daysForecast(2)}</p>
+<p>${daysForecast(forecast.list[2])}</p>
 <h4>Nu+12h</h4>
+<p>${daysForecast(forecast.list[4])}</p>
 <h4>Nu+18h</h4>
-  `;
-  /* 
+<p>${daysForecast(forecast.list[6])}</p>
 
-    <p>% chance for rain ${forecast.list[0].pop}</p>
-  <p>mm of rain ${forecast.list[0].rain}</p>
-
-
-  <p>${forecast.list[8].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[8].main.temp)}</p>
-    <p>${forecast.list[16].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[16].main.temp)}</p>
-      <p>${forecast.list[24].dt_txt}</p>
-  <p>Temp: ${Math.round(forecast.list[24].main.temp)}</p>
-    <p>${forecast.list[32].dt_txt}</p> emp)}</p> 
- */
+`;
 
   //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
