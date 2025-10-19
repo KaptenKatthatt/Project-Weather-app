@@ -49,16 +49,16 @@ const updateUI = (data) => {
          <p>${Math.round(weather.wind.speed)} m/s</p>
         `;
 
-  // 5 day forecast presentation
+  // 18 hour forecast presentation
   forecastContainer.innerHTML = `
   <h5 class="my-3">Nu</h5>
-  <p>${daysForecast(forecast.list[0])}</p>
+  ${daysForecast(forecast.list[0])}
 <h4>Nu+6h</h4>
-<p>${daysForecast(forecast.list[2])}</p>
+${daysForecast(forecast.list[2])}
 <h4>Nu+12h</h4>
-<p>${daysForecast(forecast.list[4])}</p>
+${daysForecast(forecast.list[4])}
 <h4>Nu+18h</h4>
-<p>${daysForecast(forecast.list[6])}</p>
+${daysForecast(forecast.list[6])}
 
 `;
 
