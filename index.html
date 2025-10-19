@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <!-- Sitewide custom CSS -->
   <link rel="stylesheet" href="styles.css">
   <!-- Weather icons -->
@@ -41,11 +41,18 @@
       </div>
       <!-- 18 hour forecast card  -->
       <div class="card shadow-lg rounded">
-        <div class="text-muted text-uppercase text-center forecast-container px-4">
+        <div class="text-muted text-uppercase forecast-container px-4">
         </div>
       </div>
     </div>
+    <div class="forecastTableContainer mt-5">
+      <h3>5-dygnsprognos</h3>
+      <table class=" forecastTable table text-center fs-3 align-middle">
+
+      </table>
+    </div>
   </div>
+
 
   <script src="scripts/api.js"></script>
   <script src="scripts/forecast.js"></script>

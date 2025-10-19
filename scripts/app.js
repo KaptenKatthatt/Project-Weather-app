@@ -1,4 +1,5 @@
 import { daysForecast } from "./daysForecast.js";
+import { ForecastTable } from "./forecastTable.js";
 
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
@@ -15,6 +16,7 @@ const locationContainer = document.querySelector(".locationContainer");
 const currentWeatherContainer = document.querySelector(
   ".currentWeatherContainer"
 );
+const forecastTable = document.querySelector(".forecastTable");
 
 //Update UI
 const updateUI = (data) => {
@@ -55,10 +57,14 @@ const updateUI = (data) => {
   //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
   iconImg.setAttribute("src", iconSrc);
+
+  forecastTable.innerHTML = ForecastTable(forecast.list, iconSrc);
+
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
-  console.log("Local time ", timeSrc);
-  console.log("Sunrise", weather.sys.sunrise);
+  // console.log("Local time ", timeSrc);
+  // console.log("Sunrise", weather.sys.sunrise);
+
   timeSrc =
     timeSrc > weather.sys.sunrise && timeSrc < weather.sys.sunset
       ? "img/day.svg"
