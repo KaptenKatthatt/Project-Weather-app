@@ -1,34 +1,72 @@
+import { daysForecast } from "./daysForecast.js";
+
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
+
 const details = document.querySelector(".details");
 const forecastContainer = document.querySelector(".forecast-container");
 
-const time = document.querySelector("img.time");
-const icon = document.querySelector(".icon img");
+const backgroundImg = document.querySelector("img.time");
+const icon = document.querySelector(".icon");
+const iconImg = document.querySelector(".icon img");
+const windArrow = document.querySelector(".windArrow");
 
+const locationContainer = document.querySelector(".locationContainer");
+const currentWeatherContainer = document.querySelector(
+  ".currentWeatherContainer"
+);
+
+//Update UI
 const updateUI = (data) => {
-  //   const cityDets = data.cityDets;
-  //   const weather = data.weather;
+  const { cityDets, weather, forecast } = data;
 
-  // Destructure properties för att spara dom i de två variablerna inuti {}, hämtar dom från data. Gör samma sak som ovan.
-  const { cityDets, weather } = data;
-  // let lang = sv; Gör en if check på om där finns local_names först
+  //Get local time and local hour
+  const timestamp = weather.dt;
+  const timezone = weather.timezone;
+  let localTime = new Date(timestamp * 1000 + timezone * 1000);
+  const localHour = localTime.getUTCHours();
+
+  //Location
+  /*  locationContainer.innerHTML = `<h3 class="my-3">${cityDets.name}</h3>`;
+  //Current weather
+
+  currentWeatherContainer.innerHTML += `
+  <p>Kl. ${localHour}</p>
+  <span>${Math.round(weather.main.temp)}&deg;</span>
+  Känns som ${Math.round(weather.main.feels_like)}&deg;
+  `; */
+
   //update details template
   details.innerHTML = `
         <h5 class="my-3">${cityDets.name}</h5>
+          <p>Kl. ${localHour}</p>
         <div class="my-3">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
         </div>
-  `;
+        <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg"></i>
+         <p>${Math.round(weather.wind.speed)} m/s</p>
+        `;
 
-  //update the night/day & icon images
+  // 18 hour forecast presentation
+  forecastContainer.innerHTML = `
+  <h5 class="my-3">Nu</h5>
+  ${daysForecast(forecast.list[0])}
+<h4>Nu+6h</h4>
+${daysForecast(forecast.list[2])}
+<h4>Nu+12h</h4>
+${daysForecast(forecast.list[4])}
+<h4>Nu+18h</h4>
+${daysForecast(forecast.list[6])}
+
+`;
+
+  //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-
-  icon.setAttribute("src", iconSrc);
-
-  let timeSrc = Math.floor(Date.now() / 1000);
+  iconImg.setAttribute("src", iconSrc);
+  //update night/day background
+  let timeSrc = Math.round(Date.now() / 1000);
   console.log("Local time ", timeSrc);
   console.log("Sunrise", weather.sys.sunrise);
   timeSrc =
@@ -36,7 +74,7 @@ const updateUI = (data) => {
       ? "img/day.svg"
       : "img/night.svg";
 
-  time.setAttribute("src", timeSrc);
+  backgroundImg.setAttribute("src", timeSrc);
 
   //remove d-none if present
   if (card.classList.contains("d-none")) {
@@ -44,6 +82,7 @@ const updateUI = (data) => {
   }
 };
 
+//Calls city and weather functions to get data from API
 const updateCity = async (city) => {
   const cityDets = await getCity(city);
   const weather = await getWeather(cityDets.lat, cityDets.lon);
