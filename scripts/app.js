@@ -32,7 +32,6 @@ const updateUI = (data) => {
   console.log(cityDets.country);
   details.innerHTML = `
         <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
-
         <h5 class="my-3">${cityDets.name}</h5>
           <p>Kl. ${localHour}</p>
         <div class="my-3">${weather.weather[0].description}</div>

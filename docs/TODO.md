@@ -1,6 +1,6 @@
 App generellt
 Animerade väderikoner? Kanske bara på vänstra kortet
-Flaggor bredvid varje stadsnamn
+✅Flaggor bredvid varje stadsnamn
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden.
 
