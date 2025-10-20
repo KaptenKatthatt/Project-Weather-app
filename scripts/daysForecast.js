@@ -1,7 +1,23 @@
 export function daysForecast(weatherListItem) {
+  const date = new Date(weatherListItem.dt * 1000);
+  const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
+
+  const hour = date.getHours();
+  let dayPeriod;
+  if (hour >= 5 && hour < 12) {
+    dayPeriod = "förmiddag";
+  } else if (hour >= 12 && hour < 18) {
+    dayPeriod = "eftermiddag";
+  } else if (hour >= 18 && hour < 22) {
+    dayPeriod = "kväll";
+  } else {
+    dayPeriod = "natt";
+  }
+
   return `
-  <!-- Time & Date -->
-  <p>${weatherListItem.dt_txt}</p>
+  <!-- Weekday and dayperiod -->
+  <h5 class="mt-3 fw-bold">${weekday}</h5>
+  <h6>${dayPeriod}</h6>
   <!-- Temp -->
   <p>Temp: ${Math.round(weatherListItem.main.temp)}&deg;C</p>
   <!-- Feels like -->
@@ -12,16 +28,22 @@ export function daysForecast(weatherListItem) {
       ? "0"
       : Math.round(weatherListItem.rain["3h"])
   }mm
-  <p>
-    Vind ${weatherListItem.wind.deg}&deg;
-  </p>
-  <p>Vind ${Math.round(weatherListItem.wind.speed)}
-  <!-- check if gust -->
+  <p class="mt-2">
+  Vind<br> 
+  ${Math.round(weatherListItem.wind.speed)}
+  <!-- If gust show, else none -->
   ${
     weatherListItem.wind.gust === undefined
       ? ""
       : `(${Math.round(weatherListItem.wind.gust)})`
-  } m/s</p>
-  <i class="windArrow wi wi-wind from-${weatherListItem.wind.deg}-deg"></i>
+  } m/s
+  </p>
+  <p>  <i class=" windArrow wi wi-wind from-${
+    weatherListItem.wind.deg
+  }-deg"></i>
+</p>
+ 
     `;
 }
+
+// Vind ${weatherListItem.wind.deg}&deg;

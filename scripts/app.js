@@ -1,5 +1,6 @@
 import { daysForecast } from "./daysForecast.js";
 import { ForecastTable } from "./forecastTable.js";
+import { forecastSidebar } from "./forecastSidebar.js";
 
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
@@ -42,15 +43,12 @@ const updateUI = (data) => {
          <p>${Math.round(weather.wind.speed)} m/s</p>
         `;
 
+  console.log(forecast.list);
   // 18 hour forecast presentation
   forecastContainer.innerHTML = `
-    <h4 class="my-3">Förmiddag</h4>
     ${daysForecast(forecast.list[0])}
-    <h4>Eftermiddag</h4>
     ${daysForecast(forecast.list[2])}
-    <h4>Ikväll</h4>
     ${daysForecast(forecast.list[4])}
-    <h4>Inatt</h4>
     ${daysForecast(forecast.list[6])}
 
 `;
