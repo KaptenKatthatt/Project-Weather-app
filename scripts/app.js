@@ -1,6 +1,5 @@
 import { forecastSidebar } from "./forecastSidebar.js";
 import { ForecastTable } from "./forecastTable.js";
-import { forecastSidebar } from "./forecastSidebar.js";
 
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
@@ -43,8 +42,7 @@ const updateUI = (data) => {
          <p>${Math.round(weather.wind.speed)} m/s</p>
         `;
 
-  console.log(forecast.list);
-  // 18 hour forecast presentation
+  // 18 hour forecast sidebar
   forecastContainer.innerHTML = `
     ${forecastSidebar(forecast.list[0])}
     ${forecastSidebar(forecast.list[2])}
@@ -57,6 +55,7 @@ const updateUI = (data) => {
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
   iconImg.setAttribute("src", iconSrc);
 
+  // 5 day forecast table(noon every day)
   forecastTable.innerHTML = ForecastTable(forecast.list, iconSrc);
 
   //update night/day background
@@ -82,7 +81,6 @@ const updateCity = async (city) => {
   const cityDets = await getCity(city);
   const weather = await getWeather(cityDets.lat, cityDets.lon);
   const forecast = await getForecast(cityDets.lat, cityDets.lon);
-  console.log(cityDets.lat, cityDets.lon);
 
   return {
     cityDets, //Om både nyckeln och värdet har samma namn räcker det att man skriver det en gång.

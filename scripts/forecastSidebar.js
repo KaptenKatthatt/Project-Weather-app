@@ -4,8 +4,10 @@ export function forecastSidebar(weatherListItem) {
 
   const hour = date.getHours();
   let dayPeriod;
-  if (hour >= 5 && hour < 12) {
-    dayPeriod = "förmiddag";
+  if (hour >= 5 && hour < 9) {
+    dayPeriod = "morgon";
+  } else if (hour >= 9 && hour < 12) {
+    dayPeriod = "middag";
   } else if (hour >= 12 && hour < 18) {
     dayPeriod = "eftermiddag";
   } else if (hour >= 18 && hour < 22) {
