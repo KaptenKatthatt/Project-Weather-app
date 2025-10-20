@@ -1,4 +1,4 @@
-import { daysForecast } from "./daysForecast.js";
+import { forecastSidebar } from "./forecastSidebar.js";
 import { ForecastTable } from "./forecastTable.js";
 import { forecastSidebar } from "./forecastSidebar.js";
 
@@ -46,10 +46,10 @@ const updateUI = (data) => {
   console.log(forecast.list);
   // 18 hour forecast presentation
   forecastContainer.innerHTML = `
-    ${daysForecast(forecast.list[0])}
-    ${daysForecast(forecast.list[2])}
-    ${daysForecast(forecast.list[4])}
-    ${daysForecast(forecast.list[6])}
+    ${forecastSidebar(forecast.list[0])}
+    ${forecastSidebar(forecast.list[2])}
+    ${forecastSidebar(forecast.list[4])}
+    ${forecastSidebar(forecast.list[6])}
 
 `;
 
