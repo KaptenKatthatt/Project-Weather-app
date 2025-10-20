@@ -1,4 +1,5 @@
 import { daysForecast } from "./daysForecast.js";
+import { ForecastTable } from "./forecastTable.js";
 
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
@@ -15,6 +16,7 @@ const locationContainer = document.querySelector(".locationContainer");
 const currentWeatherContainer = document.querySelector(
   ".currentWeatherContainer"
 );
+const forecastTable = document.querySelector(".forecastTable");
 
 //Update UI
 const updateUI = (data) => {
@@ -27,7 +29,10 @@ const updateUI = (data) => {
   const localHour = localTime.getUTCHours();
 
   //update details template
+  console.log(cityDets.country);
   details.innerHTML = `
+        <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
+
         <h5 class="my-3">${cityDets.name}</h5>
           <p>Kl. ${localHour}</p>
         <div class="my-3">${weather.weather[0].description}</div>
@@ -55,10 +60,14 @@ const updateUI = (data) => {
   //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
   iconImg.setAttribute("src", iconSrc);
+
+  forecastTable.innerHTML = ForecastTable(forecast.list, iconSrc);
+
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
-  console.log("Local time ", timeSrc);
-  console.log("Sunrise", weather.sys.sunrise);
+  // console.log("Local time ", timeSrc);
+  // console.log("Sunrise", weather.sys.sunrise);
+
   timeSrc =
     timeSrc > weather.sys.sunrise && timeSrc < weather.sys.sunset
       ? "img/day.svg"

@@ -23,6 +23,5 @@ export function daysForecast(weatherListItem) {
       : `(${Math.round(weatherListItem.wind.gust)})`
   } m/s</p>
   <i class="windArrow wi wi-wind from-${weatherListItem.wind.deg}-deg"></i>
-    
     `;
 }
