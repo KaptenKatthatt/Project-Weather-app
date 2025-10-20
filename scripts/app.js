@@ -29,7 +29,6 @@ const updateUI = (data) => {
   const localHour = localTime.getUTCHours();
 
   //update details template
-  console.log(cityDets.country);
   details.innerHTML = `
         <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
         <h5 class="my-3">${cityDets.name}</h5>
