@@ -10,3 +10,5 @@ Forecast Table
 
 //Vind högsta vind/byar under dagen
 //function highestWind som tar in alla vindvärden för den dagen och plockar ut det högsta
+
+Kolla om jag behöver lägga till +weatherListItem.timezone på forecastSidebar. Stämmer tiden?

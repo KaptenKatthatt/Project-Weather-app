@@ -1,3 +1,5 @@
+"use strict";
+
 import { forecastSidebar } from "./forecastSidebar.js";
 import { ForecastTable } from "./forecastTable.js";
 
@@ -18,21 +20,26 @@ const currentWeatherContainer = document.querySelector(
 );
 const forecastTable = document.querySelector(".forecastTable");
 
+// console.log(new Date(2024, 2, 10, 2, 30).toString());
+// const birthday3 = new Date(1995, 11, 17);
+// console.log(birthday3);
+
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
 
   //Get local time and local hour
-  const timestamp = weather.dt;
-  const timezone = weather.timezone;
-  let localTime = new Date(timestamp * 1000 + timezone * 1000);
+  // const timestamp = weather.dt; //Distribute in app for efficiency?
+  // const timezone = weather.timezone;
+
+  let localTime = new Date(weather.dt * 1000 + weather.timezone * 1000);
   const localHour = localTime.getUTCHours();
 
-  //update details template
+  //update left card
   details.innerHTML = `
         <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
         <h5 class="my-3">${cityDets.name}</h5>
-          <p>Kl. ${localHour}</p>
+          <p>Kl.${localHour}</p>
         <div class="my-3">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}</span>
@@ -56,7 +63,8 @@ const updateUI = (data) => {
   iconImg.setAttribute("src", iconSrc);
 
   // 5 day forecast table(noon every day)
-  forecastTable.innerHTML = ForecastTable(forecast.list, iconSrc);
+  console.log(forecast);
+  forecastTable.innerHTML = ForecastTable(forecast, iconSrc);
 
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);

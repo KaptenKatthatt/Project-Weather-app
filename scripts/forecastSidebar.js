@@ -16,6 +16,11 @@ export function forecastSidebar(weatherListItem) {
     dayPeriod = "natt";
   }
 
+  let localDate = date.toLocaleString("sv-SE", {
+    day: "2-digit",
+    month: "2-digit",
+  });
+
   return `
   <!-- Weekday and dayperiod -->
   <h5 class="mt-3 fw-bold">${weekday}</h5>
@@ -47,5 +52,3 @@ export function forecastSidebar(weatherListItem) {
  
     `;
 }
-
-// Vind ${weatherListItem.wind.deg}&deg;

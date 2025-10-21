@@ -8,21 +8,39 @@ export function ForecastTable(weatherList, icon) {
   // Dygnets nederbörd räknas från sön 08:00 till sön 23:00.
   //function daysRain
 
-  //Vind kl 12.00 på dagen eller högsta vind/byar under dagen
+  //Vind: högsta vind/byar under dagen
   //function highestWind som tar in alla vindvärden för den dagen och plockar ut det högsta
+
   // Capitalize first letter, rest lower case
   function capitalizeSv(text) {
     if (!text) return text;
-    return (
-      text.charAt(0).toLocaleUpperCase("sv-SE") +
-      text.slice(1).toLocaleLowerCase("sv-SE")
-    );
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
   //
-  let day = new Date(weatherList[6].dt * 1000).toLocaleString("sv-SE", {
+  let day = new Date(
+    (weatherList.list[6].dt + weatherList.city.timezone) * 1000
+  ).toLocaleString("sv-SE", {
     weekday: "long",
   });
+
   day = capitalizeSv(day);
+
+  function extractFullDay() {
+    // let dayPeriod = new Date(weatherList.dt);
+    const hourArray = [];
+    for (let i = 0; i < 10; i++) {
+      let tempHour = 0;
+      tempHour = new Date(
+        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
+      ).getUTCHours();
+      console.log(tempHour);
+      // hourArray.push(tempHour);
+    }
+
+    return;
+  }
+
+  console.log(extractFullDay());
 
   return `
 
@@ -48,18 +66,18 @@ export function ForecastTable(weatherList, icon) {
     <td>
       <img src="${icon}" alt="Icon of the weather">
     </td>
-    <td>${Math.round(weatherList[6].main.temp_min)}/${Math.round(
-    weatherList[6].main.temp_max
+    <td>${Math.round(weatherList.list[6].main.temp_min)}/${Math.round(
+    weatherList.list[6].main.temp_max
   )}</td>
-    <td>${Math.round(weatherList[6].wind.speed)}(${
-    weatherList[6].wind.gust === undefined
+    <td>${Math.round(weatherList.list[6].wind.speed)}(${
+    weatherList.list[6].wind.gust === undefined
       ? "0"
-      : Math.round(weatherList[6].wind.gust)
+      : Math.round(weatherList.list[6].wind.gust)
   })</td>
     <td>${
-      weatherList[6].rain === undefined
+      weatherList.list[6].rain === undefined
         ? "0"
-        : Math.round(weatherList[6].rain["3h"])
+        : Math.round(weatherList.list[6].rain["3h"])
     }</td>
   </tr>
 </tbody>
