@@ -16,10 +16,10 @@ export function forecastSidebar(weatherListItem) {
     dayPeriod = "natt";
   }
 
-  let localDate = date.toLocaleString("sv-SE", {
-    day: "2-digit",
-    month: "2-digit",
-  });
+  // let localDate = date.toLocaleString("sv-SE", {
+  //   day: "2-digit",
+  //   month: "2-digit",
+  // });
 
   return `
   <!-- Weekday and dayperiod -->
