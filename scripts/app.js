@@ -63,7 +63,6 @@ const updateUI = (data) => {
   iconImg.setAttribute("src", iconSrc);
 
   // 5 day forecast table(noon every day)
-  console.log(forecast);
   forecastTable.innerHTML = ForecastTable(forecast, iconSrc);
 
   //update night/day background

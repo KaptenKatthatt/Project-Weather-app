@@ -11,6 +11,17 @@ export function ForecastTable(weatherList, icon) {
   //Vind: högsta vind/byar under dagen
   //function highestWind som tar in alla vindvärden för den dagen och plockar ut det högsta
 
+  //funktion som ska returnera alla mätningar för en dag och sen kolla max och min temp, medelvind och maxvind och summera nederbörd
+
+  //Math.max(...arrayMedTemp)
+  // Math.min(...arrayMedTemp/Vind)
+
+  //nederbördsArray.reduce för att slå ihop alla regnvärden för en dag.
+
+  //Välj alla mätningar från kl 2-23, 8st.
+
+  //Välj alla mätningar där day är day+1 och
+
   // Capitalize first letter, rest lower case
   function capitalizeSv(text) {
     if (!text) return text;
@@ -29,21 +40,29 @@ export function ForecastTable(weatherList, icon) {
     // let dayPeriod = new Date(weatherList.dt);
     const hourArray = [];
     for (let i = 0; i < 10; i++) {
-      let tempHour = 0;
-      tempHour = new Date(
+      // let tempHour = 0;
+      let hour = new Date(
         (weatherList.list[i].dt + weatherList.city.timezone) * 1000
       ).getUTCHours();
-      console.log(tempHour);
-      // hourArray.push(tempHour);
-    }
+      console.log("Hour", hour);
+      let date = new Date(
+        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
+      ).getUTCDate();
+      console.log("Date", date);
+      let today = new Date(
+        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
+      ).getDate();
+      console.log("Today", today);
+      // hourArray.push(hour);
 
+      // console.log("HourArray", hourArray);
+    }
     return;
   }
 
   console.log(extractFullDay());
-
-  return `
-
+  return;
+  `
 <thead>
   <tr>
     <th>
