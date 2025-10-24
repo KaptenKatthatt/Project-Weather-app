@@ -1,19 +1,11 @@
 export function ForecastTable(weatherList, icon) {
-  // Dagen är 00-21
-
-  /* {
-    datum:
-    tid:
-  }
- */
-
   //GLOBAL VARIABLES 🌐
   //Local today is the local date on the searched city.
-  const localTimezone = weatherList.city.timezone;
   //**All days are local days for the searched city**
-  const today = new Date(
-    (weatherList.list[0].dt + weatherList.city.timezone) * 1000
-  );
+  //Timezone of searched city
+  const localTimezone = weatherList.city.timezone;
+  //Day Date objects based on todays date
+  const today = new Date((weatherList.list[0].dt + localTimezone) * 1000);
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
   const dayAfterTomorrow = new Date(today);
@@ -23,42 +15,27 @@ export function ForecastTable(weatherList, icon) {
   const inFourDays = new Date(today);
   inFourDays.setDate(inFourDays.getDate() + 4);
 
+  //Variables containing the weather measurement arrays of each day
   let todayWeatherArr = getDayWeather(weatherList.list, today);
-  let localTomorrowWeatherArr = getDayWeather(weatherList.list, tomorrow);
+  let tomorrowWeatherArr = getDayWeather(weatherList.list, tomorrow);
   let dayAfterTomorrowWeatherArr = getDayWeather(
     weatherList.list,
     dayAfterTomorrow
   );
-
   let inThreeDaysWeatherArr = getDayWeather(weatherList.list, inThreeDays);
   let inFourDaysWeatherArr = getDayWeather(weatherList.list, inFourDays);
 
   //GLOBAL FUNCTIONS 🌐
-  // Capitalize first letter, rest lower case
 
+  // Capitalizes first letter, rest lower case
   function formattedWeekday(weekday) {
     weekday = weekday.toLocaleString("sv-SE", {
       weekday: "long",
     });
-
     weekday = weekday.charAt(0).toUpperCase() + weekday.slice(1).toLowerCase();
-
     return weekday;
   }
-  /*   
-  //Hardcoded to today( index[0])
-  let longWeekDay = new Date(
-    (weatherList.list[0].dt + weatherList.city.timezone) * 1000
-  ).toLocaleString("sv-SE", {
-    weekday: "long",
-  });
 
-  longWeekDay =
-    longWeekDay.charAt(0).toUpperCase() + longWeekDay.slice(1).toLowerCase();
- 
-    // let capitalizedLongWeekDay = formattedWeekday(longWeekDay);
- 
-    */
   //Returns array with the weather measurements of the input day
   function getDayWeather(forecastArr, inputDate) {
     inputDate = inputDate.getUTCDate();
@@ -75,20 +52,14 @@ export function ForecastTable(weatherList, icon) {
     return result;
   }
 
-  console.log("Todays weatherArr", getDayWeather(weatherList.list, today));
-  console.log("tomorrow", getDayWeather(weatherList.list, tomorrow));
-  console.log(
-    "Day after tomorrow",
-    getDayWeather(weatherList.list, dayAfterTomorrow, localTimezone)
-  );
-  console.log(
-    "In three days",
-    getDayWeather(weatherList.list, inThreeDays, localTimezone)
-  );
-  console.log(
-    "In four days",
-    getDayWeather(weatherList.list, inFourDays, localTimezone)
-  );
+  // console.log("Todays weatherArr", getDayWeather(weatherList.list, today));
+  // console.log("tomorrow", getDayWeather(weatherList.list, tomorrow));
+  // console.log(
+  //   "Day after tomorrow",
+  //   getDayWeather(weatherList.list, dayAfterTomorrow)
+  // );
+  // console.log("In three days", getDayWeather(weatherList.list, inThreeDays));
+  // console.log("In four days", getDayWeather(weatherList.list, inFourDays));
 
   //Returns the min or max temp of the input day arr.
   function getTemp(dayWeatherArr) {
@@ -137,8 +108,8 @@ export function ForecastTable(weatherList, icon) {
     windInfo.maxGust = Math.round(Math.max(...maxGustArr));
     return windInfo;
   }
-  console.log("WindInfo obj", getWind(todayWeatherArr));
 
+  //Returns total rain of input day array
   function getTotalRain(dayWeatherArr) {
     const totalRainArr = [];
     for (let i = 0; i < dayWeatherArr.length; i++) {
@@ -146,96 +117,29 @@ export function ForecastTable(weatherList, icon) {
         ? totalRainArr.push(0)
         : totalRainArr.push(dayWeatherArr[i].rain["3h"]);
     }
-    console.log(
-      "Total rain",
-      Math.round(totalRainArr.reduce((acc, curr) => acc + curr, 0))
-    );
     return Math.round(totalRainArr.reduce((acc, curr) => acc + curr, 0));
   }
-  /* 
-  console.log(
-    `
-${formattedWeekday(today)}
-${formattedWeekday(tomorrow)}
-${formattedWeekday(dayAfterTomorrow)}
-${formattedWeekday(inThreeDays)}
-${formattedWeekday(inFourDays)}
-`
-  );
-   */
-  //For each day of the five days, generate the weather table row.
+  //Renders one row in table
+  function renderWeatherTable(dayArr, day) {
+    return `
+      <tr>
+    <td>${formattedWeekday(day)}</td>
+    <td>
+      <img src="${icon}" alt="Icon representation of the days weather">
+    </td>
+    <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
+    <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
+    <td>${getTotalRain(dayArr)}</td>
+  </tr>
+  `;
+  }
+
+  //Output to app.js: 5 day forecast table
   return `
-    <!-- DAY 1 -->
-  <tr>
-    <td>${formattedWeekday(today)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
-    <td>${getTemp(todayWeatherArr).minTemp}/${
-    getTemp(todayWeatherArr).maxTemp
-  }</td>
-    <td>${getWind(todayWeatherArr).avgWindSpeed}(${
-    getWind(todayWeatherArr).maxGust
-  })</td>
-    <td>${getTotalRain(todayWeatherArr)}</td>
-  </tr>
-
-  <!-- DAY 2 -->
-  <tr>
-    <td>${formattedWeekday(tomorrow)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
-    <td>${getTemp(localTomorrowWeatherArr).minTemp}/${
-    getTemp(localTomorrowWeatherArr).maxTemp
-  }</td>
-    <td>${getWind(localTomorrowWeatherArr).avgWindSpeed}(${
-    getWind(localTomorrowWeatherArr).maxGust
-  })</td>
-    <td>${getTotalRain(localTomorrowWeatherArr)}</td>
-  </tr>
-  <!-- DAY 3 -->
-  <tr>
-    <td>${formattedWeekday(dayAfterTomorrow)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
-    <td>${getTemp(dayAfterTomorrowWeatherArr).minTemp}/${
-    getTemp(dayAfterTomorrowWeatherArr).maxTemp
-  }</td>
-    <td>${getWind(dayAfterTomorrowWeatherArr).avgWindSpeed}(${
-    getWind(dayAfterTomorrowWeatherArr).maxGust
-  })</td>
-    <td>${getTotalRain(dayAfterTomorrowWeatherArr)}</td>
-  </tr>
-
-  <!-- DAY 4 -->
-  <tr>
-    <td>${formattedWeekday(inThreeDays)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
-    <td>${getTemp(inThreeDaysWeatherArr).minTemp}/${
-    getTemp(inThreeDaysWeatherArr).maxTemp
-  }</td>
-    <td>${getWind(inThreeDaysWeatherArr).avgWindSpeed}(${
-    getWind(inThreeDaysWeatherArr).maxGust
-  })</td>
-    <td>${getTotalRain(inThreeDaysWeatherArr)}</td>
-  </tr>
-  <!-- DAY 5 -->
-  <tr>
-    <td>${formattedWeekday(inFourDays)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
-    <td>${getTemp(inFourDaysWeatherArr).minTemp}/${
-    getTemp(inFourDaysWeatherArr).maxTemp
-  }</td>
-    <td>${getWind(inFourDaysWeatherArr).avgWindSpeed}(${
-    getWind(inFourDaysWeatherArr).maxGust
-  })</td>
-    <td>${getTotalRain(inFourDaysWeatherArr)}</td>
-  </tr>
-`;
+    ${renderWeatherTable(todayWeatherArr, today)}
+    ${renderWeatherTable(tomorrowWeatherArr, tomorrow)}
+    ${renderWeatherTable(dayAfterTomorrowWeatherArr, dayAfterTomorrow)}
+    ${renderWeatherTable(inThreeDaysWeatherArr, inThreeDays)}
+    ${renderWeatherTable(inFourDaysWeatherArr, inFourDays)}
+    `;
 }
