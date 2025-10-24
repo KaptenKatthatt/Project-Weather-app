@@ -1,4 +1,6 @@
 App generellt
+Dark mode med en sol/måne uppe till höger dom växlar.
+
 Animerade väderikoner? Kanske bara på vänstra kortet
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden.

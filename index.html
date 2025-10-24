@@ -20,18 +20,19 @@
 </head>
 
 <body>
+  <!-- Site container -->
   <div class="container my-5 mx-auto ">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
-
+    <!-- Title and input -->
     <form class="change-location my-4 text-center text-muted">
       <label for="city">Den Fenomenala Väderstationen i Etern</label>
       <input type="text" name="city" id="city" class=" form-control p-4 fs-4" placeholder="Sök efter en stad...">
     </form>
 
-
+    <!-- Cards container -->
     <div class="card-container d-flex flex-row justify-content-around gap-1">
       <!-- Current weather card -->
-      <div class="card shadow-lg rounded-3 d-none ">
+      <div class="card shadow-lg d-none rounded-3">
         <img src="" class="time card-img-top">
         <div class="icon bg-light mx-auto text-center">
           <img src="" alt="">
@@ -42,7 +43,7 @@
         </div>
       </div>
       <!-- 18 hour forecast card  -->
-      <div class="card shadow-lg rounded-3 text-center">
+      <div class="card shadow-lg rounded-3  text-center">
         <div class="text-muted text-uppercase forecast-container px-4 pb-4">
         </div>
       </div>
@@ -62,15 +63,12 @@
               <th>Vind(byvind)</th>
               <th>Nederbörd</th>
             </tr>
-
           </thead>
           <tbody class="table-group-divider weatherTable">
-
           </tbody>
         </table>
       </div>
     </div>
-
 
     <script src="scripts/api.js"></script>
     <script src="scripts/forecast.js"></script>

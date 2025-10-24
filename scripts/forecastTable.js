@@ -89,11 +89,11 @@ export function ForecastTable(weatherList, icon) {
       avgWindSpeed: 0,
       maxGust: 0,
     };
+    //Average wind speed of the day
     const windSpeedArr = [];
     for (let i = 0; i < dayWeatherArr.length; i++) {
       windSpeedArr.push(dayWeatherArr[i].wind.speed);
     }
-
     windInfo.avgWindSpeed = Math.round(
       windSpeedArr.reduce((acc, curr) => acc + curr, 0) / dayWeatherArr.length
     );

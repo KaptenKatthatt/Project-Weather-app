@@ -36,7 +36,6 @@ export function forecastSidebar(weatherListItem) {
     }mm
   </p>
   <h6>Vind</h6> 
- 
   <p class="mt-2 fs-6">
   ${Math.round(weatherListItem.wind.speed)}
   <!-- If gust show, else none -->
@@ -48,6 +47,5 @@ export function forecastSidebar(weatherListItem) {
    m/s
    </p>
  <i class=" windArrow wi wi-wind from-${weatherListItem.wind.deg}-deg mb-2"></i>
- 
     `;
 }
