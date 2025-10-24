@@ -5,7 +5,7 @@
 }
 
 body {
-  background: url("./img/background.jpg");
+  background: url("../img/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -13,7 +13,7 @@ body {
 }
 
 [data-bs-theme="dark"] body {
-  background: url("./img/dark_bg_svg.svg");
+  background: url("../img/dark_bg_svg.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
