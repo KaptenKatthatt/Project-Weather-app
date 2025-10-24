@@ -20,68 +20,97 @@ export function ForecastTable(weatherList, icon) {
 
   //Välj alla mätningar från kl 2-23, 8st.
 
-  //Välj alla mätningar där day är day+1 och
+  //Välj upp till åttta mätningar från varje dag, beroende på hur många där är. Gruppera dom efter datum så jag kan summera regnmängd.
 
-  // Capitalize first letter, rest lower case
-  function capitalizeSv(text) {
-    if (!text) return text;
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  /* {
+    datum:
+    tid:
   }
-  //
-  let day = new Date(
-    (weatherList.list[6].dt + weatherList.city.timezone) * 1000
+ */
+
+  //GLOBAL VARIABLES
+  //Local today is the local date on the searched city.
+  const localToday = new Date(
+    (weatherList.list[0].dt + weatherList.city.timezone) * 1000
+  );
+  const localTimezone = weatherList.city.timezone;
+
+  const localTomorrow = new Date();
+  localTomorrow.setDate(localToday.getDate() + 1);
+  const dayAfterLocalTomorrow = new Date();
+  dayAfterLocalTomorrow.setDate(localToday.getDate() + 2);
+  const inThreeDays = new Date();
+  inThreeDays.setDate(localToday.getDate() + 3);
+  const inFourDays = new Date();
+  inFourDays.setDate(localToday.getDate() + 4);
+
+  console.log("Local today", localToday.getDate());
+  //GLOBAL FUNCTIONS
+  // Capitalize first letter, rest lower case
+  function formattedWeekday(weekday) {
+    weekday = weekday.toLocaleString("sv-SE", {
+      weekday: "long",
+    });
+
+    weekday = weekday.charAt(0).toUpperCase() + weekday.slice(1).toLowerCase();
+
+    return weekday;
+  }
+  /*   
+  //Hardcoded to today( index[0])
+  let longWeekDay = new Date(
+    (weatherList.list[0].dt + weatherList.city.timezone) * 1000
   ).toLocaleString("sv-SE", {
     weekday: "long",
   });
 
-  day = capitalizeSv(day);
+  longWeekDay =
+    longWeekDay.charAt(0).toUpperCase() + longWeekDay.slice(1).toLowerCase();
+ 
+    // let capitalizedLongWeekDay = formattedWeekday(longWeekDay);
+ 
+    */
+  //filter forecast[list] based on incoming dateObject
+  function dayWeather(forecastArr, inputDate, timezone) {
+    inputDate = inputDate.getUTCDate();
 
-  function extractFullDay() {
-    // let dayPeriod = new Date(weatherList.dt);
-    const hourArray = [];
-    for (let i = 0; i < 10; i++) {
-      // let tempHour = 0;
-      let hour = new Date(
-        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
-      ).getUTCHours();
-      console.log("Hour", hour);
-      let date = new Date(
-        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
-      ).getUTCDate();
-      console.log("Date", date);
-      let today = new Date(
-        (weatherList.list[i].dt + weatherList.city.timezone) * 1000
-      ).getDate();
-      console.log("Today", today);
-      // hourArray.push(hour);
-
-      // console.log("HourArray", hourArray);
-    }
-    return;
+    let result = forecastArr.filter((weatherItem) => {
+      let weatherItemDate = new Date((weatherItem.dt + timezone) * 1000);
+      weatherItemDate = weatherItemDate.getUTCDate();
+      if (inputDate === weatherItemDate) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return result;
   }
 
-  console.log(extractFullDay());
-  return;
-  `
-<thead>
-  <tr>
-    <th>
-      Dygn
-    </th>
-    <th>
-    <!-- Icon heading, left blank-->
-    </th>
-    <th>
-      L/H
-    </th>
-    <th>Vind(byvind)</th>
-    <th>Nederbörd</th>
-  </tr>
+  console.log(dayWeather(weatherList.list, localToday, localTimezone));
+  console.log(dayWeather(weatherList.list, localTomorrow, localTimezone));
+  console.log(
+    dayWeather(weatherList.list, dayAfterLocalTomorrow, localTimezone)
+  );
+  console.log(dayWeather(weatherList.list, inThreeDays, localTimezone));
+  console.log(dayWeather(weatherList.list, inFourDays, localTimezone));
 
-</thead>
-<tbody class="table-group-divider">
+  /* 
+  console.log(
+    `
+${formattedWeekday(today)}
+${formattedWeekday(localTomorrow)}
+${formattedWeekday(dayAfterLocalTomorrow)}
+${formattedWeekday(inThreeDays)}
+${formattedWeekday(inFourDays)}
+`
+  );
+   */
+  //For each day of the five days, generate the weather table row.
+  return `
+
+
   <tr>
-    <td>${day}</td>
+    <td>${formattedWeekday(localToday)}</td>
     <td>
       <img src="${icon}" alt="Icon of the weather">
     </td>
@@ -99,7 +128,27 @@ export function ForecastTable(weatherList, icon) {
         : Math.round(weatherList.list[6].rain["3h"])
     }</td>
   </tr>
-</tbody>
+
+    <tr>
+    <td>${formattedWeekday(localTomorrow)}</td>
+    <td>
+      <img src="${icon}" alt="Icon of the weather">
+    </td>
+    <td>${Math.round(weatherList.list[6].main.temp_min)}/${Math.round(
+    weatherList.list[6].main.temp_max
+  )}</td>
+    <td>${Math.round(weatherList.list[6].wind.speed)}(${
+    weatherList.list[6].wind.gust === undefined
+      ? "0"
+      : Math.round(weatherList.list[6].wind.gust)
+  })</td>
+    <td>${
+      weatherList.list[6].rain === undefined
+        ? "0"
+        : Math.round(weatherList.list[6].rain["3h"])
+    }</td>
+  </tr>
+
 
 `;
 }

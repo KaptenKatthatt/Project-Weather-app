@@ -18,11 +18,7 @@ const locationContainer = document.querySelector(".locationContainer");
 const currentWeatherContainer = document.querySelector(
   ".currentWeatherContainer"
 );
-const forecastTable = document.querySelector(".forecastTable");
-
-// console.log(new Date(2024, 2, 10, 2, 30).toString());
-// const birthday3 = new Date(1995, 11, 17);
-// console.log(birthday3);
+const weatherTableEl = document.querySelector(".weatherTable");
 
 //Update UI
 const updateUI = (data) => {
@@ -63,7 +59,7 @@ const updateUI = (data) => {
   iconImg.setAttribute("src", iconSrc);
 
   // 5 day forecast table(noon every day)
-  forecastTable.innerHTML = ForecastTable(forecast, iconSrc);
+  weatherTableEl.innerHTML = ForecastTable(forecast, iconSrc);
 
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
