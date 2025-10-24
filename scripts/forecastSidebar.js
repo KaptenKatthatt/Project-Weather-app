@@ -21,29 +21,33 @@ export function forecastSidebar(weatherListItem) {
   <h5 class="mt-3 fw-bold">${weekday}</h5>
   <h6>${dayPeriod}</h6>
   <!-- Temp -->
-  <p>Temp: ${Math.round(weatherListItem.main.temp)}&deg;C</p>
+  <p class="fs-6">Temp: ${Math.round(weatherListItem.main.temp)}&deg;C</p>
   <!-- Feels like -->
-  <p>Känns som ${Math.round(weatherListItem.main.feels_like)}&deg;C</p>
+  <p class="fs-6">Känns som ${Math.round(
+    weatherListItem.main.feels_like
+  )}&deg;C</p>
   <!-- If rain show, else 0 -->
-  Regn ${
-    weatherListItem.rain === undefined
-      ? "0"
-      : Math.round(weatherListItem.rain["3h"])
-  }mm
-  <p class="mt-2">
-  Vind<br> 
+  <h6>Regn</h6> 
+  <p class="fs-6">
+    ${
+      weatherListItem.rain === undefined
+        ? "0"
+        : Math.round(weatherListItem.rain["3h"])
+    }mm
+  </p>
+  <h6>Vind</h6> 
+ 
+  <p class="mt-2 fs-6">
   ${Math.round(weatherListItem.wind.speed)}
   <!-- If gust show, else none -->
-  ${
-    weatherListItem.wind.gust === undefined
-      ? ""
-      : `(${Math.round(weatherListItem.wind.gust)})`
-  } m/s
-  </p>
-  <p>  <i class=" windArrow wi wi-wind from-${
-    weatherListItem.wind.deg
-  }-deg"></i>
-</p>
+    ${
+      weatherListItem.wind.gust === undefined
+        ? ""
+        : `(${Math.round(weatherListItem.wind.gust)})`
+    }
+   m/s
+   </p>
+ <i class=" windArrow wi wi-wind from-${weatherListItem.wind.deg}-deg mb-2"></i>
  
     `;
 }

@@ -33,7 +33,7 @@ const updateUI = (data) => {
 
   //update left card
   details.innerHTML = `
-        <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
+        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
         <h5 class="my-3 display-6">${cityDets.name}</h5>
         <div class="fs-6">Kl.${localHour}</div>
         <div class="my-3 fs-4">${weather.weather[0].description}</div>
