@@ -44,7 +44,29 @@ export function ForecastTable(weatherList, icon) {
   const inFourDays = new Date();
   inFourDays.setDate(localToday.getDate() + 4);
 
-  console.log("Local today", localToday.getDate());
+  let localTodayWeatherArr = getDayWeather(
+    weatherList.list,
+    localToday,
+    localTimezone
+  );
+  let localTomorrowWeatherArr = getDayWeather(
+    weatherList.list,
+    localTomorrow,
+    localTimezone
+  );
+  let dayAfterLocalTomorrowWeatherArr =
+    (weatherList.list, dayAfterLocalTomorrow, localTimezone);
+  let inThreeDaysWeatherArr = getDayWeather(
+    weatherList.list,
+    inThreeDays,
+    localTimezone
+  );
+  let inFourDaysWeatherArr = getDayWeather(
+    weatherList.list,
+    inFourDays,
+    localTimezone
+  );
+
   //GLOBAL FUNCTIONS
   // Capitalize first letter, rest lower case
   function formattedWeekday(weekday) {
@@ -70,8 +92,8 @@ export function ForecastTable(weatherList, icon) {
     // let capitalizedLongWeekDay = formattedWeekday(longWeekDay);
  
     */
-  //filter forecast[list] based on incoming dateObject
-  function dayWeather(forecastArr, inputDate, timezone) {
+  //Returns array with the weather measurements of the input day
+  function getDayWeather(forecastArr, inputDate, timezone) {
     inputDate = inputDate.getUTCDate();
 
     let result = forecastArr.filter((weatherItem) => {
@@ -86,14 +108,60 @@ export function ForecastTable(weatherList, icon) {
     return result;
   }
 
-  console.log(dayWeather(weatherList.list, localToday, localTimezone));
-  console.log(dayWeather(weatherList.list, localTomorrow, localTimezone));
+  console.log(getDayWeather(weatherList.list, localToday, localTimezone));
+  console.log(getDayWeather(weatherList.list, localTomorrow, localTimezone));
   console.log(
-    dayWeather(weatherList.list, dayAfterLocalTomorrow, localTimezone)
+    getDayWeather(weatherList.list, dayAfterLocalTomorrow, localTimezone)
   );
-  console.log(dayWeather(weatherList.list, inThreeDays, localTimezone));
-  console.log(dayWeather(weatherList.list, inFourDays, localTimezone));
+  console.log(getDayWeather(weatherList.list, inThreeDays, localTimezone));
+  console.log(getDayWeather(weatherList.list, inFourDays, localTimezone));
 
+  //Returns the min or max temp of the input day arr.
+  function getMaxMinTemp(dayWeatherArr, maxOrMinTemp) {
+    //Math.max Math.min
+    const tempArr = [];
+
+    if (maxOrMinTemp === "maxTemp") {
+      for (let i = 0; i < dayWeatherArr.length; i++) {
+        tempArr.push(dayWeatherArr[i].main.temp_max);
+      }
+      return Math.max(...tempArr);
+    } else if (maxOrMinTemp === "minTemp") {
+      for (let i = 0; i < dayWeatherArr.length; i++) {
+        tempArr.push(dayWeatherArr[i].main.temp_min);
+      }
+      return Math.min(...tempArr);
+    }
+  }
+
+  //Returns array with average weather based on number of measurements left in day, and max gust of the day.
+  function getWind(dayWeatherArr) {
+    const windInfo = {
+      avgWindSpeed: 0,
+      maxGust: 0,
+    };
+    const windSpeedArr = [];
+    for (let i = 0; i < dayWeatherArr.length; i++) {
+      windSpeedArr.push(dayWeatherArr[i].wind.speed);
+    }
+
+    windInfo.avgWindSpeed =
+      windSpeedArr.reduce((acc, curr) => acc + curr, 0) / dayWeatherArr.length;
+
+    //Max gust of day
+    const maxGustArr = [];
+    for (let i = 0; i < dayWeatherArr.length; i++) {
+      dayWeatherArr[i].wind.gust === undefined
+        ? "0"
+        : maxGustArr.push(dayWeatherArr[i].wind.gust);
+    }
+    windInfo.maxGust = Math.max(...maxGustArr);
+    console.log(
+      `Avg wind: ${windInfo.avgWindSpeed} Max gust ${windInfo.maxGust}`
+    );
+    return windInfo;
+  }
+  console.log(getWind(localTodayWeatherArr));
   /* 
   console.log(
     `
@@ -107,17 +175,16 @@ ${formattedWeekday(inFourDays)}
    */
   //For each day of the five days, generate the weather table row.
   return `
-
-
   <tr>
     <td>${formattedWeekday(localToday)}</td>
     <td>
-      <img src="${icon}" alt="Icon of the weather">
+      <img src="${icon}" alt="Icon representation of the days weather">
     </td>
-    <td>${Math.round(weatherList.list[6].main.temp_min)}/${Math.round(
-    weatherList.list[6].main.temp_max
+    <td>${getMaxMinTemp(localTodayWeatherArr, "minTemp")}/${getMaxMinTemp(
+    localTodayWeatherArr,
+    "maxTemp"
   )}</td>
-    <td>${Math.round(weatherList.list[6].wind.speed)}(${
+    <td>${getWind(localTodayWeatherArr).avgWindSpeed}(${
     weatherList.list[6].wind.gust === undefined
       ? "0"
       : Math.round(weatherList.list[6].wind.gust)
@@ -148,7 +215,5 @@ ${formattedWeekday(inFourDays)}
         : Math.round(weatherList.list[6].rain["3h"])
     }</td>
   </tr>
-
-
 `;
 }
