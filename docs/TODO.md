@@ -1,14 +1,15 @@
 App generellt
 Animerade väderikoner? Kanske bara på vänstra kortet
-✅Flaggor bredvid varje stadsnamn
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden.
 
+-----------------------KLART-------------------------
+
+✅Flaggor bredvid varje stadsnamn
+
 # Forecast Table
 
-Funktion som renderar tabellen. Istf att upprepa dagens väder fem gånger.
-
------------------------KLART-------------------------
+✅Funktion som renderar tabellen. Istf att upprepa dagens väder fem gånger.
 
 ## ✅Highest and lowest temp of day
 

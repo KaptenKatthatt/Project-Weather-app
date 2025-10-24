@@ -124,9 +124,6 @@ export function ForecastTable(weatherList, icon) {
     return `
       <tr>
     <td>${formattedWeekday(day)}</td>
-    <td>
-      <img src="${icon}" alt="Icon representation of the days weather">
-    </td>
     <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
     <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
     <td>${getTotalRain(dayArr)}</td>
