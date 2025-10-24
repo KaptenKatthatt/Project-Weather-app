@@ -34,15 +34,15 @@ const updateUI = (data) => {
   //update left card
   details.innerHTML = `
         <img class="mt-3" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
-        <h5 class="my-3">${cityDets.name}</h5>
-          <p>Kl.${localHour}</p>
-        <div class="my-3">${weather.weather[0].description}</div>
+        <h5 class="my-3 display-6">${cityDets.name}</h5>
+        <div class="fs-6">Kl.${localHour}</div>
+        <div class="my-3 fs-4">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}</span>
           <span>&deg;C</span>
         </div>
-        <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg"></i>
-         <p>${Math.round(weather.wind.speed)} m/s</p>
+        <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg mt-3"></i>
+         <div class="fs-5">${Math.round(weather.wind.speed)} m/s</div>
         `;
 
   // 18 hour forecast sidebar
