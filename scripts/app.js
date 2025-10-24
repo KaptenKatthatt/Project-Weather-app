@@ -10,14 +10,8 @@ const details = document.querySelector(".details");
 const forecastContainer = document.querySelector(".forecast-container");
 
 const backgroundImg = document.querySelector("img.time");
-const icon = document.querySelector(".icon");
 const iconImg = document.querySelector(".icon img");
-const windArrow = document.querySelector(".windArrow");
 
-const locationContainer = document.querySelector(".locationContainer");
-const currentWeatherContainer = document.querySelector(
-  ".currentWeatherContainer"
-);
 const weatherTableEl = document.querySelector(".weatherTable");
 
 //Update UI
