@@ -9,25 +9,25 @@ export function ForecastTable(weatherList, icon) {
 
   //GLOBAL VARIABLES 🌐
   //Local today is the local date on the searched city.
-  const localToday = new Date(
+  const localTimezone = weatherList.city.timezone;
+  //**All days are local days for the searched city**
+  const today = new Date(
     (weatherList.list[0].dt + weatherList.city.timezone) * 1000
   );
-  const localTimezone = weatherList.city.timezone;
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const dayAfterTomorrow = new Date(today);
+  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+  const inThreeDays = new Date(today);
+  inThreeDays.setDate(inThreeDays.getDate() + 3);
+  const inFourDays = new Date(today);
+  inFourDays.setDate(inFourDays.getDate() + 4);
 
-  const localTomorrow = new Date();
-  localTomorrow.setDate(localToday.getDate() + 1);
-  const dayAfterLocalTomorrow = new Date();
-  dayAfterLocalTomorrow.setDate(localToday.getDate() + 2);
-  const inThreeDays = new Date();
-  inThreeDays.setDate(localToday.getDate() + 3);
-  const inFourDays = new Date();
-  inFourDays.setDate(localToday.getDate() + 4);
-
-  let localTodayWeatherArr = getDayWeather(weatherList.list, localToday);
-  let localTomorrowWeatherArr = getDayWeather(weatherList.list, localTomorrow);
-  let dayAfterLocalTomorrowWeatherArr = getDayWeather(
+  let todayWeatherArr = getDayWeather(weatherList.list, today);
+  let localTomorrowWeatherArr = getDayWeather(weatherList.list, tomorrow);
+  let dayAfterTomorrowWeatherArr = getDayWeather(
     weatherList.list,
-    dayAfterLocalTomorrow
+    dayAfterTomorrow
   );
 
   let inThreeDaysWeatherArr = getDayWeather(weatherList.list, inThreeDays);
@@ -75,17 +75,11 @@ export function ForecastTable(weatherList, icon) {
     return result;
   }
 
-  console.log(
-    "Todays weatherArr",
-    getDayWeather(weatherList.list, localToday, localTimezone)
-  );
-  console.log(
-    "Localtomorrow",
-    getDayWeather(weatherList.list, localTomorrow, localTimezone)
-  );
+  console.log("Todays weatherArr", getDayWeather(weatherList.list, today));
+  console.log("tomorrow", getDayWeather(weatherList.list, tomorrow));
   console.log(
     "Day after tomorrow",
-    getDayWeather(weatherList.list, dayAfterLocalTomorrow, localTimezone)
+    getDayWeather(weatherList.list, dayAfterTomorrow, localTimezone)
   );
   console.log(
     "In three days",
@@ -143,7 +137,7 @@ export function ForecastTable(weatherList, icon) {
     windInfo.maxGust = Math.round(Math.max(...maxGustArr));
     return windInfo;
   }
-  console.log("WindInfo obj", getWind(localTodayWeatherArr));
+  console.log("WindInfo obj", getWind(todayWeatherArr));
 
   function getTotalRain(dayWeatherArr) {
     const totalRainArr = [];
@@ -162,8 +156,8 @@ export function ForecastTable(weatherList, icon) {
   console.log(
     `
 ${formattedWeekday(today)}
-${formattedWeekday(localTomorrow)}
-${formattedWeekday(dayAfterLocalTomorrow)}
+${formattedWeekday(tomorrow)}
+${formattedWeekday(dayAfterTomorrow)}
 ${formattedWeekday(inThreeDays)}
 ${formattedWeekday(inFourDays)}
 `
@@ -173,22 +167,22 @@ ${formattedWeekday(inFourDays)}
   return `
     <!-- DAY 1 -->
   <tr>
-    <td>${formattedWeekday(localToday)}</td>
+    <td>${formattedWeekday(today)}</td>
     <td>
       <img src="${icon}" alt="Icon representation of the days weather">
     </td>
-    <td>${getTemp(localTodayWeatherArr).minTemp}/${
-    getTemp(localTodayWeatherArr).maxTemp
+    <td>${getTemp(todayWeatherArr).minTemp}/${
+    getTemp(todayWeatherArr).maxTemp
   }</td>
-    <td>${getWind(localTodayWeatherArr).avgWindSpeed}(${
-    getWind(localTodayWeatherArr).maxGust
+    <td>${getWind(todayWeatherArr).avgWindSpeed}(${
+    getWind(todayWeatherArr).maxGust
   })</td>
-    <td>${getTotalRain(localTodayWeatherArr)}</td>
+    <td>${getTotalRain(todayWeatherArr)}</td>
   </tr>
 
   <!-- DAY 2 -->
   <tr>
-    <td>${formattedWeekday(localTomorrow)}</td>
+    <td>${formattedWeekday(tomorrow)}</td>
     <td>
       <img src="${icon}" alt="Icon representation of the days weather">
     </td>
@@ -202,17 +196,17 @@ ${formattedWeekday(inFourDays)}
   </tr>
   <!-- DAY 3 -->
   <tr>
-    <td>${formattedWeekday(dayAfterLocalTomorrow)}</td>
+    <td>${formattedWeekday(dayAfterTomorrow)}</td>
     <td>
       <img src="${icon}" alt="Icon representation of the days weather">
     </td>
-    <td>${getTemp(dayAfterLocalTomorrowWeatherArr).minTemp}/${
-    getTemp(dayAfterLocalTomorrowWeatherArr).maxTemp
+    <td>${getTemp(dayAfterTomorrowWeatherArr).minTemp}/${
+    getTemp(dayAfterTomorrowWeatherArr).maxTemp
   }</td>
-    <td>${getWind(dayAfterLocalTomorrowWeatherArr).avgWindSpeed}(${
-    getWind(dayAfterLocalTomorrowWeatherArr).maxGust
+    <td>${getWind(dayAfterTomorrowWeatherArr).avgWindSpeed}(${
+    getWind(dayAfterTomorrowWeatherArr).maxGust
   })</td>
-    <td>${getTotalRain(dayAfterLocalTomorrowWeatherArr)}</td>
+    <td>${getTotalRain(dayAfterTomorrowWeatherArr)}</td>
   </tr>
 
   <!-- DAY 4 -->
