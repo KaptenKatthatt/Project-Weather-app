@@ -88,7 +88,7 @@ const updateCity = async (city) => {
 
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  scrollTo(0, 245);
   //Get city value
   const city = cityForm.city.value.trim().toLowerCase();
   cityForm.reset();
@@ -105,6 +105,9 @@ cityForm.addEventListener("submit", (e) => {
 let savedCity = localStorage.getItem("city");
 if (savedCity) {
   updateCity(savedCity)
-    .then((data) => updateUI(data))
+    .then((data) => {
+      updateUI(data);
+      // scrollTo(0, 230);
+    })
     .catch((err) => console.log(err));
 }
