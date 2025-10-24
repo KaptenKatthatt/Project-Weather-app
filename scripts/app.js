@@ -89,7 +89,7 @@ const updateCity = async (city) => {
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
   // scrollTo(0, 245);
-  scrollTo({ top: 245, behavior: "smooth" });
+  // scrollTo({ top: 245, behavior: "smooth" });
   //Get city value
   const city = cityForm.city.value.trim().toLowerCase();
   cityForm.reset();
@@ -112,3 +112,22 @@ if (savedCity) {
     })
     .catch((err) => console.log(err));
 }
+
+//Theme switcher
+const toggleButton = document.getElementById("theme-toggle");
+const htmlElement = document.documentElement;
+
+// Ladda sparat tema från localStorage
+const savedTheme = localStorage.getItem("theme") || "light";
+htmlElement.setAttribute("data-bs-theme", savedTheme);
+toggleButton.textContent =
+  savedTheme === "dark" ? "Växla till Dag" : "Växla till Natt";
+
+toggleButton.addEventListener("click", () => {
+  const currentTheme = htmlElement.getAttribute("data-bs-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  htmlElement.setAttribute("data-bs-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  toggleButton.textContent =
+    newTheme === "dark" ? "Växla till Dag" : "Växla till Natt";
+});

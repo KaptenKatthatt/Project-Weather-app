@@ -11,6 +11,13 @@ body {
   background-size: cover;
   letter-spacing: 0.2em;
 }
+
+[data-bs-theme="dark"] body {
+  background: url("./img/dark_bg_svg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 .container {
   max-width: 800px;
 }
@@ -38,5 +45,21 @@ body {
 h6 {
   font-weight: 600;
 }
-.forecastTitle {
+
+[data-bs-theme="dark"] .card {
+  background-color: #495057; /* Mörkare kortbakgrund */
+  color: #fff;
+}
+[data-bs-theme="dark"] .forecastTableContainer *,
+tbody {
+  background-color: #495057;
+  color: #fff;
+}
+.icon {
+  /* background-color: var(--bs-light) !important; Vit bakgrund i light mode */
+  /* border: 1px solid var(--bs-border-color);  */
+}
+
+[data-bs-theme="dark"] .icon {
+  background-color: var(--bs-dark);
 }

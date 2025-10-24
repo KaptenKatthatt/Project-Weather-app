@@ -122,7 +122,7 @@ export function ForecastTable(weatherList, icon) {
   //Renders one row in table
   function renderWeatherTable(dayArr, day) {
     return `
-      <tr>
+  <tr class="table-light">
     <td>${formattedWeekday(day)}</td>
     <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
     <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>

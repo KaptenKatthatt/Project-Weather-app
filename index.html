@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -20,21 +20,24 @@
 </head>
 
 <body>
+
   <!-- Site container -->
   <div class="container my-5 mx-auto ">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
     <!-- Title and input -->
     <form class="change-location my-4 text-center text-muted">
+      <div class="text-center my-3">
+        <button id="theme-toggle" class="btn btn-outline-secondary">Växla till Natt</button>
+      </div>
       <label for="city">Den Fenomenala Väderstationen i Etern</label>
       <input type="text" name="city" id="city" class=" form-control p-4 fs-4" placeholder="Sök efter en stad...">
     </form>
-
     <!-- Cards container -->
-    <div class="card-container d-flex flex-row justify-content-around gap-1">
+    <div class="card-container d-flex flex-row justify-content-around gap-1 ">
       <!-- Current weather card -->
-      <div class="card shadow-lg d-none rounded-3">
+      <div class="card shadow-lg d-none rounded-3 overflow-hidden ">
         <img src="" class="time card-img-top">
-        <div class="icon bg-light mx-auto text-center">
+        <div class="icon bg-body mx-auto text-center">
           <img src="" alt="">
         </div>
         <div class="text-muted text-uppercase text-center details">
@@ -49,8 +52,8 @@
       </div>
     </div>
     <!-- 5 day forecast table -->
-    <div class="forecastTableContainer mt-5">
-      <div class="text-dark display-6 bg-light p-3 forecastTitle rounded-3">5-dygnsprognos</>
+    <div class="forecastTableContainer mt-4 rounded-3">
+      <div class="text-body display-6 p-3 forecastTitle bg-body rounded-3">5-dygnsprognos</>
         <table class=" forecastTable table text-center fs-4 align-middle">
           <thead>
             <tr>
