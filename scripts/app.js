@@ -12,7 +12,11 @@ const forecastContainer = document.querySelector(".forecast-container");
 const backgroundImg = document.querySelector("img.time");
 const iconImg = document.querySelector(".icon img");
 
-const weatherTableEl = document.querySelector(".weatherTable");
+const forecastTableContainerEl = document.querySelector(
+  ".forecastTableContainer"
+);
+const forecastTableBodyEl = document.querySelector(".weatherTable");
+const forecastCardEl = document.querySelector(".forecast-card");
 
 //Update UI
 const updateUI = (data) => {
@@ -53,7 +57,7 @@ const updateUI = (data) => {
   iconImg.setAttribute("src", iconSrc);
 
   // 5 day forecast table(noon every day)
-  weatherTableEl.innerHTML = ForecastTable(forecast, iconSrc);
+  forecastTableBodyEl.innerHTML = ForecastTable(forecast, iconSrc);
 
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
@@ -68,9 +72,10 @@ const updateUI = (data) => {
   backgroundImg.setAttribute("src", timeSrc);
 
   //remove d-none if present
-  if (card.classList.contains("d-none")) {
-    card.classList.remove("d-none");
-  }
+
+  card.classList.remove("d-none");
+  forecastCardEl.classList.remove("d-none");
+  forecastTableContainerEl.classList.remove("d-none");
 };
 
 //Calls city and weather functions to get data from API

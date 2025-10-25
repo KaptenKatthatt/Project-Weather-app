@@ -1,6 +1,17 @@
 App generellt
 Dark mode med en sol/måne uppe till höger dom växlar.
 
+Växel mellan Engelska/Svenska
+
+Växla till Dark mode om det är natt i den staden man sökt fram?
+
+Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare?
+
+Visa 3 bilder från staden i carousel, sök på natt/dag. Hämta från API.
+
+Unsplash API:
+https://unsplash.com/documentation#search-photos
+
 Animerade väderikoner? Kanske bara på vänstra kortet
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden.
