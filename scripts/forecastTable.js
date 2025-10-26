@@ -119,14 +119,47 @@ export function ForecastTable(weatherList, icon) {
     }
     return Math.round(totalRainArr.reduce((acc, curr) => acc + curr, 0));
   }
+  /* 
+  function getWeatherIcon(dayWeatherArr) {
+    let noonIcon = "";
+    let noonIconUrl = "";
+    for (let i = 0; i < dayWeatherArr.length; i++) {
+      if (dayWeatherArr[i].dt_txt.includes("12:00:00")) {
+        noonIcon = dayWeatherArr[i].weather[0].icon;
+        noonIconUrl = `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather"></img>`;
+      }
+      //Fallback if 12:00 has passed and is not in reply.
+      else {
+        noonIcon = dayWeatherArr[0].weather[0].icon;
+        noonIconUrl = `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather"></img>`;
+      }
+    }
 
-  function getForecastIcon(dayWeatherArr) {}
+    return noonIconUrl;
+  } */
+  //Returns icon for 12:00 on the selected day
+  function getWeatherIcon(dayWeatherArr) {
+    const noonItem = dayWeatherArr.find((day) =>
+      day.dt_txt.includes("12:00:00")
+    );
+    if (noonItem) {
+      const noonIcon = noonItem.weather[0].icon;
+      return `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather">`;
+    }
+    //Fallback if 12:00 has passed and is not in reply.
+    else {
+      noonIcon = dayWeatherArr[0].weather[0].icon;
+      noonIconUrl = `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather"></img>`;
+    }
+  }
+
   //Renders one row in table
   function renderWeatherTable(dayArr, day) {
+    console.log(dayArr);
     return `
   <tr>
     <td>${formattedWeekday(day)}</td>
-    <td>Icon</td>
+    <td>${getWeatherIcon(dayArr)}</td>
     <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
     <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
     <td>${getTotalRain(dayArr)}</td>
