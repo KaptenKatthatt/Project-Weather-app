@@ -5,53 +5,33 @@ import { mainRightForecast } from "./mainRightForecast.js";
 import { ForecastTable } from "./forecastTable.js";
 
 const cityForm = document.querySelector("form");
-const card = document.querySelector(".card");
 
-// const details = document.querySelector(".details");
 const mainLeftEl = document.querySelector(".mainLeft");
 const mainRightEl = document.querySelector(".mainRight");
-// const forecastContainer = document.querySelector(".forecast-container");
-
-const backgroundImg = document.querySelector("img.time");
-const iconImg = document.querySelector(".icon img");
 
 const forecastTableContainerEl = document.querySelector(
   ".forecastTableContainer"
 );
 const forecastTableBodyEl = document.querySelector(".weatherTable");
-const forecastCardEl = document.querySelector(".forecast-card");
+const mainWeatherContainerEl = document.querySelector(".mainWeatherContainer");
+const htmlElement = document.documentElement;
 
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
 
   //Get local time and local hour
-  // const timestamp = weather.dt; //Distribute in app for efficiency?
-  const timezone = weather.timezone;
 
-  let localTime = new Date(weather.dt * 1000 + weather.timezone * 1000);
+  const localTime = new Date((weather.dt + weather.timezone) * 1000);
+  const timezone = weather.timezone;
   const localHour = localTime.getUTCHours();
-  /* 
-  //update left card
-  details.innerHTML = `
-        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
-        <h5 class="my-3 display-6">${cityDets.name}</h5>
-        <div class="fs-6">Kl.${localHour}</div>
-        <div class="my-3 fs-4">${weather.weather[0].description}</div>
-        <div class="display-4 my 4">
-          <span>${Math.round(weather.main.temp)}</span>
-          <span>&deg;C</span>
-        </div>
-        <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg mt-3"></i>
-         <div class="fs-5">${Math.round(weather.wind.speed)} m/s</div>
-        `;
- */
+
   //update mainLeft Container
   const date = new Date((weather.dt + weather.timezone) * 1000);
   const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
   mainLeftEl.innerHTML = `
         <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
-        <h5 class="my-3 display-2">${cityDets.name}</h5>
+        <h5 class="my-3 display-4">${cityDets.name}</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>
         <div class="iconContainer">
@@ -77,31 +57,40 @@ const updateUI = (data) => {
 `;
 
   //update icon images
-  const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+  // const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
   // iconImg.setAttribute("src", iconSrc);
 
   // Render 5 day forecast table
   forecastTableBodyEl.innerHTML = ForecastTable(forecast);
 
   //update night/day background
-  let timeSrc = Math.round(Date.now() / 1000);
+  // let timeSrc = Math.round(Date.now() / 1000);
   // console.log("Local time ", timeSrc);
-  // console.log("Sunrise", weather.sys.sunrise);
-  /* 
-  timeSrc =
-    timeSrc > weather.sys.sunrise && timeSrc < weather.sys.sunset
-      ? "img/day.svg"
-      : "img/night.svg";
+  const localUTCTime = (weather.dt + weather.timezone) * 1000;
+  console.log("Localtime", localUTCTime);
+  console.log("Sunrise", weather.sys.sunrise * 1000);
+  console.log("Sunset", weather.sys.sunset * 1000);
+  const sunrise = (weather.sys.sunrise + weather.timezone) * 1000;
+  const sunset = (weather.sys.sunset + weather.timezone) * 1000;
 
-  backgroundImg.setAttribute("src", timeSrc);
- */
-  //remove d-none if present
-  /* 
-  card.classList.remove("d-none");
-  forecastCardEl.classList.remove("d-none");
+  if (localUTCTime >= sunrise && localUTCTime <= sunset) {
+    htmlElement.setAttribute("data-bs-theme", "light");
+  } else {
+    htmlElement.setAttribute("data-bs-theme", "dark");
+  }
+
+  // localTime > weather.sys.sunrise && localTime < weather.sys.sunset
+  //   ? currentTheme === "light"
+  //   : currentTheme === "dark";
+
+  // currentTheme === "dark" ? "light" : "dark";
+
+  // backgroundImg.setAttribute("src", timeSrc);
+
+  //remove d-none after first search
+  mainWeatherContainerEl.classList.remove("d-none");
   forecastTableContainerEl.classList.remove("d-none");
-  */
-}; // Lägg till denna rad för att stänga funktionen
+};
 
 //Calls city and weather functions to get data from API
 const updateCity = async (city) => {
@@ -146,7 +135,6 @@ if (savedCity) {
 
 //Theme switcher
 const toggleButton = document.getElementById("theme-toggle");
-const htmlElement = document.documentElement;
 
 // Load saved theme from localStorage
 const savedTheme = localStorage.getItem("theme") || "light";

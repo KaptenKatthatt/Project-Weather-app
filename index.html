@@ -22,42 +22,19 @@
 <body>
 
   <!-- Site container -->
-  <div class="container">
+  <div class="site-container container">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
     <div class="text-center my-3">
       <button id="theme-toggle" class="btn btn-outline-secondary">Växla till Natt</button>
     </div>
     <!-- Title and input -->
     <form class="change-location my-4 text-center text-muted w-100">
-      <label for="city">Den Fenomenala Väderstationen i Etern</label>
+      <p>Den Fenomenala Väderstationen i Etern</p>
+      <label for="city" class="visually-hidden">Search for a city</label>
       <input type="text" name="city" id="city" class=" form-control p-4 fs-4" placeholder="Sök efter en stad...">
     </form>
 
-    <!-- Cards container -->
-    <!-- 
-    <div class="card-container d-flex flex-row justify-content-around gap-1 ">
-      <!-- Current weather card -->
-    <!--              <div class="card shadow-lg d-none rounded-3 overflow-hidden ">
-        <img src="" class="time card-img-top">
-        <div class="icon bg-body mx-auto text-center">
-          <img src="" alt="">
-        </div>
-        <div class="text-muted text-uppercase text-center details">
-          <div class="display-4 my-4">
-          </div>
-        </div>
-      </div>  -->
-
-
-    <!-- 18 hour forecast card  -->
-
-    <!--       <div class="card shadow-lg rounded-3  text-center d-none forecast-card">
-        <div class="text-muted text-uppercase forecast-container px-4 pb-4 ">
-        </div>
-      </div> 
-    </div>-->
-    <!-- 2 column grid container for Main weather container -->
-    <div class="mainWeatherContainer mt-2 bg-body rounded-3 overflow-hidden">
+    <div class="mainWeatherContainer mt-2 bg-body rounded-3 d-none py-4">
       <div class="mainLeft text-center text-muted">
         <!-- Flag -->
         <!-- cityName -->
@@ -68,18 +45,14 @@
         <!-- windArrow -->
         <!-- Windspeed -->
       </div>
-      <div class="mainRight text-center">
+      <div class="mainRight text-center mt-4">
         <table class="table text-center mainRightTable">
-
-
         </table>
-        <!-- Grid with 4 columns: afternoon, evening, night and morning -->
-
       </div>
     </div>
 
     <!-- 5 day forecast table -->
-    <div class="forecastTableContainer mt-4 bg-body rounded-3 overflow-hidden mx-auto ">
+    <div class="forecastTableContainer mt-4 bg-body rounded-3 overflow-hidden mx-auto d-none">
       <div class="text-body display-6 p-3 forecastTitle bg-body">5-dygnsprognos</div>
       <table class="forecastTable table text-center fs-4 align-middle">
         <thead>

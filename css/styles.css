@@ -20,58 +20,19 @@ body {
 }
 /* Site container */
 .container {
-  max-width: 800px;
+  max-width: 900px;
 }
-/* Right card container */
-.forecast-container {
-  width: 300px;
-}
-.icon {
-  position: relative;
-  top: -50px;
-  border-radius: 50%;
-  width: 100px;
-  margin-bottom: -50px;
-  /* background-color: var(--bs-light) !important; Vit bakgrund i light mode */
-  /* border: 1px solid var(--bs-border-color);  */
-}
-/* Force dark background on icon container in dark mode */
-[data-bs-theme="dark"] .icon {
-  background-color: var(--bs-dark);
-}
-/* .currentWeatherContainer {
-  background: blue;
-  display: grid;
-  grid-template-rows: 3;
-  grid-template-columns: 2;
-}
-.currentWeatherContainer * {
-  border: 1px solid lightgray;
-} */
 
-/* Headings for right card */
-/* h6 {
-  font-weight: 600;
-} */
-/* Grey instead of black background in dark mode */
-[data-bs-theme="dark"] .card {
-  background-color: #495057;
-  color: #fff;
-}
 [data-bs-theme="dark"] .forecastTableContainer *,
 tbody {
   background-color: #495057;
-  color: #fff;
 }
-
-/* Fix to make the tr fit in the table */
-.forecastTableContainer {
-  width: 120%;
+[data-bs-theme="dark"] .mainWeatherContainer {
+  background-color: #495057;
 }
 
 .mainWeatherContainer {
-  height: 700px;
-  width: 120%;
+  /* height: 750px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "mainLeft mainRight";
@@ -90,7 +51,4 @@ tbody {
   grid-area: mainRight;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.mainRight * {
-  /* border: 1px solid lime; */
 }

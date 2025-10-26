@@ -18,23 +18,23 @@ export function mainRightForecast(weatherListItem, timezone) {
 
   //Returns a column of weather info based on incoming time
   return `
-  <tc>
+  <tc class="p-3 fs-5">
     <td>
-        <h6>${dayPeriod}</h6>
+        <h6 class="fs-5 fw-bold text-capitalize">${dayPeriod}</h6>
     </td>
     <td>
-      icon
+   <img src="https://openweathermap.org/img/wn/${
+     weatherListItem.weather[0].icon
+   }@2x.png" alt="Icon of the days noon weather">
     </td>
     <!-- Temp -->
     <td>
-      <p class="fs-6">${Math.round(weatherListItem.main.temp)}&deg;C</p>
+      <p class="fw-bold">${Math.round(weatherListItem.main.temp)}&deg</p>
       <!-- Feels like -->
-      <p class="fs-6">Känns som ${Math.round(
-        weatherListItem.main.feels_like
-      )}&deg;C</p>
+      <p>Känns som ${Math.round(weatherListItem.main.feels_like)}&deg</p>
       </td>
       <td>
-          <p class="">
+          <p>
         ${Math.round(weatherListItem.wind.speed)}
         <!-- If gust show, else none -->
         ${
@@ -42,11 +42,10 @@ export function mainRightForecast(weatherListItem, timezone) {
             ? ""
             : `(${Math.round(weatherListItem.wind.gust)})`
         }
-
         </p>
-        <i class=" windArrow wi wi-wind from-${
+        <i class="fs-1 windArrow wi wi-wind from-${
           weatherListItem.wind.deg
-        }-deg mb-2"></i>
+        }-deg"></i>
       </td>   
       <td>
       <p class="">
