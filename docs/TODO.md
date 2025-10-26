@@ -9,6 +9,14 @@ Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hi
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
+Skriva dokumentation om projektet från början till slut. Inspiration från SMHI. Idéer som kommit och gått med foton som inte fungerade i praktiken.
+
+"Renskriv" Figman och tag några bilder på den till dokumentationen.
+
+- Gör olika vyer.
+- Från början till slut.
+- Brainstorming och sketchning.
+
 ## KANSKE
 
 Dark mode med en sol/måne uppe till höger som växlar?
