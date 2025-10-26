@@ -1,14 +1,16 @@
 "use strict";
 
-import { forecastSidebar } from "./forecastSidebar.js";
+// import { forecastSidebar } from "./forecastSidebar.js";
+import { mainRightForecast } from "./mainRightForecast.js";
 import { ForecastTable } from "./forecastTable.js";
 
 const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
 
-const details = document.querySelector(".details");
+// const details = document.querySelector(".details");
 const mainLeftEl = document.querySelector(".mainLeft");
-const forecastContainer = document.querySelector(".forecast-container");
+const mainRightEl = document.querySelector(".mainRight");
+// const forecastContainer = document.querySelector(".forecast-container");
 
 const backgroundImg = document.querySelector("img.time");
 const iconImg = document.querySelector(".icon img");
@@ -25,7 +27,7 @@ const updateUI = (data) => {
 
   //Get local time and local hour
   // const timestamp = weather.dt; //Distribute in app for efficiency?
-  // const timezone = weather.timezone;
+  const timezone = weather.timezone;
 
   let localTime = new Date(weather.dt * 1000 + weather.timezone * 1000);
   const localHour = localTime.getUTCHours();
@@ -45,20 +47,20 @@ const updateUI = (data) => {
         `;
  */
   //update mainLeft Container
-
+  const date = new Date((weather.dt + weather.timezone) * 1000);
+  const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
   mainLeftEl.innerHTML = `
-  
         <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
         <h5 class="my-3 display-2">${cityDets.name}</h5>
-        <div class="fs-5">Kl.${localHour}</div>
+        <div class="fs-5">${weekday}</div>
+        <div class="fs-5">kl.${localHour}</div>
         <div class="iconContainer">
         <img src="https://openweathermap.org/img/wn/${
           weather.weather[0].icon
         }@4x.png" alt="Icon of current weather">
         <div class="my-3 fs-4">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
-          <span>${Math.round(weather.main.temp)}</span>
-          <span>&deg;C</span>
+          <span>${Math.round(weather.main.temp)}&deg;C</span>
         </div>
           <i class="windArrow wi wi-wind from-${
             weather.wind.deg
@@ -67,16 +69,16 @@ const updateUI = (data) => {
         `;
 
   // 18 hour forecast sidebar
-  forecastContainer.innerHTML = `
-    ${forecastSidebar(forecast.list[0])}
-    ${forecastSidebar(forecast.list[2])}
-    ${forecastSidebar(forecast.list[4])}
-    ${forecastSidebar(forecast.list[6])}
+  mainRightEl.innerHTML = `
+    ${mainRightForecast(forecast.list[0], timezone)}
+    ${mainRightForecast(forecast.list[2], timezone)}
+    ${mainRightForecast(forecast.list[4], timezone)}
+    ${mainRightForecast(forecast.list[6], timezone)}
 `;
 
   //update icon images
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-  iconImg.setAttribute("src", iconSrc);
+  // iconImg.setAttribute("src", iconSrc);
 
   // Render 5 day forecast table
   forecastTableBodyEl.innerHTML = ForecastTable(forecast);
@@ -85,20 +87,21 @@ const updateUI = (data) => {
   let timeSrc = Math.round(Date.now() / 1000);
   // console.log("Local time ", timeSrc);
   // console.log("Sunrise", weather.sys.sunrise);
-
+  /* 
   timeSrc =
     timeSrc > weather.sys.sunrise && timeSrc < weather.sys.sunset
       ? "img/day.svg"
       : "img/night.svg";
 
   backgroundImg.setAttribute("src", timeSrc);
-
+ */
   //remove d-none if present
-
+  /* 
   card.classList.remove("d-none");
   forecastCardEl.classList.remove("d-none");
   forecastTableContainerEl.classList.remove("d-none");
-};
+  */
+}; // Lägg till denna rad för att stänga funktionen
 
 //Calls city and weather functions to get data from API
 const updateCity = async (city) => {
@@ -136,7 +139,7 @@ if (savedCity) {
     .then((data) => {
       updateUI(data);
       //Scroll to end for debugging
-      scrollTo(0, 1530);
+      // scrollTo(0, 1530);
     })
     .catch((err) => console.log(err));
 }
@@ -145,7 +148,7 @@ if (savedCity) {
 const toggleButton = document.getElementById("theme-toggle");
 const htmlElement = document.documentElement;
 
-// Ladda sparat tema från localStorage
+// Load saved theme from localStorage
 const savedTheme = localStorage.getItem("theme") || "light";
 htmlElement.setAttribute("data-bs-theme", savedTheme);
 toggleButton.textContent =

@@ -16,6 +16,12 @@ export function forecastSidebar(weatherListItem) {
     dayPeriod = "natt";
   }
 
+  document.querySelector(".mainRight").innerHTML = `
+    <!-- Weekday and dayperiod -->
+  <h5 class="mt-3 fw-bold">${weekday}</h5>
+  <h6>${dayPeriod}</h6>
+  `;
+
   return `
   <!-- Weekday and dayperiod -->
   <h5 class="mt-3 fw-bold">${weekday}</h5>

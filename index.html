@@ -22,20 +22,22 @@
 <body>
 
   <!-- Site container -->
-  <div class="container my-5 mx-auto ">
+  <div class="container">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
     <div class="text-center my-3">
       <button id="theme-toggle" class="btn btn-outline-secondary">Växla till Natt</button>
     </div>
     <!-- Title and input -->
-    <form class="change-location my-4 text-center text-muted">
+    <form class="change-location my-4 text-center text-muted w-100">
       <label for="city">Den Fenomenala Väderstationen i Etern</label>
       <input type="text" name="city" id="city" class=" form-control p-4 fs-4" placeholder="Sök efter en stad...">
     </form>
+
     <!-- Cards container -->
+    <!-- 
     <div class="card-container d-flex flex-row justify-content-around gap-1 ">
       <!-- Current weather card -->
-      <div class="card shadow-lg d-none rounded-3 overflow-hidden ">
+    <!--              <div class="card shadow-lg d-none rounded-3 overflow-hidden ">
         <img src="" class="time card-img-top">
         <div class="icon bg-body mx-auto text-center">
           <img src="" alt="">
@@ -44,18 +46,19 @@
           <div class="display-4 my-4">
           </div>
         </div>
-      </div>
+      </div>  -->
 
-      <!-- 18 hour forecast card  -->
 
-      <!--       <div class="card shadow-lg rounded-3  text-center d-none forecast-card">
+    <!-- 18 hour forecast card  -->
+
+    <!--       <div class="card shadow-lg rounded-3  text-center d-none forecast-card">
         <div class="text-muted text-uppercase forecast-container px-4 pb-4 ">
         </div>
-      </div> -->
-    </div>
+      </div> 
+    </div>-->
     <!-- 2 column grid container for Main weather container -->
-    <div class="mainWeatherContainer mt-4 bg-body rounded-3 overflow-hidden">
-      <div class="mainLeft text-center">
+    <div class="mainWeatherContainer mt-2 bg-body rounded-3 overflow-hidden">
+      <div class="mainLeft text-center text-muted">
         <!-- Flag -->
         <!-- cityName -->
         <!-- Hour of day -->
@@ -65,8 +68,13 @@
         <!-- windArrow -->
         <!-- Windspeed -->
       </div>
-      <div class="mainRight">
+      <div class="mainRight text-center">
+        <table class="table text-center mainRightTable">
+
+
+        </table>
         <!-- Grid with 4 columns: afternoon, evening, night and morning -->
+
       </div>
     </div>
 

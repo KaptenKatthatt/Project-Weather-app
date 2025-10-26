@@ -48,13 +48,11 @@ body {
 .currentWeatherContainer * {
   border: 1px solid lightgray;
 } */
-.windArrow {
-  /* font-size: 40px; */
-}
+
 /* Headings for right card */
-h6 {
+/* h6 {
   font-weight: 600;
-}
+} */
 /* Grey instead of black background in dark mode */
 [data-bs-theme="dark"] .card {
   background-color: #495057;
@@ -87,8 +85,12 @@ tbody {
   flex-wrap: nowrap;
   flex-direction: column;
 }
-.mainLeft * {
-}
+
 .mainRight {
   grid-area: mainRight;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.mainRight * {
+  /* border: 1px solid lime; */
 }
