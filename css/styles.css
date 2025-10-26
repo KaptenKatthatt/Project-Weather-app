@@ -63,3 +63,7 @@ tbody {
 [data-bs-theme="dark"] .icon {
   background-color: var(--bs-dark);
 }
+/* Fix to make the tr fit in the table */
+.forecastTableContainer {
+  width: 120%;
+}

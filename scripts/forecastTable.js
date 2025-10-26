@@ -1,4 +1,4 @@
-export function ForecastTable(weatherList, icon) {
+export function ForecastTable(weatherList) {
   //GLOBAL VARIABLES 🌐
   //Local today is the local date on the searched city.
   //**All days are local days for the searched city**
@@ -158,13 +158,13 @@ export function ForecastTable(weatherList, icon) {
   function renderWeatherTable(dayArr, day) {
     console.log(dayArr);
     return `
-  <tr>
-    <td>${formattedWeekday(day)}</td>
-    <td>${getWeatherIcon(dayArr)}</td>
-    <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
-    <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
-    <td>${getTotalRain(dayArr)}</td>
-  </tr>
+    <tr>
+      <td>${formattedWeekday(day)}</td>
+      <td>${getWeatherIcon(dayArr)}</td>
+      <td>${getTemp(dayArr).minTemp}&deg;/${getTemp(dayArr).maxTemp}&deg;</td>
+      <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
+      <td>${getTotalRain(dayArr)}</td>
+    </tr>
   `;
   }
 

@@ -53,31 +53,32 @@
       </div>
     </div>
     <!-- 5 day forecast table -->
-    <div class="forecastTableContainer mt-4 rounded-3">
-      <div class="text-body display-6 p-3 forecastTitle bg-body rounded-3">5-dygnsprognos</>
-        <table class=" forecastTable table text-center fs-4 align-middle">
-          <thead>
-            <tr>
-              <th>
-                Dygn
-              </th>
-              <th><!-- Weather icon --></th>
-              <th>
-                Temp L/H
-              </th>
-              <th>Vind(byvind)</th>
-              <th>Nederbörd</th>
-            </tr>
-          </thead>
-          <tbody class="table-group-divider weatherTable">
-          </tbody>
-        </table>
-      </div>
+    <div class="forecastTableContainer mt-4 bg-body rounded-3 overflow-hidden mx-auto ">
+      <div class="text-body display-6 p-3 forecastTitle bg-body">5-dygnsprognos</div>
+      <table class="forecastTable table text-center fs-4 align-middle">
+        <thead>
+          <tr>
+            <th>
+              Dygn
+            </th>
+            <th><!-- Weather icon --></th>
+            <th>
+              L/H
+            </th>
+            <th>Vind(byvind)<span class="text-secondary fs-5">m/s</span></th>
+            <th>Nederbörd<span class="text-secondary fs-5">mm</span></th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider weatherTable">
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <script src="scripts/api.js"></script>
-    <script src="scripts/forecast.js"></script>
-    <script src="scripts/app.js" type="module"></script>
+
+  <script src="scripts/api.js"></script>
+  <script src="scripts/forecast.js"></script>
+  <script src="scripts/app.js" type="module"></script>
 </body>
 
 </html>

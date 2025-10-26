@@ -56,8 +56,8 @@ const updateUI = (data) => {
   const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
   iconImg.setAttribute("src", iconSrc);
 
-  // 5 day forecast table(noon every day)
-  forecastTableBodyEl.innerHTML = ForecastTable(forecast, iconSrc);
+  // Render 5 day forecast table
+  forecastTableBodyEl.innerHTML = ForecastTable(forecast);
 
   //update night/day background
   let timeSrc = Math.round(Date.now() / 1000);
@@ -113,7 +113,8 @@ if (savedCity) {
   updateCity(savedCity)
     .then((data) => {
       updateUI(data);
-      // scrollTo(0, 230);
+      //Scroll to end for debugging
+      scrollTo(0, 1530);
     })
     .catch((err) => console.log(err));
 }
