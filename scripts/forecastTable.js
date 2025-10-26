@@ -137,6 +137,7 @@ export function ForecastTable(weatherList, icon) {
 
     return noonIconUrl;
   } */
+
   //Returns icon for 12:00 on the selected day
   function getWeatherIcon(dayWeatherArr) {
     const noonItem = dayWeatherArr.find((day) =>
