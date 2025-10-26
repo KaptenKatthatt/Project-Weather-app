@@ -11,16 +11,18 @@ body {
   background-size: cover;
   letter-spacing: 0.2em;
 }
-
+/* Dark-mode/night background*/
 [data-bs-theme="dark"] body {
   background: url("../img/dark_bg_svg.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
+/* Site container */
 .container {
   max-width: 800px;
 }
+/* Right card container */
 .forecast-container {
   width: 300px;
 }
@@ -30,24 +32,32 @@ body {
   border-radius: 50%;
   width: 100px;
   margin-bottom: -50px;
+  /* background-color: var(--bs-light) !important; Vit bakgrund i light mode */
+  /* border: 1px solid var(--bs-border-color);  */
 }
-.currentWeatherContainer {
+/* Force dark background on icon container in dark mode */
+[data-bs-theme="dark"] .icon {
+  background-color: var(--bs-dark);
+}
+/* .currentWeatherContainer {
+  background: blue;
   display: grid;
   grid-template-rows: 3;
   grid-template-columns: 2;
 }
 .currentWeatherContainer * {
   border: 1px solid lightgray;
-}
+} */
 .windArrow {
   font-size: 40px;
 }
+/* Headings for right card */
 h6 {
   font-weight: 600;
 }
-
+/* Grey instead of black background in dark mode */
 [data-bs-theme="dark"] .card {
-  background-color: #495057; /* Mörkare kortbakgrund */
+  background-color: #495057;
   color: #fff;
 }
 [data-bs-theme="dark"] .forecastTableContainer *,
@@ -55,15 +65,24 @@ tbody {
   background-color: #495057;
   color: #fff;
 }
-.icon {
-  /* background-color: var(--bs-light) !important; Vit bakgrund i light mode */
-  /* border: 1px solid var(--bs-border-color);  */
-}
 
-[data-bs-theme="dark"] .icon {
-  background-color: var(--bs-dark);
-}
 /* Fix to make the tr fit in the table */
 .forecastTableContainer {
   width: 120%;
+}
+
+.mainWeatherContainer {
+  height: 600px;
+  width: 120%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "mainLeft mainRight";
+}
+.mainLeft {
+  background-color: lightblue;
+  grid-area: mainLeft;
+}
+.mainRight {
+  background-color: lightcoral;
+  grid-area: mainRight;
 }
