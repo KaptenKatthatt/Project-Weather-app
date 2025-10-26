@@ -1,22 +1,22 @@
 App generellt
-Dark mode med en sol/måne uppe till höger dom växlar.
 
-Växel mellan Engelska/Svenska
+Fixa buggen med att knappen inte är kopplad till autoväxling på tema och därmed visar fel ibland.
 
-Växla till Dark mode om det är natt i den staden man sökt fram?
+Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
 
-Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare?
+- Dölja GUI:t
+- Visa felmeddelande
 
-Visa 3 bilder från staden i carousel, sök på natt/dag. Hämta från API.
+Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
-Unsplash API:
-https://unsplash.com/documentation#search-photos
+## KANSKE
 
+Dark mode med en sol/måne uppe till höger som växlar?
 Animerade väderikoner? Kanske bara på vänstra kortet
 
-Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden.
-
+Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
+Växla till Dark mode om det är natt i den staden man sökt fram?
 
 ✅Flaggor bredvid varje stadsnamn
 
@@ -46,3 +46,10 @@ Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hi
 
 nederbördsArray.reduce för att slå ihop alla regnvärden för en dag.
 Välj alla mätningar från kl 2-23, 8st.
+
+### SKROTAT
+
+Unsplash API:
+https://unsplash.com/documentation#search-photos
+
+Visa 3 bilder från staden i carousel, sök på natt/dag. Hämta från API.

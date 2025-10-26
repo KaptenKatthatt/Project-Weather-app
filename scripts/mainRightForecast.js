@@ -18,7 +18,8 @@ export function mainRightForecast(weatherListItem, timezone) {
 
   //Returns a column of weather info based on incoming time
   return `
-  <tc class="p-3 fs-5">
+  <tc 
+  class="p-3 fs-5">
     <td>
         <h6 class="fs-5 fw-bold text-capitalize">${dayPeriod}</h6>
     </td>
@@ -29,11 +30,16 @@ export function mainRightForecast(weatherListItem, timezone) {
     </td>
     <!-- Temp -->
     <td>
-      <p class="fw-bold">${Math.round(weatherListItem.main.temp)}&deg</p>
+      <p class="fw-bold mt-3">${Math.round(weatherListItem.main.temp)}&deg</p>
       <!-- Feels like -->
-      <p>Känns som ${Math.round(weatherListItem.main.feels_like)}&deg</p>
+      <p class="mt-4">Känns som ${Math.round(
+        weatherListItem.main.feels_like
+      )}&deg</p>
       </td>
       <td>
+      <i class="fs-1 mt-5 windArrow wi wi-wind from-${
+        weatherListItem.wind.deg
+      }-deg"></i>
           <p>
         ${Math.round(weatherListItem.wind.speed)}
         <!-- If gust show, else none -->
@@ -43,12 +49,9 @@ export function mainRightForecast(weatherListItem, timezone) {
             : `(${Math.round(weatherListItem.wind.gust)})`
         }
         </p>
-        <i class="fs-1 windArrow wi wi-wind from-${
-          weatherListItem.wind.deg
-        }-deg"></i>
       </td>   
       <td>
-      <p class="">
+      <p class="mt-5">
         ${
           weatherListItem.rain === undefined
             ? "0"

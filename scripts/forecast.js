@@ -1,6 +1,6 @@
 //Get weather information
 const getWeather = async (lat, lon) => {
-  const key = process.env.WEATHER_API_KEY;
+  // const key = process.env.WEATHER_API_KEY;
   const base = `https://api.openweathermap.org/data/2.5/weather?`;
   const query = `lat=${lat}&lon=${lon}&units=metric&appid=${key}&lang=sv`;
 
