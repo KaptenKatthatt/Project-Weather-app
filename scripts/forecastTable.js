@@ -119,11 +119,14 @@ export function ForecastTable(weatherList, icon) {
     }
     return Math.round(totalRainArr.reduce((acc, curr) => acc + curr, 0));
   }
+
+  function getForecastIcon(dayWeatherArr) {}
   //Renders one row in table
   function renderWeatherTable(dayArr, day) {
     return `
   <tr>
     <td>${formattedWeekday(day)}</td>
+    <td>Icon</td>
     <td>${getTemp(dayArr).minTemp}/${getTemp(dayArr).maxTemp}</td>
     <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
     <td>${getTotalRain(dayArr)}</td>
