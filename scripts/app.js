@@ -7,6 +7,7 @@ const cityForm = document.querySelector("form");
 const card = document.querySelector(".card");
 
 const details = document.querySelector(".details");
+const mainLeftEl = document.querySelector(".mainLeft");
 const forecastContainer = document.querySelector(".forecast-container");
 
 const backgroundImg = document.querySelector("img.time");
@@ -28,7 +29,7 @@ const updateUI = (data) => {
 
   let localTime = new Date(weather.dt * 1000 + weather.timezone * 1000);
   const localHour = localTime.getUTCHours();
-
+  /* 
   //update left card
   details.innerHTML = `
         <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
@@ -42,6 +43,28 @@ const updateUI = (data) => {
         <i class="windArrow wi wi-wind from-${weather.wind.deg}-deg mt-3"></i>
          <div class="fs-5">${Math.round(weather.wind.speed)} m/s</div>
         `;
+ */
+  //update mainLeft Container
+
+  mainLeftEl.innerHTML = `
+  
+        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
+        <h5 class="my-3 display-2">${cityDets.name}</h5>
+        <div class="fs-5">Kl.${localHour}</div>
+        <div class="iconContainer">
+        <img src="https://openweathermap.org/img/wn/${
+          weather.weather[0].icon
+        }@4x.png" alt="Icon of current weather">
+        <div class="my-3 fs-4">${weather.weather[0].description}</div>
+        <div class="display-4 my 4">
+          <span>${Math.round(weather.main.temp)}</span>
+          <span>&deg;C</span>
+        </div>
+          <i class="windArrow wi wi-wind from-${
+            weather.wind.deg
+          }-deg mt-3 fs-1"></i>
+          <div class="fs-5">${Math.round(weather.wind.speed)} m/s</div>
+        `;
 
   // 18 hour forecast sidebar
   forecastContainer.innerHTML = `
@@ -49,7 +72,6 @@ const updateUI = (data) => {
     ${forecastSidebar(forecast.list[2])}
     ${forecastSidebar(forecast.list[4])}
     ${forecastSidebar(forecast.list[6])}
-
 `;
 
   //update icon images

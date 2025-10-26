@@ -144,17 +144,15 @@ export function ForecastTable(weatherList) {
       day.dt_txt.includes("12:00:00")
     );
     if (noonItem) {
-      const noonIcon = noonItem.weather[0].icon;
-      return `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather">`;
+      return `<img src="https://openweathermap.org/img/wn/${noonItem.weather[0].icon}.png" alt="Icon of the days noon weather">`;
     }
     //Fallback if 12:00 has passed and is not in reply.
     else {
-      noonIcon = dayWeatherArr[0].weather[0].icon;
-      noonIconUrl = `<img src="https://openweathermap.org/img/wn/${noonIcon}@2x.png" alt="Icon of the days noon weather"></img>`;
+      return `<img src="https://openweathermap.org/img/wn/${dayWeatherArr[0].weather[0].icon}.png" alt="Icon of the days noon weather"></img>`;
     }
   }
 
-  //Renders one row in table
+  //Renders one row in the weathertable
   function renderWeatherTable(dayArr, day) {
     console.log(dayArr);
     return `

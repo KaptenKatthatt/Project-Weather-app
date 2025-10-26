@@ -49,7 +49,7 @@ body {
   border: 1px solid lightgray;
 } */
 .windArrow {
-  font-size: 40px;
+  /* font-size: 40px; */
 }
 /* Headings for right card */
 h6 {
@@ -72,17 +72,23 @@ tbody {
 }
 
 .mainWeatherContainer {
-  height: 600px;
+  height: 700px;
   width: 120%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "mainLeft mainRight";
 }
 .mainLeft {
-  background-color: lightblue;
+  border-right: 1px solid lightgray;
   grid-area: mainLeft;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.mainLeft * {
 }
 .mainRight {
-  background-color: lightcoral;
   grid-area: mainRight;
 }
