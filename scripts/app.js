@@ -79,14 +79,6 @@ const updateUI = (data) => {
     htmlElement.setAttribute("data-bs-theme", "dark");
   }
 
-  // localTime > weather.sys.sunrise && localTime < weather.sys.sunset
-  //   ? currentTheme === "light"
-  //   : currentTheme === "dark";
-
-  // currentTheme === "dark" ? "light" : "dark";
-
-  // backgroundImg.setAttribute("src", timeSrc);
-
   //remove d-none after first search
   mainWeatherContainerEl.classList.remove("d-none");
   forecastTableContainerEl.classList.remove("d-none");
