@@ -10,12 +10,12 @@ Stöd för nederbörd i snöform
 - Från början till slut.
 - Brainstorming och sketchning.
 
-Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
-
 Testa om Vercel är lättare och har mer generöst med tokens.
 Klödda med Netlify så jag kan få upp den där.
 
 ## KANSKE
+
+Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 Dark mode med en sol/måne uppe till höger som växlar?
 Animerade väderikoner? Kanske bara på vänstra kortet
@@ -23,7 +23,8 @@ Animerade väderikoner? Kanske bara på vänstra kortet
 Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
 
-Lägg in en koll om local name finns eller ej
+Autofocus på sökrutan och ctrl+k för autofocus(saknar ctrl+k icon)
+Lägg in en koll om local name finns eller ej. Har den local name? Har den local name på svenska?
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
 
