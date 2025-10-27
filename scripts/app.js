@@ -38,7 +38,11 @@ const updateUI = (data) => {
     cityDets.name
   }">
         <h5 class="my-3 mx-2 display-4">${
-          cityDets.local_names ? cityDets.local_names.sv : cityDets.name
+          cityDets.local_names
+            ? cityDets.local_names.sv
+              ? cityDets.local_names.sv
+              : cityDets.name
+            : cityDets.name
         }</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>
