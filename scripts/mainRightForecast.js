@@ -2,6 +2,16 @@ export function mainRightForecast(weatherListItem, timezone) {
   const date = new Date((weatherListItem.dt + timezone) * 1000);
   /*   const weekday = date.toLocaleString("sv-SE", { weekday: "long" }); */
 
+  function precipitationAmount() {
+    if (weatherListItem.rain) {
+      return Math.round(weatherListItem.rain["3h"] * 10) / 10;
+    } else if (weatherListItem.snow) {
+      return Math.round((weatherListItem.snow["3h"] * 10) / 10);
+    } else {
+      return 0;
+    }
+  }
+
   const hour = date.getHours();
   let dayPeriod;
   if (hour >= 5 && hour < 9) {
@@ -53,16 +63,24 @@ export function mainRightForecast(weatherListItem, timezone) {
         </p>
       </td>   
       <td>
-        <i class="wi wi-rain fs-1 mt-5"></i>
-      <p class="rainChance ">
-        ${weatherListItem.pop === undefined ? "0%" : weatherListItem.pop * 100}%
-      </p>
-      <p class="rainAmount">
+      <p class="precipitationIcon mt-5 fs-1">
+          ${
+            weatherListItem.rain === undefined
+              ? `<i class="wi wi-rain"></i>`
+              : weatherListItem.rain
+              ? `<i class="wi wi-rain"></i>`
+              : `<i class="wi wi-snow"></i>`
+          }
+        </p>
+      <p class="rainChance">
         ${
-          weatherListItem.rain === undefined
-            ? "0"
-            : Math.round(weatherListItem.rain["3h"] * 10) / 10
-        }mm
+          weatherListItem.pop === undefined
+            ? "0%"
+            : Math.round(weatherListItem.pop) * 100
+        }%
+      </p>
+      <p class="precipitationAmount">
+        ${precipitationAmount()}mm
       </p>
     </td>
   </tc>
