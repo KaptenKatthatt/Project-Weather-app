@@ -30,7 +30,9 @@ export function mainRightForecast(weatherListItem, timezone) {
     </td>
     <!-- Temp -->
     <td>
-      <p class="fw-bold mt-3">${Math.round(weatherListItem.main.temp)}&deg</p>
+      <p class="fw-bold mt-3 fs-3">${Math.round(
+        weatherListItem.main.temp
+      )}&deg</p>
       <!-- Feels like -->
       <p class="mt-4">Känns som ${Math.round(
         weatherListItem.main.feels_like

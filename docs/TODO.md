@@ -1,6 +1,6 @@
-App generellt
+## App generellt
 
-Fixa buggen med att knappen inte är kopplad till autoväxling på tema och därmed visar fel ibland.
+- Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
 
@@ -8,8 +8,6 @@ Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hi
 - Visa felmeddelande
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
-
-Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
 
 "Renskriv" Figman och tag några bilder på den till dokumentationen.
 
@@ -29,6 +27,8 @@ Animerade väderikoner? Kanske bara på vänstra kortet
 
 Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
+
+Fixa buggen med att knappen inte är kopplad till autoväxling på tema och därmed visar fel ibland.
 
 Skriva dokumentation om projektet från början till slut. Inspiration från SMHI. Idéer som kommit och gått med foton som inte fungerade i praktiken.
 

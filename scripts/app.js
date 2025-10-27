@@ -72,9 +72,9 @@ const updateUI = (data) => {
   // let timeSrc = Math.round(Date.now() / 1000);
   // console.log("Local time ", timeSrc);
   const localUTCTime = (weather.dt + weather.timezone) * 1000;
-  console.log("Localtime", localUTCTime);
-  console.log("Sunrise", weather.sys.sunrise * 1000);
-  console.log("Sunset", weather.sys.sunset * 1000);
+  // console.log("Localtime", localUTCTime);
+  // console.log("Sunrise", weather.sys.sunrise * 1000);
+  // console.log("Sunset", weather.sys.sunset * 1000);
   const sunrise = (weather.sys.sunrise + weather.timezone) * 1000;
   const sunset = (weather.sys.sunset + weather.timezone) * 1000;
 

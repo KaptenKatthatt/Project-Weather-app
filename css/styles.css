@@ -20,7 +20,7 @@ body {
 }
 /* Site container */
 .container {
-  max-width: 900px;
+  /* max-width: 900px; */
 }
 
 [data-bs-theme="dark"] .forecastTableContainer *,
@@ -33,7 +33,7 @@ tbody {
 
 .mainWeatherContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-areas: "mainLeft mainRight";
 }
 .mainLeft {
