@@ -20,6 +20,38 @@ const siteContainer = document.querySelector(".container");
 //Theme switcher button
 const toggleButton = document.getElementById("theme-toggle");
 
+// Ladda initialt tema från localStorage (eller sätt till light om inget finns)
+let currentTheme = localStorage.getItem("theme") || "light";
+htmlElement.setAttribute("data-bs-theme", currentTheme);
+toggleButton.innerHTML =
+  currentTheme === "dark"
+    ? `
+<i class="wi wi-day-sunny wi-3x"></i> 
+Växla till Dag 
+<i class="wi wi-day-sunny wi-3x"></i>`
+    : `
+<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+Växla till Natt
+<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+
+// Event listener för toggleButton, utanför updateUI
+toggleButton.addEventListener("click", () => {
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  currentTheme = newTheme; // Uppdatera global variabel
+  htmlElement.setAttribute("data-bs-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  toggleButton.innerHTML =
+    newTheme === "dark"
+      ? `
+<i class="wi wi-day-sunny wi-3x"></i> 
+Växla till Dag 
+<i class="wi wi-day-sunny wi-3x"></i>`
+      : `
+<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+Växla till Natt
+<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+});
+
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
@@ -33,16 +65,19 @@ const updateUI = (data) => {
   //update mainLeft Container
   const date = new Date((weather.dt + weather.timezone) * 1000);
   const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
-  mainLeftEl.innerHTML = `
-        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of ${
-    cityDets.name
-  }">
-        <h5 class="my-3 mx-2 display-4">${
+  /* 
           cityDets.local_names
             ? cityDets.local_names.sv
               ? cityDets.local_names.sv
               : cityDets.name
             : cityDets.name
+ */
+  mainLeftEl.innerHTML = `
+        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of ${
+    cityDets.name
+  }">
+        <h5 class="my-3 mx-2 display-4">${
+          cityDets.local_names?.sv ?? cityDets.name
         }</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>
@@ -85,27 +120,17 @@ const updateUI = (data) => {
   const sunrise = (weather.sys.sunrise + weather.timezone) * 1000;
   const sunset = (weather.sys.sunset + weather.timezone) * 1000;
 
+  // Uppdatera temat automatiskt baserat på stadens tid varje gång en stad laddas
   if (localUTCTime >= sunrise && localUTCTime <= sunset) {
-    htmlElement.setAttribute("data-bs-theme", "light");
-    localStorage.setItem("theme", "light");
-    toggleButton.innerHTML = `
-    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-    Växla till Natt
-    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+    currentTheme = "light";
   } else {
-    htmlElement.setAttribute("data-bs-theme", "dark");
-    localStorage.setItem("theme", "dark");
-    toggleButton.innerHTML = `
-    <i class="wi wi-day-sunny wi-3x"></i> 
-    Växla till Dag 
-    <i class="wi wi-day-sunny wi-3x"></i>`;
+    currentTheme = "dark";
   }
 
-  // Load saved theme from localStorage
-  const savedTheme = localStorage.getItem("theme") || "light";
-  htmlElement.setAttribute("data-bs-theme", savedTheme);
+  htmlElement.setAttribute("data-bs-theme", currentTheme);
+  localStorage.setItem("theme", currentTheme);
   toggleButton.innerHTML =
-    savedTheme === "dark"
+    currentTheme === "dark"
       ? `
     <i class="wi wi-day-sunny wi-3x"></i> 
     Växla till Dag 
@@ -115,32 +140,7 @@ const updateUI = (data) => {
     Växla till Natt
     <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 
-  toggleButton.addEventListener("click", () => {
-    const currentTheme = htmlElement.getAttribute("data-bs-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    htmlElement.setAttribute("data-bs-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    toggleButton.innerHTML =
-      newTheme === "dark"
-        ? `
-    <i class="wi wi-day-sunny wi-3x"></i> 
-    Växla till Dag 
-    <i class="wi wi-day-sunny wi-3x"></i>`
-        : `
-    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-    Växla till Natt
-    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
-  });
-
-  // localTime > weather.sys.sunrise && localTime < weather.sys.sunset
-  //   ? currentTheme === "light"
-  //   : currentTheme === "dark";
-
-  // currentTheme === "dark" ? "light" : "dark";
-
-  // backgroundImg.setAttribute("src", timeSrc);
-
-  //remove d-none after first search
+  //Remove d-none class after first search
   mainWeatherContainerEl.classList.remove("d-none");
   forecastTableContainerEl.classList.remove("d-none");
 };

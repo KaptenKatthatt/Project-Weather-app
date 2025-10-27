@@ -1,6 +1,6 @@
 ## App generellt
 
-Stöd för nederbörd i snöform
+Fixa att temaväxlaren inte funkar med Hurva men med Askeröd, som inte har local_name heller. Funkar inte heller i Halmstad
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
@@ -17,13 +17,12 @@ Klödda med Netlify så jag kan få upp den där.
 
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
-Dark mode med en sol/måne uppe till höger som växlar?
-Animerade väderikoner? Kanske bara på vänstra kortet
+## -----------------------KLART-------------------------
 
-Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
------------------------KLART-------------------------
+Stöd för nederbörd i snöform
 
-Autofocus på sökrutan och ctrl+k för autofocus(saknar ctrl+k icon)
+Autofocus på sökrutan
+
 Lägg in en koll om local name finns eller ej. Har den local name? Har den local name på svenska?
 
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).

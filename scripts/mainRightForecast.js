@@ -18,7 +18,7 @@ export function mainRightForecast(weatherListItem, timezone) {
     } else if (weatherListItem.snow) {
       return `<i class="wi wi-snow"></i>`;
     } else {
-      `<i class="wi wi-rain"></i>`;
+      return `<i class="wi wi-rain"></i>`;
     }
   }
 
