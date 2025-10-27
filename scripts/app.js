@@ -36,7 +36,7 @@ const updateUI = (data) => {
         <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of ${
     cityDets.name
   }">
-        <h5 class="my-3 display-4">${cityDets.name}</h5>
+        <h5 class="my-3 display-4">${cityDets.local_names.sv}</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>
         <div class="iconContainer">
@@ -165,7 +165,7 @@ cityForm.addEventListener("submit", (e) => {
       updateUI(data);
       localStorage.setItem("city", city); //Save city in local storage so it shows up next time page is opened.
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log("Testfel", err));
 });
 //Check if there is a saved city in localStorage
 let savedCity = localStorage.getItem("city");
