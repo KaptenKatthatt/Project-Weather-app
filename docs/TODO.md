@@ -1,11 +1,11 @@
 ## App generellt
 
-- Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
-
 Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
 
 - Dölja GUI:t
 - Visa felmeddelande
+
+% chans för regn(POP)
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
@@ -27,6 +27,8 @@ Animerade väderikoner? Kanske bara på vänstra kortet
 
 Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
+
+- Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
 
 Fixa buggen med att knappen inte är kopplad till autoväxling på tema och därmed visar fel ibland.
 

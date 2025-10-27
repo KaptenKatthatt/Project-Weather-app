@@ -53,11 +53,15 @@ export function mainRightForecast(weatherListItem, timezone) {
         </p>
       </td>   
       <td>
-      <p class="mt-5">
+        <i class="wi wi-rain fs-1 mt-5"></i>
+      <p class="rainChance ">
+        ${weatherListItem.pop === undefined ? "0%" : weatherListItem.pop * 100}%
+      </p>
+      <p class="rainAmount">
         ${
           weatherListItem.rain === undefined
             ? "0"
-            : Math.round(weatherListItem.rain["3h"])
+            : Math.round(weatherListItem.rain["3h"] * 10) / 10
         }mm
       </p>
     </td>
