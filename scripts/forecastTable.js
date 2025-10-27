@@ -110,14 +110,22 @@ export function ForecastTable(weatherList) {
   }
 
   //Returns total rain of input day array
-  function getTotalRain(dayWeatherArr) {
-    const totalRainArr = [];
+  function getTotalPrecipitation(dayWeatherArr) {
+    const totalPrecipitationArr = [];
     for (let i = 0; i < dayWeatherArr.length; i++) {
-      dayWeatherArr[i].rain === undefined
-        ? totalRainArr.push(0)
-        : totalRainArr.push(dayWeatherArr[i].rain["3h"]);
+      if (dayWeatherArr[i].rain) {
+        totalPrecipitationArr.push(dayWeatherArr[i].rain["3h"]);
+      } else if (dayWeatherArr[i].snow) {
+        totalPrecipitationArr.push(dayWeatherArr[i].snow["3h"]);
+      } else if (dayWeatherArr[i].rain === undefined) {
+        totalPrecipitationArr.push(0);
+      }
     }
-    return Math.round(totalRainArr.reduce((acc, curr) => acc + curr, 0));
+    return (
+      Math.round(
+        totalPrecipitationArr.reduce((acc, curr) => acc + curr, 0) * 10
+      ) / 10
+    );
   }
   /* 
   function getWeatherIcon(dayWeatherArr) {
@@ -161,7 +169,7 @@ export function ForecastTable(weatherList) {
       <td>${getWeatherIcon(dayArr)}</td>
       <td>${getTemp(dayArr).minTemp}&deg;/${getTemp(dayArr).maxTemp}&deg;</td>
       <td>${getWind(dayArr).avgWindSpeed}(${getWind(dayArr).maxGust})</td>
-      <td>${getTotalRain(dayArr)}</td>
+      <td>${getTotalPrecipitation(dayArr)}</td>
     </tr>
   `;
   }

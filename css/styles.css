@@ -23,10 +23,11 @@ body {
   /* max-width: 900px; */
 }
 
-[data-bs-theme="dark"] .forecastTableContainer *,
+/* [data-bs-theme="dark"] .forecastTableContainer *,
 tbody {
   background-color: #495057;
 }
+ */
 [data-bs-theme="dark"] .mainWeatherContainer {
   background-color: #495057;
 }
@@ -50,4 +51,8 @@ tbody {
   grid-area: mainRight;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+/* Make icons easier to see in night mode */
+[data-bs-theme="dark"] img[src*="openweathermap.org"] {
+  filter: brightness(1.5) contrast(1.2);
 }

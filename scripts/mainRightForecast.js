@@ -4,11 +4,21 @@ export function mainRightForecast(weatherListItem, timezone) {
 
   function precipitationAmount() {
     if (weatherListItem.rain) {
-      return Math.round(weatherListItem.rain["3h"] * 10) / 10;
+      return weatherListItem.rain["3h"].toFixed(1);
     } else if (weatherListItem.snow) {
-      return Math.round((weatherListItem.snow["3h"] * 10) / 10);
+      return (weatherListItem.snow["3h"] * 10).toFixed(1);
     } else {
       return 0;
+    }
+  }
+
+  function precipitationIcon() {
+    if (weatherListItem.rain) {
+      return `<i class="wi wi-rain"></i>`;
+    } else if (weatherListItem.snow) {
+      return `<i class="wi wi-snow"></i>`;
+    } else {
+      `<i class="wi wi-rain"></i>`;
     }
   }
 
@@ -64,15 +74,9 @@ export function mainRightForecast(weatherListItem, timezone) {
       </td>   
       <td>
       <p class="precipitationIcon mt-5 fs-1">
-          ${
-            weatherListItem.rain === undefined
-              ? `<i class="wi wi-rain"></i>`
-              : weatherListItem.rain
-              ? `<i class="wi wi-rain"></i>`
-              : `<i class="wi wi-snow"></i>`
-          }
+          ${precipitationIcon()}
         </p>
-      <p class="rainChance">
+      <p class="precipitationChance">
         ${
           weatherListItem.pop === undefined
             ? "0%"
@@ -84,7 +88,5 @@ export function mainRightForecast(weatherListItem, timezone) {
       </p>
     </td>
   </tc>
-
-
     `;
 }
