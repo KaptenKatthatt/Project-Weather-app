@@ -5,23 +5,23 @@ export function mainRightForecast(weatherListItem, timezone) {
   const hour = date.getHours();
   let dayPeriod;
   if (hour >= 5 && hour < 9) {
-    dayPeriod = "morgon";
+    dayPeriod = "Morgon";
   } else if (hour >= 9 && hour < 12) {
-    dayPeriod = "middag";
+    dayPeriod = "Middag";
   } else if (hour >= 12 && hour < 18) {
-    dayPeriod = "eftermiddag";
+    dayPeriod = "Eftermiddag";
   } else if (hour >= 18 && hour < 22) {
-    dayPeriod = "kväll";
+    dayPeriod = "Kväll";
   } else {
-    dayPeriod = "natt";
+    dayPeriod = "Natt";
   }
 
   //Returns a column of weather info based on incoming time
   return `
   <tc 
-  class="p-3 fs-5">
+  class="tableColumn p-3 fs-5">
     <td>
-        <h6 class="fs-5 fw-bold text-capitalize">${dayPeriod}</h6>
+        <h6 class="fs-5 fw-bold">${dayPeriod}</h6>
     </td>
     <td>
    <img src="https://openweathermap.org/img/wn/${

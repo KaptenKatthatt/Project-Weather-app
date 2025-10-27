@@ -24,6 +24,7 @@ Functionality:
 - Find weather for any city in the world
 - Light/Dark mode based on time of day of selected city, or user choice.
 - Display both current weather and a forecast
+- Searched location and theme saved in local storage
 
 ## Technologies and Tools
 

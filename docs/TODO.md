@@ -11,8 +11,6 @@ Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hi
 
 Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
 
-Skriva dokumentation om projektet från början till slut. Inspiration från SMHI. Idéer som kommit och gått med foton som inte fungerade i praktiken.
-
 "Renskriv" Figman och tag några bilder på den till dokumentationen.
 
 - Gör olika vyer.
@@ -31,6 +29,9 @@ Animerade väderikoner? Kanske bara på vänstra kortet
 
 Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
+
+Skriva dokumentation om projektet från början till slut. Inspiration från SMHI. Idéer som kommit och gått med foton som inte fungerade i praktiken.
+
 Växla till Dark mode om det är natt i den staden man sökt fram?
 
 ✅Flaggor bredvid varje stadsnamn

@@ -16,6 +16,9 @@ const forecastTableBodyEl = document.querySelector(".weatherTable");
 const mainWeatherContainerEl = document.querySelector(".mainWeatherContainer");
 const htmlElement = document.documentElement;
 
+//Theme switcher button
+const toggleButton = document.getElementById("theme-toggle");
+
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
@@ -77,9 +80,50 @@ const updateUI = (data) => {
 
   if (localUTCTime >= sunrise && localUTCTime <= sunset) {
     htmlElement.setAttribute("data-bs-theme", "light");
+    localStorage.setItem("theme", "light");
+    toggleButton.innerHTML = `
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+    Växla till Natt
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
   } else {
     htmlElement.setAttribute("data-bs-theme", "dark");
+    localStorage.setItem("theme", "dark");
+    toggleButton.innerHTML = `
+    <i class="wi wi-day-sunny wi-3x"></i> 
+    Växla till Dag 
+    <i class="wi wi-day-sunny wi-3x"></i>`;
   }
+
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme") || "light";
+  htmlElement.setAttribute("data-bs-theme", savedTheme);
+  toggleButton.innerHTML =
+    savedTheme === "dark"
+      ? `
+    <i class="wi wi-day-sunny wi-3x"></i> 
+    Växla till Dag 
+    <i class="wi wi-day-sunny wi-3x"></i>`
+      : `
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+    Växla till Natt
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+
+  toggleButton.addEventListener("click", () => {
+    const currentTheme = htmlElement.getAttribute("data-bs-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    htmlElement.setAttribute("data-bs-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    toggleButton.innerHTML =
+      newTheme === "dark"
+        ? `
+    <i class="wi wi-day-sunny wi-3x"></i> 
+    Växla till Dag 
+    <i class="wi wi-day-sunny wi-3x"></i>`
+        : `
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+    Växla till Natt
+    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+  });
 
   // localTime > weather.sys.sunrise && localTime < weather.sys.sunset
   //   ? currentTheme === "light"
@@ -134,21 +178,3 @@ if (savedCity) {
     })
     .catch((err) => console.log(err));
 }
-
-//Theme switcher
-const toggleButton = document.getElementById("theme-toggle");
-
-// Load saved theme from localStorage
-const savedTheme = localStorage.getItem("theme") || "light";
-htmlElement.setAttribute("data-bs-theme", savedTheme);
-toggleButton.textContent =
-  savedTheme === "dark" ? "Växla till Dag" : "Växla till Natt";
-
-toggleButton.addEventListener("click", () => {
-  const currentTheme = htmlElement.getAttribute("data-bs-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  htmlElement.setAttribute("data-bs-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
-  toggleButton.textContent =
-    newTheme === "dark" ? "Växla till Dag" : "Växla till Natt";
-});
