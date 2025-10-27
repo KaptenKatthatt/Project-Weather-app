@@ -15,6 +15,7 @@ const forecastTableContainerEl = document.querySelector(
 const forecastTableBodyEl = document.querySelector(".weatherTable");
 const mainWeatherContainerEl = document.querySelector(".mainWeatherContainer");
 const htmlElement = document.documentElement;
+const siteContainer = document.querySelector(".container");
 
 //Theme switcher button
 const toggleButton = document.getElementById("theme-toggle");
@@ -165,7 +166,17 @@ cityForm.addEventListener("submit", (e) => {
       updateUI(data);
       localStorage.setItem("city", city); //Save city in local storage so it shows up next time page is opened.
     })
-    .catch((err) => console.log("Testfel", err));
+    .catch((err) => {
+      mainWeatherContainerEl.classList.add("d-none");
+      forecastTableContainerEl.classList.add("d-none");
+      siteContainer.innerHTML += `
+      <div class="alert alert-warning" role="alert">
+        <h3>That city couldn't be found. Please try again.</h3>
+      </div>
+
+      `;
+      console.log("Testfel", err);
+    });
 });
 //Check if there is a saved city in localStorage
 let savedCity = localStorage.getItem("city");
