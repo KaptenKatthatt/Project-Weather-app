@@ -22,7 +22,7 @@
 <body>
 
   <!-- Site container -->
-  <div class="site-container container mb-5">
+  <main class="site-container container mb-5">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
     <div class="text-center my-3">
       <button id="theme-toggle" class="btn btn-outline-secondary">Växla till Natt</button>
@@ -35,7 +35,7 @@
     </form>
 
     <div class="mainWeatherContainer mt-2 bg-body rounded-3 d-none py-4">
-      <div class="mainLeft text-center text-muted">
+      <section class="mainLeft text-center text-muted">
         <!-- Flag -->
         <!-- cityName -->
         <!-- Hour of day -->
@@ -44,11 +44,11 @@
         <!-- Temperature -->
         <!-- windArrow -->
         <!-- Windspeed -->
-      </div>
-      <div class="mainRight text-center mt-4">
+      </section>
+      <section class="mainRight text-center mt-4">
         <table class="table text-center mainRightTable">
         </table>
-      </div>
+      </section>
     </div>
 
     <!-- 5 day forecast table -->
@@ -72,7 +72,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </main>
 
 
   <script src="scripts/api.js"></script>

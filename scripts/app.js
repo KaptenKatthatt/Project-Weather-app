@@ -30,7 +30,9 @@ const updateUI = (data) => {
   const date = new Date((weather.dt + weather.timezone) * 1000);
   const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
   mainLeftEl.innerHTML = `
-        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of chosen city">
+        <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of ${
+    cityDets.name
+  }">
         <h5 class="my-3 display-4">${cityDets.name}</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>

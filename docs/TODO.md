@@ -9,6 +9,8 @@ Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hi
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
+Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
+
 Skriva dokumentation om projektet från början till slut. Inspiration från SMHI. Idéer som kommit och gått med foton som inte fungerade i praktiken.
 
 "Renskriv" Figman och tag några bilder på den till dokumentationen.
@@ -16,6 +18,11 @@ Skriva dokumentation om projektet från början till slut. Inspiration från SMH
 - Gör olika vyer.
 - Från början till slut.
 - Brainstorming och sketchning.
+
+Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
+
+Testa om Vercel är lättare och har mer generöst med tokens.
+Klödda med Netlify så jag kan få upp den där.
 
 ## KANSKE
 

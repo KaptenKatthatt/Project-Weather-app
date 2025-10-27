@@ -32,7 +32,6 @@ tbody {
 }
 
 .mainWeatherContainer {
-  /* height: 750px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "mainLeft mainRight";
