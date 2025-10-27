@@ -37,7 +37,9 @@ const updateUI = (data) => {
         <img class="mt-4" src="https://flagcdn.com/48x36/${cityDets.country.toLowerCase()}.png" alt="Country flag of ${
     cityDets.name
   }">
-        <h5 class="my-3 display-4">${cityDets.local_names.sv}</h5>
+        <h5 class="my-3 mx-2 display-4">${
+          cityDets.local_names ? cityDets.local_names.sv : cityDets.name
+        }</h5>
         <div class="fs-5">${weekday}</div>
         <div class="fs-5">kl.${localHour}</div>
         <div class="iconContainer">
@@ -173,9 +175,8 @@ cityForm.addEventListener("submit", (e) => {
       <div class="alert alert-warning" role="alert">
         <h3>That city couldn't be found. Please try again.</h3>
       </div>
-
       `;
-      console.log("Testfel", err);
+      // console.log("Testfel", err);
     });
 });
 //Check if there is a saved city in localStorage

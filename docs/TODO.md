@@ -1,10 +1,5 @@
 ## App generellt
 
-Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
-
-- Dölja GUI:t
-- Visa felmeddelande
-
 Stöd för nederbörd i snöform
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
@@ -27,7 +22,15 @@ Animerade väderikoner? Kanske bara på vänstra kortet
 
 Mer tydlig bakgrund till staden? Stadsbakgrund baserat på antalet invånare? Kontinent? Land?
 -----------------------KLART-------------------------
-% chans för regn(POP)
+
+Lägg in en koll om local name finns eller ej
+
+Felmeddelande om den inte hittar staden. Basera den på felet om att den inte hittar latituden(undefined).
+
+- Dölja GUI:t
+- Visa felmeddelande
+
+  % chans för regn(POP)
 
 - Gör kolumnerna lika breda så "känns som" hamnar en rad och och graden på nästa rad.
 
