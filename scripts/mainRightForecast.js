@@ -38,7 +38,7 @@ export function mainRightForecast(weatherListItem, timezone) {
 
   //Returns a column of weather info based on incoming time
   return `
-  <tc 
+  <div 
   class="tableColumn p-3 fs-5">
     <td>
         <h6 class="fs-5 fw-bold">${dayPeriod}</h6>
@@ -87,6 +87,6 @@ export function mainRightForecast(weatherListItem, timezone) {
         ${precipitationAmount()}mm
       </p>
     </td>
-  </tc>
+  </div>
     `;
 }

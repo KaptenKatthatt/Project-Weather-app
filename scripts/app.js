@@ -19,6 +19,7 @@ const forecastTableContainerEl = document.querySelector(
   ".forecastTableContainer"
 );
 const forecastTableBodyEl = document.querySelector(".weatherTable");
+const windUnitEl = document.querySelector(".windUnit");
 const mainWeatherContainerEl = document.querySelector(".mainWeatherContainer");
 const htmlElement = document.documentElement;
 const siteContainer = document.querySelector(".container");
@@ -98,12 +99,16 @@ const updateUI = (data) => {
         }@4x.png" alt="Icon of current weather">
         <div class="my-3 fs-4">${weather.weather[0].description}</div>
         <div class="display-4 my 4">
-          <span>${Math.round(weather.main.temp)}&deg;C</span>
+          <span>${Math.round(weather.main.temp)}&deg;${
+    getUnits() === "metric" ? "C" : "F"
+  }</span>
         </div>
           <i class="windArrow wi wi-wind from-${
             weather.wind.deg
           }-deg mt-3 fs-1"></i>
-          <div class="fs-5">${Math.round(weather.wind.speed)} m/s</div>
+          <div class="fs-5">${Math.round(weather.wind.speed)} ${
+    getUnits() === "metric" ? "m/s" : "mph"
+  }</div>
         `;
 
   // 18 hour forecast sidebar
@@ -202,6 +207,7 @@ if (savedCity) {
 tempToggleBtn.addEventListener("click", () => {
   getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
   console.log(getUnits());
+  windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
   if (currentCity) {
     updateCity(currentCity)
       .then((data) => updateUI(data))
