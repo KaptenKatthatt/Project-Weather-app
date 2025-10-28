@@ -222,7 +222,7 @@ if (savedCity) {
 
 tempToggleBtn.addEventListener("click", () => {
   getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
-  console.log(getUnits());
+  // console.log(getUnits());
   windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
   if (currentCity) {
     updateCity(currentCity)
