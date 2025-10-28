@@ -1,8 +1,19 @@
+export { setUnits, getUnits, getWeather, getForecast, getCity };
+import { key } from "./api.js";
+
 //Get weather information
+
+//Set C or F units
+let units = "metric";
+const setUnits = (newUnits) => {
+  units = newUnits;
+};
+const getUnits = () => units;
+
 const getWeather = async (lat, lon) => {
   // const key = process.env.WEATHER_API_KEY;
   const base = `https://api.openweathermap.org/data/2.5/weather?`;
-  const query = `lat=${lat}&lon=${lon}&units=metric&appid=${key}&lang=sv`;
+  const query = `lat=${lat}&lon=${lon}&units=${units}&appid=${key}&lang=sv`;
 
   const response = await fetch(base + query);
   const data = await response.json();
@@ -13,7 +24,7 @@ const getWeather = async (lat, lon) => {
 // Get 5-day forecast
 const getForecast = async (lat, lon) => {
   const base = `https://api.openweathermap.org/data/2.5/forecast?`;
-  const query = `lat=${lat}&lon=${lon}&units=metric&appid=${key}&lang=sv`;
+  const query = `lat=${lat}&lon=${lon}&units=${units}&appid=${key}&lang=sv`;
 
   const response = await fetch(base + query);
   const data = await response.json();

@@ -1,6 +1,8 @@
 ## App generellt
 
-Fixa att temaväxlaren inte funkar med Hurva men med Askeröd, som inte har local_name heller. Funkar inte heller i Halmstad
+Språkstöd för engelska
+
+Stöd för Fahrenheit
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
 
@@ -18,6 +20,8 @@ Klödda med Netlify så jag kan få upp den där.
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 ## -----------------------KLART-------------------------
+
+Fixa att temaväxlaren inte funkar med Hurva men med Askeröd, som inte har local_name heller. Funkar inte heller i Halmstad.
 
 Stöd för nederbörd i snöform
 

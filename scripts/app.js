@@ -1,8 +1,14 @@
 "use strict";
 
-// import { forecastSidebar } from "./forecastSidebar.js";
 import { mainRightForecast } from "./mainRightForecast.js";
 import { ForecastTable } from "./forecastTable.js";
+import {
+  getCity,
+  getWeather,
+  getForecast,
+  setUnits,
+  getUnits,
+} from "./forecast.js";
 
 const cityForm = document.querySelector("form");
 
@@ -17,13 +23,15 @@ const mainWeatherContainerEl = document.querySelector(".mainWeatherContainer");
 const htmlElement = document.documentElement;
 const siteContainer = document.querySelector(".container");
 
-//Theme switcher button
-const toggleButton = document.getElementById("theme-toggle");
+//Toolbar
+const themeToggleBtn = document.getElementById("theme-toggle");
+const tempToggleBtn = document.querySelector(".tempSwitchContainer");
+const langSwitchBtn = document.querySelector(".langSwitchContainer");
 
 // Ladda initialt tema från localStorage (eller sätt till light om inget finns)
 let currentTheme = localStorage.getItem("theme") || "light";
 htmlElement.setAttribute("data-bs-theme", currentTheme);
-toggleButton.innerHTML =
+themeToggleBtn.innerHTML =
   currentTheme === "dark"
     ? `
 <i class="wi wi-day-sunny wi-3x"></i> 
@@ -34,13 +42,13 @@ Växla till Dag
 Växla till Natt
 <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 
-// Event listener för toggleButton, utanför updateUI
-toggleButton.addEventListener("click", () => {
+// Event listener för themeToggleBtn, utanför updateUI
+themeToggleBtn.addEventListener("click", () => {
   const newTheme = currentTheme === "dark" ? "light" : "dark";
   currentTheme = newTheme; // Uppdatera global variabel
   htmlElement.setAttribute("data-bs-theme", newTheme);
   localStorage.setItem("theme", newTheme);
-  toggleButton.innerHTML =
+  themeToggleBtn.innerHTML =
     newTheme === "dark"
       ? `
 <i class="wi wi-day-sunny wi-3x"></i> 
@@ -129,7 +137,7 @@ const updateUI = (data) => {
 
   htmlElement.setAttribute("data-bs-theme", currentTheme);
   localStorage.setItem("theme", currentTheme);
-  toggleButton.innerHTML =
+  themeToggleBtn.innerHTML =
     currentTheme === "dark"
       ? `
     <i class="wi wi-day-sunny wi-3x"></i> 
@@ -194,3 +202,7 @@ if (savedCity) {
     })
     .catch((err) => console.log(err));
 }
+
+tempToggleBtn.addEventListener("click", (e) => {
+  getUnits === "metric" ? setUnits("imperial") : setUnits("metric");
+});
