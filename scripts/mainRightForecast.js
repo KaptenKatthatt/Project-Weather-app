@@ -1,3 +1,6 @@
+import { getLang } from "./forecast.js";
+import { setLang } from "./forecast.js";
+
 export function mainRightForecast(weatherListItem, timezone) {
   const date = new Date((weatherListItem.dt + timezone) * 1000);
   /*   const weekday = date.toLocaleString("sv-SE", { weekday: "long" }); */
@@ -25,15 +28,15 @@ export function mainRightForecast(weatherListItem, timezone) {
   const hour = date.getHours();
   let dayPeriod;
   if (hour >= 5 && hour < 9) {
-    dayPeriod = "Morgon";
+    dayPeriod = getLang() === "sv" ? "Morgon" : "Morning";
   } else if (hour >= 9 && hour < 12) {
-    dayPeriod = "Middag";
+    dayPeriod = getLang() === "sv" ? "Middag" : "Noon";
   } else if (hour >= 12 && hour < 18) {
-    dayPeriod = "Eftermiddag";
+    dayPeriod = getLang() === "sv" ? "Eftermiddag" : "Afternoon";
   } else if (hour >= 18 && hour < 22) {
-    dayPeriod = "Kväll";
+    dayPeriod = getLang() === "sv" ? "Kväll" : "Evening";
   } else {
-    dayPeriod = "Natt";
+    dayPeriod = getLang() === "sv" ? "Natt" : "Night";
   }
 
   //Returns a column of weather info based on incoming time

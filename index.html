@@ -24,16 +24,17 @@
   <!-- Site container -->
   <main class="site-container container mb-5">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
+    <p class="text-center">Den Fenomenala Väderstationen i Etern</p>
     <div class="settingsContainer">
       <button id="theme-toggle" class="btn btn-secondary">
         <i class="wi wi-day-sunny wi-3x"></i>
         <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i></button>
-      <button class="btn btn-secondary tempSwitchContainer fs-3">Metric / Imperial</button>
-      <button class="btn btn-secondary langSwitchContainer fs-3">SE / EN</button>
+      <button class="btn btn-secondary unitToggleBtn fs-3">Metric / Imperial</button>
+      <button class="btn btn-secondary langToggleBtn fs-3">SE / EN</button>
     </div>
     </>
     <!-- Title and input -->
-    <p class="text-center">Den Fenomenala Väderstationen i Etern</p>
+
     <form class="change-location my-4 text-center text-muted w-100">
       <label for="city" class="visually-hidden">Search for a city</label>
       <input type="text" name="city" id="city" class=" form-control p-4 fs-4" placeholder="Sök efter en stad..."
@@ -60,19 +61,19 @@
 
     <!-- 5 day forecast table -->
     <div class="forecastTableContainer mt-4 bg-body rounded-3 overflow-hidden d-none">
-      <div class="text-body display-6 p-3 forecastTitle bg-body">5-dygnsprognos</div>
+      <div class="text-body display-6 p-3 forecastTableTitle bg-body">5-dygnsprognos</div>
       <table class="forecastTable table text-center fs-4 align-middle">
         <thead>
           <tr>
-            <th>
+            <th class="dayHeading">
               Dygn
             </th>
             <th><!-- Weather icon --></th>
             <th>
               L/H
             </th>
-            <th>Vind(byvind)<span class="windUnit text-secondary fs-5">m/s</span></th>
-            <th>Nederbörd<span class="text-secondary fs-5">mm</span></th>
+            <th><span class="windHeading">Vind(byvind)</span><span class="windUnit text-secondary fs-5">m/s</span></th>
+            <th><span class="precHeading">Nederbörd</span><span class="text-secondary fs-5">mm</span></th>
           </tr>
         </thead>
         <tbody class="table-group-divider weatherTable">

@@ -8,6 +8,8 @@ import {
   getForecast,
   setUnits,
   getUnits,
+  setLang,
+  getLang,
 } from "./forecast.js";
 
 const cityForm = document.querySelector("form");
@@ -26,9 +28,13 @@ const siteContainer = document.querySelector(".container");
 
 //Toolbar
 const themeToggleBtn = document.getElementById("theme-toggle");
-const tempToggleBtn = document.querySelector(".tempSwitchContainer");
-const langSwitchBtn = document.querySelector(".langSwitchContainer");
+const tempToggleBtn = document.querySelector(".unitToggleBtn");
+const langSwitchBtn = document.querySelector(".langToggleBtn");
 
+const forecastTableTitleEl = document.querySelector(".forecastTableTitle");
+const dayHeadingEl = document.querySelector(".dayHeading");
+const windHeadingEl = document.querySelector(".windHeading");
+const precHeadingEl = document.querySelector(".precHeading");
 // Ladda initialt tema från localStorage (eller sätt till light om inget finns)
 let currentTheme = localStorage.getItem("theme") || "light";
 htmlElement.setAttribute("data-bs-theme", currentTheme);
@@ -213,4 +219,14 @@ tempToggleBtn.addEventListener("click", () => {
       .then((data) => updateUI(data))
       .catch((err) => console.log(err));
   }
+});
+
+langSwitchBtn.addEventListener("click", () => {
+  getLang() === "sv" ? setLang("en") : setLang("sv");
+  console.log(getLang());
+  forecastTableTitleEl.innerText =
+    getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
+  dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
+  windHeadingEl.innerText = getLang() === "sv" ? "Vind(byvind)" : "Wind(gust)";
+  precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precipitation";
 });
