@@ -25,12 +25,34 @@
   <main class="site-container container mb-5">
     <h1 class=" text-muted text-center my-4">JMHI Väder</h1>
     <p class="text-center">Den Fenomenala Väderstationen i Etern</p>
-    <div class="settingsContainer">
-      <button id="theme-toggle" class="btn btn-secondary">
+    <div class="settingsContainer d-flex justify-content-center gap-5">
+      <!-- Theme switch -->
+      <div class="form-check form-switch">
+        <input class="form-check-input themToggle fs-3" type="checkbox" role="switch" id="theme-toggle"">
+        <label class=" form-check-label fs-3" for="themToggle">
+        <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
+        <i class="wi wi-day-sunny wi-3x"></i>/
+        </label>
+      </div>
+      <!--       <button id="theme-toggle" class="btn btn-secondary">
         <i class="wi wi-day-sunny wi-3x"></i>
-        <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i></button>
-      <button class="btn btn-secondary unitToggleBtn fs-3">Metric / Imperial</button>
-      <button class="btn btn-secondary langToggleBtn fs-3">SE / EN</button>
+        <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i></button> -->
+      <!-- Unit switch -->
+      <div class="form-check form-switch">
+        <input class="form-check-input unitToggleBtn fs-3" type="checkbox" role="switch" id="unitToggleBtn">
+        <label class="form-check-label fs-3" for="unitToggleBtn">Metric/Imperial</label>
+      </div>
+
+      <!-- <button class="btn btn-secondary unitToggleBtn fs-3">Metric / Imperial</button> -->
+      <!-- Language switch -->
+      <div class="form-check form-switch">
+        <input class="form-check-input langToggleBtn fs-3" type="checkbox" role="switch" id="langToggleBtn">
+        <label class="form-check-label fs-3" for="langToggleBtn"><img src="https://flagcdn.com/w40/se.png"
+            srcset="https://flagcdn.com/w40/se.png 2x" width="40" alt="Set swedish as language">/<img
+            src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="40"
+            alt="Set english as language"></label>
+      </div>
+      <!-- <button class="btn btn-secondary langToggleBtn fs-3">SE / EN</button> -->
     </div>
     </>
     <!-- Title and input -->
