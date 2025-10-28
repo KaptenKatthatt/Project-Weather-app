@@ -14,6 +14,13 @@ body {
   background-position: center;
   background-size: cover;
 }
+/* Dark-mode/night background*/
+[data-bs-theme="dark"] body {
+  background: url("../img/dark_bg_svg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
 /* [data-bs-theme="dark"] .forecastTableContainer *,
 tbody {
@@ -23,6 +30,9 @@ tbody {
 
 [data-bs-theme="dark"] .mainWeatherContainer {
   background-color: #495057;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .mainWeatherContainer {
