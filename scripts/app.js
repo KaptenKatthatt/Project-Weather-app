@@ -60,10 +60,13 @@ Växla till Natt
 <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 });
 
+let currentData = null;
+let currentCity = null;
 //Update UI
 const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
-
+  currentData = data;
+  currentCity = cityDets.local_names?.sv ?? cityDets.name;
   //Get local time and local hour
 
   const localTime = new Date((weather.dt + weather.timezone) * 1000);
@@ -110,16 +113,9 @@ const updateUI = (data) => {
     ${mainRightForecast(forecast.list[4], timezone)}
     ${mainRightForecast(forecast.list[6], timezone)}
 `;
-
-  //update icon images
-  // const iconSrc = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-  // iconImg.setAttribute("src", iconSrc);
-
   // Render 5 day forecast table
   forecastTableBodyEl.innerHTML = ForecastTable(forecast);
 
-  //update night/day background
-  // let timeSrc = Math.round(Date.now() / 1000);
   // console.log("Local time ", timeSrc);
   const localUTCTime = (weather.dt + weather.timezone) * 1000;
   // console.log("Localtime", localUTCTime);
@@ -128,7 +124,7 @@ const updateUI = (data) => {
   const sunrise = (weather.sys.sunrise + weather.timezone) * 1000;
   const sunset = (weather.sys.sunset + weather.timezone) * 1000;
 
-  // Uppdatera temat automatiskt baserat på stadens tid varje gång en stad laddas
+  // Update theme based on local time
   if (localUTCTime >= sunrise && localUTCTime <= sunset) {
     currentTheme = "light";
   } else {
@@ -203,6 +199,12 @@ if (savedCity) {
     .catch((err) => console.log(err));
 }
 
-tempToggleBtn.addEventListener("click", (e) => {
-  getUnits === "metric" ? setUnits("imperial") : setUnits("metric");
+tempToggleBtn.addEventListener("click", () => {
+  getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
+  console.log(getUnits());
+  if (currentCity) {
+    updateCity(currentCity)
+      .then((data) => updateUI(data))
+      .catch((err) => console.log(err));
+  }
 });
