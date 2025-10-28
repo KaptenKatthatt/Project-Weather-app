@@ -5,3 +5,4 @@ forecast_pretty.json
 ideas
 stuff
 archive/
+*.env*
