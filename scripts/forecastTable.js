@@ -164,7 +164,7 @@ export function ForecastTable(weatherList) {
 
   //Renders one row in the weathertable
   function renderWeatherTable(dayArr, day) {
-    console.log(dayArr);
+    // console.log(dayArr);
     return `
     <tr>
       <td>${formattedWeekday(day)}</td>
