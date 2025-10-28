@@ -78,11 +78,14 @@ const updateUI = (data) => {
 
   const localTime = new Date((weather.dt + weather.timezone) * 1000);
   const timezone = weather.timezone;
-  const localHour = localTime.getUTCHours();
+  const localHour =
+    getLang() === "sv"
+      ? localTime.getUTCHours()
+      : localTime.toLocaleTimeString("en", { hour: "numeric", hour12: true });
 
   //update mainLeft Container
   const date = new Date((weather.dt + weather.timezone) * 1000);
-  const weekday = date.toLocaleString("sv-SE", { weekday: "long" });
+  const weekday = date.toLocaleString(getLang(), { weekday: "long" });
   /* 
           cityDets.local_names
             ? cityDets.local_names.sv
@@ -95,15 +98,22 @@ const updateUI = (data) => {
     cityDets.name
   }">
         <h5 class="my-3 mx-2 display-4">${
-          cityDets.local_names?.sv ?? cityDets.name
+          getLang() === "sv"
+            ? cityDets.local_names?.sv ?? cityDets.name
+            : cityDets.name
         }</h5>
-        <div class="fs-5">${weekday}</div>
-        <div class="fs-5">kl.${localHour}</div>
+        <div class="fs-5 text-capitalize">${weekday}</div>
+        <div class="fs-5"> ${
+          getLang() === "sv" ? `kl. ${localHour}` : `${localHour}`
+        }
+        </div>
         <div class="iconContainer">
         <img src="https://openweathermap.org/img/wn/${
           weather.weather[0].icon
         }@4x.png" alt="Icon of current weather">
-        <div class="my-3 fs-4">${weather.weather[0].description}</div>
+        <div class="my-3 fs-4 text-capitalize">${
+          weather.weather[0].description
+        }</div>
         <div class="display-4 my 4">
           <span>${Math.round(weather.main.temp)}&deg;${
     getUnits() === "metric" ? "C" : "F"
@@ -229,4 +239,7 @@ langSwitchBtn.addEventListener("click", () => {
   dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
   windHeadingEl.innerText = getLang() === "sv" ? "Vind(byvind)" : "Wind(gust)";
   precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precipitation";
+  updateCity(currentCity)
+    .then((data) => updateUI(data))
+    .catch((err) => console.log(err));
 });

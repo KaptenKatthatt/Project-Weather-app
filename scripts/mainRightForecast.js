@@ -57,9 +57,9 @@ export function mainRightForecast(weatherListItem, timezone) {
         weatherListItem.main.temp
       )}&deg</p>
       <!-- Feels like -->
-      <p class="mt-4">Känns som ${Math.round(
-        weatherListItem.main.feels_like
-      )}&deg</p>
+      <p class="mt-4">${
+        getLang() === "sv" ? "Känns som" : "Feels like"
+      } ${Math.round(weatherListItem.main.feels_like)}&deg</p>
       </td>
       <td>
       <i class="fs-1 mt-5 windArrow wi wi-wind from-${

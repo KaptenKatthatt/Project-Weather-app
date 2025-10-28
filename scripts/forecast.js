@@ -17,7 +17,7 @@ const setUnits = (newUnits) => {
   units = newUnits;
 };
 const getUnits = () => units;
-
+//Set and Get Language
 let lang = "sv";
 const setLang = (newLang) => {
   lang = newLang;

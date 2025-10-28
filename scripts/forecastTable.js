@@ -1,3 +1,5 @@
+import { getLang } from "./forecast.js";
+
 export function ForecastTable(weatherList) {
   //GLOBAL VARIABLES 🌐
   //Local today is the local date on the searched city.
@@ -29,7 +31,7 @@ export function ForecastTable(weatherList) {
 
   // Capitalizes first letter, rest lower case
   function formattedWeekday(weekday) {
-    weekday = weekday.toLocaleString("sv-SE", {
+    weekday = weekday.toLocaleString(getLang(), {
       weekday: "long",
     });
     weekday = weekday.charAt(0).toUpperCase() + weekday.slice(1).toLowerCase();
