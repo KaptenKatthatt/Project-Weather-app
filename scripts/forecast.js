@@ -7,8 +7,10 @@ export {
   getForecast,
   getCity,
 };
-import { key } from "./api.js";
+// import { key } from "./api.js";
+const API_KEY = process.env.API_KEY;
 
+const key = API_KEY;
 //Get weather information
 
 //Set Metric or Imperial units
