@@ -233,7 +233,7 @@ tempToggleBtn.addEventListener("click", () => {
 
 langSwitchBtn.addEventListener("click", () => {
   getLang() === "sv" ? setLang("en") : setLang("sv");
-  console.log(getLang());
+  // console.log(getLang());
   forecastTableTitleEl.innerText =
     getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
   dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
