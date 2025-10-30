@@ -85,7 +85,6 @@ const updateUI = (data) => {
       : localTime.toLocaleTimeString("en", { hour: "numeric", hour12: true });
 
   //update mainLeft Container
-  const date = new Date((weather.dt + weather.timezone) * 1000);
   /* 
           cityDets.local_names
             ? cityDets.local_names.sv
