@@ -32,7 +32,7 @@ const getWeather = async (lat, lon) => {
   if (!res.ok) throw new Error("Failed to fetch weather");
   const data = await res.json();
 
-  // console.log("getWeather", data);
+  console.log("getWeather", data);
   return data;
 };
 // Get 5-day forecast
@@ -43,7 +43,7 @@ const getForecast = async (lat, lon) => {
   if (!res.ok) throw new Error("Failed to fetch forecast");
   const data = await res.json();
 
-  // console.log("getForecast", data);
+  console.log("getForecast", data);
 
   return data;
 };
@@ -56,7 +56,7 @@ const getCity = async (city) => {
   if (!res.ok) throw new Error("Failed to fetch city");
   const data = await res.json();
 
-  // console.log("getCity", data[0]);
+  console.log("getCity", data[0]);
 
   return data[0];
 };

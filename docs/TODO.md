@@ -1,3 +1,9 @@
+## Make the app less wide
+
+## Implement media queries
+
+## Make the background cover all the screen even on large screens.
+
 ## App generellt
 
 Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
