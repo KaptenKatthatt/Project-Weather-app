@@ -1,12 +1,8 @@
-## Make the app less wide
-
-## Implement media queries
-
-## Make the background cover all the screen even on large screens.
-
 ## App generellt
 
-Är där verkligen rätt tid kopplade till ikonerna i 5d-tabellen? De verkar visa tiden just nu i Sverige.
+### Save language and unit settings to localStorage
+
+Make the background cover all the screen even on large screens.
 
 "Renskriv" Figman och tag några bilder på den till dokumentationen.
 
@@ -19,6 +15,10 @@
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 ## -----------------------KLART-------------------------
+
+Make the app less wide
+
+Implement media queries
 
 Testa om Vercel är lättare och har mer generöst med tokens.
 Klödda med Netlify så jag kan få upp den där.

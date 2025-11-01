@@ -13,13 +13,31 @@ export {
 //Get weather information
 
 //Set Metric or Imperial units
-let units = "metric";
-const setUnits = (newUnits) => (units = newUnits);
-const getUnits = () => units;
+let units = localStorage.getItem("units") || "metric";
+const setUnits = (newUnits) => {
+  localStorage.setItem("units", newUnits);
+  units = newUnits;
+};
+const getUnits = () => {
+  if (localStorage.getItem("units") !== null) {
+    return localStorage.getItem("units");
+  } else {
+    return units;
+  }
+};
 //Set and Get Language
-let lang = "sv";
-const setLang = (newLang) => (lang = newLang);
-const getLang = () => lang;
+let lang = localStorage.getItem("lang") || "sv";
+const setLang = (newLang) => {
+  localStorage.setItem("lang", newLang);
+  lang = newLang;
+};
+const getLang = () => {
+  if (localStorage.getItem("lang") !== null) {
+    return localStorage.getItem("lang");
+  } else {
+    return lang;
+  }
+};
 
 const getWeather = async (lat, lon) => {
   const result = await fetch(
