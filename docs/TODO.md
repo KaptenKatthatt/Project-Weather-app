@@ -1,6 +1,6 @@
 ## App generellt
 
-### Save language and unit settings to localStorage
+Make switches start on the correct position based on language or units from localStorage.
 
 Make the background cover all the screen even on large screens.
 
@@ -15,6 +15,8 @@ Make the background cover all the screen even on large screens.
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 ## -----------------------KLART-------------------------
+
+Save language and unit settings to localStorage
 
 Make the app less wide
 

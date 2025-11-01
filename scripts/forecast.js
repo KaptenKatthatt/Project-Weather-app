@@ -7,13 +7,15 @@ export {
   getForecast,
   getCity,
 };
-// import { key } from "./api.js";
-// const API_KEY = process.env.API_KEY;
 
 //Get weather information
 
 //Set Metric or Imperial units
 let units = localStorage.getItem("units") || "metric";
+//Sets unitSwitch to localStorage value
+document.querySelector(".unitToggleBtn").checked =
+  units === "metric" ? false : true;
+
 const setUnits = (newUnits) => {
   localStorage.setItem("units", newUnits);
   units = newUnits;
@@ -27,6 +29,9 @@ const getUnits = () => {
 };
 //Set and Get Language
 let lang = localStorage.getItem("lang") || "sv";
+//Sets langSwitch to localStorage value
+document.querySelector(".langToggleBtn").checked = lang === "sv" ? false : true;
+
 const setLang = (newLang) => {
   localStorage.setItem("lang", newLang);
   lang = newLang;
