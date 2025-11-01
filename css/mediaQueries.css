@@ -1,0 +1,6 @@
+@media (max-width: 999px) {
+  .mainWeatherContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

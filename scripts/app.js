@@ -152,8 +152,6 @@ const updateCity = async (city) => {
 
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  // scrollTo(0, 245);
-  // scrollTo({ top: 245, behavior: "smooth" });
   //Get city value
   const city = cityForm.city.value.trim().toLowerCase();
   cityForm.reset();

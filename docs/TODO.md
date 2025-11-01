@@ -14,14 +14,14 @@
 - Från början till slut.
 - Brainstorming och sketchning.
 
-Testa om Vercel är lättare och har mer generöst med tokens.
-Klödda med Netlify så jag kan få upp den där.
-
 ## KANSKE
 
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 ## -----------------------KLART-------------------------
+
+Testa om Vercel är lättare och har mer generöst med tokens.
+Klödda med Netlify så jag kan få upp den där.
 
 Språkstöd för engelska
 
