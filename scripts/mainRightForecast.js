@@ -1,5 +1,4 @@
 import { getLang } from "./forecast.js";
-import { setLang } from "./forecast.js";
 
 export function mainRightForecast(weatherListItem, timezone) {
   const date = new Date((weatherListItem.dt + timezone) * 1000);
@@ -47,9 +46,10 @@ export function mainRightForecast(weatherListItem, timezone) {
         <h6 class="fs-5 fw-bold">${dayPeriod}</h6>
     </td>
     <td>
-   <img src="https://openweathermap.org/img/wn/${
-     weatherListItem.weather[0].icon
-   }@2x.png" alt="Icon of the days noon weather">
+        <img src="https://openweathermap.org/img/wn/${
+          weatherListItem.weather[0].icon
+        }@2x.png" alt="Icon of the days noon weather" class="shortForeCastIcon">
+
     </td>
     <!-- Temp -->
     <td>

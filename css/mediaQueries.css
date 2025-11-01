@@ -3,6 +3,9 @@
   .mainRight {
     width: 100%;
   }
+  .shortForeCastIcon {
+    width: 50px;
+  }
 }
 
 @media (max-width: 999px) {
