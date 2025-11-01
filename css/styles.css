@@ -35,14 +35,7 @@ tbody {
   background-size: cover;
 }
 
-.mainWeatherContainer {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-areas: "mainLeft mainRight";
-}
 .mainLeft {
-  border-right: 1px solid lightgray;
-  grid-area: mainLeft;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +44,6 @@ tbody {
 }
 
 .mainRight {
-  grid-area: mainRight;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }

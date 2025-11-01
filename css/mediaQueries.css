@@ -1,6 +1,36 @@
+@media (max-width: 800px) {
+  .mainLeft,
+  .mainRight {
+    width: 100%;
+  }
+}
+
 @media (max-width: 999px) {
   .mainWeatherContainer {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 1000px) {
+  .mainWeatherContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "mainLeft mainRight";
+  }
+
+  .mainLeft {
+    border-right: 1px solid lightgray;
+    grid-area: mainLeft;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  .mainRight {
+    grid-area: mainRight;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
