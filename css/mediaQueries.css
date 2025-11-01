@@ -3,14 +3,16 @@
   .mainRight {
     width: 100%;
   }
-  .shortForeCastIcon {
+  .foreCastIcon {
     width: 50px;
   }
-  .settingsContainer {
-    border: 1px solid lime;
-    flex-wrap: nowrap;
-  }
-  .menuItem {
+  .menuItem,
+  .windHeading,
+  .windUnit,
+  .precHeading,
+  .precUnit,
+  .tempHeading,
+  .dayHeading {
     display: block;
     font-size: 14px;
   }

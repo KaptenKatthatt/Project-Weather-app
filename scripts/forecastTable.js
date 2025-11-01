@@ -154,11 +154,11 @@ export function ForecastTable(weatherList) {
       day.dt_txt.includes("12:00:00")
     );
     if (noonItem) {
-      return `<img src="https://openweathermap.org/img/wn/${noonItem.weather[0].icon}@2x.png" alt="Icon of the days noon weather">`;
+      return `<img src="https://openweathermap.org/img/wn/${noonItem.weather[0].icon}@2x.png" alt="Icon of the days noon weather" class="foreCastIcon">`;
     }
     //Fallback if 12:00 has passed and is not in reply.
     else {
-      return `<img src="https://openweathermap.org/img/wn/${dayWeatherArr[0].weather[0].icon}@2x.png" alt="Icon of the days noon weather"></img>`;
+      return `<img src="https://openweathermap.org/img/wn/${dayWeatherArr[0].weather[0].icon}@2x.png" alt="Icon of the days noon weather" class="foreCastIcon"></img>`;
     }
   }
 

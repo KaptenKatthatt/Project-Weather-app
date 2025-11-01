@@ -30,27 +30,32 @@
     <div class="settingsContainer d-flex justify-content-center align-items-center gap-5 flex-nowrap">
       <!-- Theme switch -->
       <div class="form-check form-switch d-flex align-items-center">
-        <input class="form-check-input themeToggle fs-2 me-3" type="checkbox" role="switch" id="theme-toggle" switch>
-        <label class="form-check-label fs-3" for="themeToggle"></label>
-        <i class="wi wi-moon-alt-waning-crescent-2 wi-3x fs-3"></i>
-        <i class="wi wi-day-sunny wi-3x fs-3"></i>
+        <input class="form-check-input themeToggle fs-3 me-2" type="checkbox" role="switch" id="theme-toggle">
+        <label class="visually-hidden" for="theme-toggle">Toggle between light and dark theme</label>
+        <div class="d-flex align-items-center">
+          <i class="wi wi-moon-alt-waning-crescent-2 wi-3x fs-3"></i>
+          <i class="wi wi-day-sunny wi-3x fs-3"></i>
+        </div>
       </div>
       <!-- Unit switch -->
       <div class="form-check form-switch d-flex align-items-center">
-        <input class="form-check-input unitToggleBtn fs-2 me-3" type="checkbox" role="switch" id="unitToggleBtn" switch>
-        <label class="form-check-label fs-5" for="unitToggleBtn"><span class="menuItem">Metric/</span><span
-            class="menuItem">Imperial</span></label>
+        <input class="form-check-input unitToggleBtn me-2 fs-3" type="checkbox" role="switch" id="unitToggleBtn">
+        <label class="visually-hidden" for="unitToggleBtn">Toggle between metric and imperial units</label>
+        <label class="form-check-label d-flex align-items-center" for="unitToggleBtn"><span
+            class="menuItem">Metric/</span><span class="menuItem">Imperial</span></label>
       </div>
       <!-- Language switch -->
       <div class="form-check form-switch d-flex align-items-center">
-        <input class="form-check-input langToggleBtn fs-2 me-3" type="checkbox" role="switch" id="langToggleBtn" switch>
-        <label class="form-check-label fs-3" for="langToggleBtn"><img src="https://flagcdn.com/w40/se.png"
-            srcset="https://flagcdn.com/w40/se.png 2x" width="40" alt="Set swedish as language"> <img
-            src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="40"
-            alt="Set english as language"></label>
+        <input class="form-check-input langToggleBtn fs-3 me-2" type="checkbox" role="switch" id="langToggleBtn">
+        <label class="visually-hidden" for="langToggleBtn">Toggle between Swedish and English</label>
+        <label class="form-check-label d-flex align-items-center" for="langToggleBtn">
+          <img src="https://flagcdn.com/w40/se.png" srcset="https://flagcdn.com/w40/se.png 2x" width="40" height="25"
+            alt="Set Swedish as language" class="me-1">
+          <img src="https://flagcdn.com/w40/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="40" height="25"
+            alt="Set English as language">
+        </label>
       </div>
     </div>
-    </>
     <!-- Title and input -->
     <form class="change-location my-4 text-center text-muted w-100">
       <label for="city" class="visually-hidden">Search for a city</label>
@@ -79,18 +84,18 @@
     <!-- 5 day forecast table -->
     <div class="forecastTableContainer mt-4 bg-body rounded-3 overflow-hidden d-none">
       <div class="text-body display-6 p-3 forecastTableTitle bg-body">5-dygnsprognos</div>
-      <table class="forecastTable table text-center fs-4 align-middle">
+      <table class="forecastTable table text-center ">
         <thead>
           <tr>
-            <th class="dayHeading">
-              Dygn
+            <th>
+              <span class="dayHeading">Dygn</span>
             </th>
             <th><!-- Weather icon --></th>
             <th>
-              L/H
+              <span class="tempHeading">L/H</span>
             </th>
-            <th><span class="windHeading">Vind(byvind)</span><span class="windUnit text-secondary fs-5">m/s</span></th>
-            <th><span class="precHeading">Nederbörd</span><span class="text-secondary fs-5">mm</span></th>
+            <th><span class="windHeading">Vind(byvind)</span><span class="windUnit text-secondary ">m/s</span></th>
+            <th><span class="precHeading">Nederbörd</span><span class="precUnit text-secondary ">mm</span></th>
           </tr>
         </thead>
         <tbody class="table-group-divider weatherTable">

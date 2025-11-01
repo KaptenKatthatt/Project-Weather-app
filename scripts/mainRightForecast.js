@@ -48,7 +48,7 @@ export function mainRightForecast(weatherListItem, timezone) {
     <td>
         <img src="https://openweathermap.org/img/wn/${
           weatherListItem.weather[0].icon
-        }@2x.png" alt="Icon of the days noon weather" class="shortForeCastIcon">
+        }@2x.png" alt="Icon of the days noon weather" class="foreCastIcon">
 
     </td>
     <!-- Temp -->
