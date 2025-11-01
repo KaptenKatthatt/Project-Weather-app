@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  min-width: 520px;
 }
 /* Dark-mode/night background*/
 [data-bs-theme="dark"] body {

@@ -1,4 +1,4 @@
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .mainLeft,
   .mainRight {
     width: 100%;
@@ -6,16 +6,24 @@
   .shortForeCastIcon {
     width: 50px;
   }
+  .settingsContainer {
+    border: 1px solid lime;
+    flex-wrap: nowrap;
+  }
+  .menuItem {
+    display: block;
+    font-size: 14px;
+  }
 }
 
-@media (max-width: 999px) {
+@media (max-width: 991px) {
   .mainWeatherContainer {
     display: flex;
     flex-direction: column;
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 992px) {
   .mainWeatherContainer {
     display: grid;
     grid-template-columns: 1fr 2fr;
