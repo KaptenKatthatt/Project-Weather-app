@@ -1,3 +1,12 @@
+1. Flytta translations från app.js till constants.js (redan gjort, men uppdatera app.js att importera det)
+
+2. Rensa forecast.js - Den manipulerar DOM direkt. Flytta detta till app.js:
+
+DOM-manipulering för checkbox
+Placeholder-text för input-fält 3. Skapa en ny fil ui.js eller theme.js för tema-relaterad logik (redan finns i app.js men kan isoleras)
+
+4. Lägg till translations för mainRightForecast.js - Dag-perioder (Morgon, Middag, etc.) borde vara i constants.js
+
 ## Bugs
 
 Summarize both rain and snow prec?
