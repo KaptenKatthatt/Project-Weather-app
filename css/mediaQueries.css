@@ -1,20 +1,22 @@
 @media (max-width: 576px) {
-  .mainLeft,
-  .mainRight {
-    /* width: 100%; */
+  .precHeading,
+  .windHeading,
+  .gust {
+    display: none;
   }
+}
+
+@media (max-width: 768px) {
   .foreCastIcon {
     width: 50px;
   }
   .menuItem,
-  .windHeading,
   .windUnit,
-  .precHeading,
   .precUnit,
   .tempHeading,
   .dayHeading {
     display: block;
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 }
 
