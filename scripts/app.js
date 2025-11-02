@@ -185,17 +185,6 @@ if (savedCity) {
     .catch((err) => console.log(err));
 }
 
-tempToggleBtn.addEventListener("click", () => {
-  getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
-  // console.log(getUnits());
-  windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
-  if (currentCity) {
-    updateCity(currentCity)
-      .then((data) => updateUI(data))
-      .catch((err) => console.log(err));
-  }
-});
-
 const windSwe = `<span class="windHeading">Vind</span>`;
 const gustSwe = `<span class="gust">(byvind)</span>`;
 const windEng = `<span class="windHeading">Wind</span>`;
@@ -208,9 +197,18 @@ dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
 windHeadingEl.innerHTML =
   getLang() === "sv" ? `${windSwe}${gustSwe}` : `${windEng}${gustEng}`;
 precHeadingEl.innerHTML = getLang() === "sv" ? "Nederb." : "Precip.";
-updateCity(currentCity)
-  .then((data) => updateUI(data))
-  .catch((err) => console.log(err));
+
+tempToggleBtn.addEventListener("click", () => {
+  getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
+  // console.log(getUnits());
+  windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
+  if (currentCity) {
+    updateCity(currentCity)
+      .then((data) => updateUI(data))
+      .catch((err) => console.log(err));
+  }
+});
+
 //Update weather table on language switch
 langSwitchBtn.addEventListener("click", () => {
   getLang() === "sv" ? setLang("en") : setLang("sv");
