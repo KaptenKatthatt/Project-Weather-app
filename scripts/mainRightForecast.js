@@ -41,7 +41,7 @@ export function mainRightForecast(weatherListItem, timezone) {
   //Returns a column of weather info based on incoming time
   return `
   <div 
-  class="tableColumn p-3 fs-5">
+  class="tableColumn fs-5">
     <td>
         <h6 class="fs-5 fw-bold">${dayPeriod}</h6>
     </td>

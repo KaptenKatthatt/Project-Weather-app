@@ -18,7 +18,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-width: 520px;
+  border: 1px solid lime;
 }
 /* Dark-mode/night background*/
 [data-bs-theme="dark"] body {
@@ -41,17 +41,27 @@ tbody {
   background-size: cover;
 }
 
+.forecastTableContainer {
+  border: 1px solid lime;
+}
+
+.mainWeatherContainer {
+  border: 1px solid lime;
+}
+
 .mainLeft {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
   flex-direction: column;
+  border: 1px solid lime;
 }
 
 .mainRight {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px solid lime;
 }
 /* Make icons easier to see in night mode */
 [data-bs-theme="dark"] img[src*="openweathermap.org"] {
