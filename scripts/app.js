@@ -161,7 +161,37 @@ if (savedCity) {
     })
     .catch((err) => console.log(err));
 }
+///////////////////////////////////////
+const translations = {
+  sv: {
+    forecastTableTitle: "5-dygnsprognos",
+    dayHeading: "Dygn",
+    windHeading: `<span class="windHeading">Vind</span><span class="gust">(byvind)</span>`,
+    precHeading: `<span class="precipLongSwe">Nederbörd</span><span class="precipShortSwe">Nederb.</span>`,
+  },
+  en: {
+    forecastTableTitle: "5 day forecast",
+    dayHeading: "Day",
+    windHeading: `<span class="windHeading">Wind</span><span class="gust">(gust)</span>`,
+    precHeading: `<span class="precipLongEng">Precipitation</span><span class="precipShortEng">Precip.</span>`,
+  },
+};
 
+// Helper function to update all table headings
+const updateTableHeadings = () => {
+  const lang = getLang();
+  forecastTableTitleEl.innerText = translations[lang].forecastTableTitle;
+  dayHeadingEl.innerText = translations[lang].dayHeading;
+  windHeadingEl.innerHTML = translations[lang].windHeading;
+  precHeadingEl.innerHTML = translations[lang].precHeading;
+};
+
+//Initialize forecast table language
+updateTableHeadings();
+
+//////////////////////////////////////////////////////
+
+/* 
 const windSwe = `<span class="windHeading">Vind</span>`;
 const gustSwe = `<span class="gust">(byvind)</span>`;
 const windEng = `<span class="windHeading">Wind</span>`;
@@ -172,7 +202,7 @@ const precipLongEng = `<span class="precipLongEng">Precipitation</span>`;
 const precipShortSwe = `<span class="precipShortSwe">Nederb.</span>`;
 const precipShortEng = `<span class="precipShortEng">Precip.</span>`;
 
-//Initialize forecast table language
+//Initialize forecast table headings based on language from localStorage
 forecastTableTitleEl.innerText =
   getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
 dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
@@ -182,9 +212,11 @@ precHeadingEl.innerHTML =
   getLang() === "sv"
     ? `${precipLongSwe}${precipShortSwe}`
     : `${precipLongEng}${precipShortEng}`;
-
+ */
+//Click event listener for temp toggle switch
 tempToggleBtn.addEventListener("click", () => {
   getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
+  // Update GUI only if there is a city selected.
   if (localStorage.getItem("city") !== null) {
     windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
     updateCity(currentCity)
@@ -192,11 +224,11 @@ tempToggleBtn.addEventListener("click", () => {
       .catch((err) => console.log(err));
   }
 });
-
-//Update weather table on language switch
+/* 
+// Click event listener for language switch
 langSwitchBtn.addEventListener("click", () => {
-  // Update GUI only if there is a city selected.
   getLang() === "sv" ? setLang("en") : setLang("sv");
+  // Update GUI only if there is a city selected.
   if (localStorage.getItem("city") !== null) {
     forecastTableTitleEl.innerText =
       getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
@@ -207,6 +239,18 @@ langSwitchBtn.addEventListener("click", () => {
       getLang() === "sv"
         ? `${precipLongSwe}${precipShortSwe}`
         : `${precipLongEng}${precipShortEng}`;
+    updateCity(currentCity)
+      .then((data) => updateUI(data))
+      .catch((err) => console.log(err));
+  }
+});
+ */
+// Click event listener for language switch
+langSwitchBtn.addEventListener("click", () => {
+  getLang() === "sv" ? setLang("en") : setLang("sv");
+  // Update GUI only if there is a city selected.
+  if (localStorage.getItem("city") !== null) {
+    updateTableHeadings();
     updateCity(currentCity)
       .then((data) => updateUI(data))
       .catch((err) => console.log(err));

@@ -1,10 +1,12 @@
 ## Bugs
 
-Switch positions are not based on local storage when loaded.
-
 Summarize both rain and snow prec?
 
 ## App general
+
+Waiting spinner in search field when waiting for city load/city switch
+
+Center text vertically in forecast table?
 
 Validate HTML & CSS
 
@@ -16,7 +18,17 @@ Make the background cover all the screen even on large screens.
 - Från början till slut.
 - Brainstorming och sketchning.
 
+## Misc cool stuff
+
+Find my position weather
+
+List of the top 10 found cities to choose from
+
+Look into View transformations
+
 ## -----------------------DONE and DONE-------------------------
+
+Switch positions are not based on local storage when loaded.
 
 NOPE Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
