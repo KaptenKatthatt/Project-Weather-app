@@ -201,7 +201,7 @@ forecastTableTitleEl.innerText =
   getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
 dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
 windHeadingEl.innerText = getLang() === "sv" ? "Vind(byvind)" : "Wind(gust)";
-precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precipitation";
+precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precip.";
 updateCity(currentCity)
   .then((data) => updateUI(data))
   .catch((err) => console.log(err));
@@ -213,7 +213,7 @@ langSwitchBtn.addEventListener("click", () => {
     getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
   dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
   windHeadingEl.innerText = getLang() === "sv" ? "Vind(byvind)" : "Wind(gust)";
-  precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precipitation";
+  precHeadingEl.innerText = getLang() === "sv" ? "Nederbörd" : "Precip.";
   updateCity(currentCity)
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
