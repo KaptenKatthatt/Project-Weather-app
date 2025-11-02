@@ -2,7 +2,9 @@
 
 Summarize both rain and snow prec?
 
-## App generellt
+## App general
+
+Validate HTML & CSS
 
 Make the background cover all the screen even on large screens.
 
@@ -12,11 +14,9 @@ Make the background cover all the screen even on large screens.
 - Från början till slut.
 - Brainstorming och sketchning.
 
-## KANSKE
+## -----------------------DONE and DONE-------------------------
 
-Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
-
-## -----------------------KLART-------------------------
+NOPE Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 Fix language on forecast table to check for localLanguage at start.
 

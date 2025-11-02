@@ -12,16 +12,14 @@ export function currentWeather(cityDets, localHour, weather) {
               ? cityDets.local_names?.sv ?? cityDets.name
               : cityDets.name
           }</h5>
-          <div class="fs-5 text-capitalize">${weekday}</div>
-          <div class="fs-5"> ${
-            getLang() === "sv" ? `kl. ${localHour}` : `${localHour}`
-          }
+          <div class="text-capitalize">${weekday}</div>
+          <div> ${getLang() === "sv" ? `kl. ${localHour}` : `${localHour}`}
           </div>
           <div class="iconContainer">
           <img src="https://openweathermap.org/img/wn/${
             weather.weather[0].icon
           }@4x.png" alt="Icon of current weather">
-          <div class="my-3 fs-4 text-capitalize">${
+          <div class="my-3 text-capitalize">${
             weather.weather[0].description
           }</div>
           <div class="display-4 my 4">
@@ -31,8 +29,8 @@ export function currentWeather(cityDets, localHour, weather) {
           </div>
             <i class="windArrow wi wi-wind from-${
               weather.wind.deg
-            }-deg mt-3 fs-1"></i>
-            <div class="fs-5">${Math.round(weather.wind.speed)} ${
+            }-deg mt-3"></i>
+            <div>${Math.round(weather.wind.speed)} ${
     getUnits() === "metric" ? "m/s" : "mph"
   }</div>
           `;
