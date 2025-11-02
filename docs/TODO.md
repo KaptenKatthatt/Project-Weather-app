@@ -1,6 +1,8 @@
-## App generellt
+## Bugs
 
-Make switches start on the correct position based on language or units from localStorage.
+Summarize both rain and snow prec?
+
+## App generellt
 
 Make the background cover all the screen even on large screens.
 
@@ -15,6 +17,10 @@ Make the background cover all the screen even on large screens.
 Göra om kollen för solUpp/ner baserat på forecast sys pod:d/n ? Eller använd sunset/sunrise-variablerna till att visa när solen går upp/ner också.
 
 ## -----------------------KLART-------------------------
+
+Fix language on forecast table to check for localLanguage at start.
+
+Make switches start on the correct position based on language or units from localStorage.
 
 Save language and unit settings to localStorage
 

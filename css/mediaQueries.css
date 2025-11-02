@@ -1,7 +1,7 @@
 @media (max-width: 768px) {
   .mainLeft,
   .mainRight {
-    width: 100%;
+    /* width: 100%; */
   }
   .foreCastIcon {
     width: 50px;
@@ -32,14 +32,16 @@
     grid-template-areas: "mainLeft mainRight";
   }
 
+  /* border-end border-body */
+
   .mainLeft {
     border-right: 1px solid lightgray;
     grid-area: mainLeft;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: nowrap;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .mainRight {
     grid-area: mainRight;

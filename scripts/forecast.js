@@ -31,10 +31,15 @@ const getUnits = () => {
 let lang = localStorage.getItem("lang") || "sv";
 //Sets langSwitch to localStorage value
 document.querySelector(".langToggleBtn").checked = lang === "sv" ? false : true;
+//Sets inputfield language
+document.querySelector(".inputField").placeholder =
+  lang === "sv" ? "Sök efter en stad..." : "Search for a city...";
 
 const setLang = (newLang) => {
   localStorage.setItem("lang", newLang);
   lang = newLang;
+  document.querySelector(".inputField").placeholder =
+    lang === "sv" ? "Sök efter en stad..." : "Search for a city...";
 };
 const getLang = () => {
   if (localStorage.getItem("lang") !== null) {
