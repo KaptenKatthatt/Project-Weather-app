@@ -43,17 +43,14 @@ themeToggleBtn.innerHTML =
   currentTheme === "dark"
     ? `
 <i class="wi wi-day-sunny wi-3x"></i> 
-Växla till Dag 
 <i class="wi wi-day-sunny wi-3x"></i>`
     : `
 <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-Växla till Natt
 <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 
-// Event listener för themeToggleBtn, utanför updateUI
 themeToggleBtn.addEventListener("click", () => {
   const newTheme = currentTheme === "dark" ? "light" : "dark";
-  currentTheme = newTheme; // Uppdatera global variabel
+  currentTheme = newTheme;
   htmlElement.setAttribute("data-bs-theme", newTheme);
   localStorage.setItem("theme", newTheme);
   themeToggleBtn.innerHTML =
@@ -75,8 +72,8 @@ const updateUI = (data) => {
   const { cityDets, weather, forecast } = data;
   currentData = data;
   currentCity = cityDets.local_names?.sv ?? cityDets.name;
-  //Get local time and local hour
 
+  //Get local time and local hour
   const localTime = new Date((weather.dt + weather.timezone) * 1000);
   const timezone = weather.timezone;
   const localHour =
@@ -84,14 +81,6 @@ const updateUI = (data) => {
       ? localTime.getUTCHours()
       : localTime.toLocaleTimeString("en", { hour: "numeric", hour12: true });
 
-  //update mainLeft Container
-  /* 
-          cityDets.local_names
-            ? cityDets.local_names.sv
-              ? cityDets.local_names.sv
-              : cityDets.name
-            : cityDets.name
- */
   mainLeftEl.innerHTML = currentWeather(cityDets, localHour, weather);
 
   // 18 hour forecast sidebar
@@ -124,12 +113,8 @@ const updateUI = (data) => {
   themeToggleBtn.innerHTML =
     currentTheme === "dark"
       ? `
-    <i class="wi wi-day-sunny wi-3x"></i> 
-    Växla till Dag 
     <i class="wi wi-day-sunny wi-3x"></i>`
       : `
-    <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-    Växla till Natt
     <i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 
   //Remove d-none class after first search
@@ -144,8 +129,8 @@ const updateCity = async (city) => {
   const forecast = await getForecast(cityDets.lat, cityDets.lon);
 
   return {
-    cityDets, //Om både nyckeln och värdet har samma namn räcker det att man skriver det en gång.
-    weather: weather,
+    cityDets,
+    weather,
     forecast,
   };
 };
@@ -167,7 +152,7 @@ cityForm.addEventListener("submit", (e) => {
       forecastTableContainerEl.classList.add("d-none");
       siteContainer.innerHTML += `
       <div class="alert alert-warning" role="alert">
-        <h3>That city couldn't be found. Please try again.</h3>
+        <h3>That city could not be found. Please try again.</h3>
       </div>
       `;
       console.log(err);
@@ -190,19 +175,27 @@ const gustSwe = `<span class="gust">(byvind)</span>`;
 const windEng = `<span class="windHeading">Wind</span>`;
 const gustEng = `<span class="gust">(gust)</span>`;
 
+const precipLongSwe = `<span class="precipLongSwe">Nederbörd</span>`;
+const precipLongEng = `<span class="precipLongEng">Precipitation</span>`;
+const precipShortSwe = `<span class="precipShortSwe">Nederb.</span>`;
+const precipShortEng = `<span class="precipShortEng">Precip.</span>`;
+
 //Initialize forecast table language
 forecastTableTitleEl.innerText =
   getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
 dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
 windHeadingEl.innerHTML =
   getLang() === "sv" ? `${windSwe}${gustSwe}` : `${windEng}${gustEng}`;
-precHeadingEl.innerHTML = getLang() === "sv" ? "Nederb." : "Precip.";
+precHeadingEl.innerHTML =
+  getLang() === "sv"
+    ? `${precipLongSwe}${precipShortSwe}`
+    : `${precipLongEng}${precipShortEng}`;
 
 tempToggleBtn.addEventListener("click", () => {
   getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
   // console.log(getUnits());
   windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
-  if (currentCity) {
+  if (localStorage.getItem("city") !== null) {
     updateCity(currentCity)
       .then((data) => updateUI(data))
       .catch((err) => console.log(err));
@@ -218,8 +211,14 @@ langSwitchBtn.addEventListener("click", () => {
   dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
   windHeadingEl.innerHTML =
     getLang() === "sv" ? `${windSwe}${gustSwe}` : `${windEng}${gustEng}`;
-  precHeadingEl.innerText = getLang() === "sv" ? "Nederb." : "Precip.";
-  updateCity(currentCity)
-    .then((data) => updateUI(data))
-    .catch((err) => console.log(err));
+  precHeadingEl.innerHTML =
+    getLang() === "sv"
+      ? `${precipLongSwe}${precipShortSwe}`
+      : `${precipLongEng}${precipShortEng}`;
+  // Update city after switch toggle
+  if (localStorage.getItem("city") !== null) {
+    updateCity(currentCity)
+      .then((data) => updateUI(data))
+      .catch((err) => console.log(err));
+  }
 });

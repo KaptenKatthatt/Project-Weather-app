@@ -42,8 +42,13 @@
         <input class="form-check-input unitToggleBtn me-2 fs-3" type="checkbox" role="switch" id="unitToggleBtn">
         <label class="visually-hidden" for="unitToggleBtn">Toggle between metric(Celsius) and imperial(Fahrenheit)
           units</label>
-        <label class="form-check-label d-flex align-items-center" for="unitToggleBtn"><span
-            class="menuItem">&deg;C/</span><span class="menuItem">&deg;F</span></label>
+        <label class="form-check-label d-flex align-items-center" for="unitToggleBtn">
+          <div class="d-flex align-items-center tempIconsContainer">
+            <i class="wi wi-celsius wi-3x fs-3"></i>/
+            <i class="wi wi-fahrenheit wi-3x fs-3"></i>
+          </div>
+
+          <!-- <span class="menuItem">&deg;C/&deg;F</span></label> -->
       </div>
       <!-- Language switch -->
       <div class="form-check form-switch d-flex align-items-center">

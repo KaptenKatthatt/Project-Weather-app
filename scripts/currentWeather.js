@@ -27,10 +27,10 @@ export function currentWeather(cityDets, localHour, weather) {
     getUnits() === "metric" ? "C" : "F"
   }</span>
           </div>
-            <i class="windArrow wi wi-wind from-${
+            <i class=" display-6 windArrow wi wi-wind from-${
               weather.wind.deg
-            }-deg mt-3"></i>
-            <div>${Math.round(weather.wind.speed)} ${
+            }-deg mt-3 "></i>
+            <div class="weatherUnit mb-3">${Math.round(weather.wind.speed)} ${
     getUnits() === "metric" ? "m/s" : "mph"
   }</div>
           `;
