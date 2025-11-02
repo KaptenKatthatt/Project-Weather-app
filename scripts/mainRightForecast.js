@@ -57,12 +57,14 @@ export function mainRightForecast(weatherListItem, timezone) {
         weatherListItem.main.temp
       )}&deg</p>
       <!-- Feels like -->
-      <p class="mt-4">${
-        getLang() === "sv" ? "Känns som" : "Feels like"
+      <p>${
+        getLang() === "sv"
+          ? `<span class="feelsLike">Känns som</span>`
+          : `<span class="feelsLike">Feels like</span>`
       } ${Math.round(weatherListItem.main.feels_like)}&deg</p>
       </td>
       <td>
-      <i class="fs-1 mt-5 windArrow wi wi-wind from-${
+      <i class="fs-1 mt-1 windArrow wi wi-wind from-${
         weatherListItem.wind.deg
       }-deg"></i>
           <p>
@@ -76,7 +78,7 @@ export function mainRightForecast(weatherListItem, timezone) {
         </p>
       </td>   
       <td>
-      <p class="precipitationIcon mt-5 fs-1">
+      <p class="precipitationIcon mt-1 fs-1">
           ${precipitationIcon()}
         </p>
       <p class="precipitationChance">

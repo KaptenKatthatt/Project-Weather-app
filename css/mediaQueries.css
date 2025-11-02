@@ -1,7 +1,8 @@
 @media (max-width: 576px) {
   .precHeading,
   .windHeading,
-  .gust {
+  .gust,
+  .feelsLike {
     display: none;
   }
 }
