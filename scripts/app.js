@@ -1,5 +1,3 @@
-"use strict";
-
 import { mainRightForecast } from "./mainRightForecast.js";
 import { ForecastTable } from "./forecastTable.js";
 import {
@@ -36,33 +34,31 @@ const forecastTableTitleEl = document.querySelector(".forecastTableTitle");
 const dayHeadingEl = document.querySelector(".dayHeading");
 const windHeadingEl = document.querySelector(".windHeading");
 const precHeadingEl = document.querySelector(".precHeading");
-// Ladda initialt tema från localStorage (eller sätt till light om inget finns)
+
+//APP INITIALIZATION
+// Load theme from storage or set to light of none is found
 let currentTheme = localStorage.getItem("theme") || "light";
 htmlElement.setAttribute("data-bs-theme", currentTheme);
+
+localStorage.getItem("theme") === "light"
+  ? themeToggleBtn.setAttribute("checked", "checked")
+  : themeToggleBtn.removeAttribute("checked");
+
 themeToggleBtn.innerHTML =
   currentTheme === "dark"
-    ? `
-<i class="wi wi-day-sunny wi-3x"></i> 
-<i class="wi wi-day-sunny wi-3x"></i>`
-    : `
-<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+    ? `<i class="wi wi-day-sunny wi-3x"></i>`
+    : `<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 
 themeToggleBtn.addEventListener("click", () => {
   const newTheme = currentTheme === "dark" ? "light" : "dark";
   currentTheme = newTheme;
   htmlElement.setAttribute("data-bs-theme", newTheme);
   localStorage.setItem("theme", newTheme);
+
   themeToggleBtn.innerHTML =
     newTheme === "dark"
-      ? `
-<i class="wi wi-day-sunny wi-3x"></i> 
-Växla till Dag 
-<i class="wi wi-day-sunny wi-3x"></i>`
-      : `
-<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>
-Växla till Natt
-<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
+      ? `<i class="wi wi-day-sunny wi-3x"></i>`
+      : `<i class="wi wi-moon-alt-waning-crescent-2 wi-3x"></i>`;
 });
 
 let currentData = null;
@@ -93,11 +89,7 @@ const updateUI = (data) => {
   // Render 5 day forecast table
   forecastTableBodyEl.innerHTML = ForecastTable(forecast);
 
-  // console.log("Local time ", timeSrc);
   const localUTCTime = (weather.dt + weather.timezone) * 1000;
-  // console.log("Localtime", localUTCTime);
-  // console.log("Sunrise", weather.sys.sunrise * 1000);
-  // console.log("Sunset", weather.sys.sunset * 1000);
   const sunrise = (weather.sys.sunrise + weather.timezone) * 1000;
   const sunset = (weather.sys.sunset + weather.timezone) * 1000;
 
@@ -193,9 +185,8 @@ precHeadingEl.innerHTML =
 
 tempToggleBtn.addEventListener("click", () => {
   getUnits() === "metric" ? setUnits("imperial") : setUnits("metric");
-  // console.log(getUnits());
-  windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
   if (localStorage.getItem("city") !== null) {
+    windUnitEl.innerText = getUnits() === "metric" ? "m/s" : "mph";
     updateCity(currentCity)
       .then((data) => updateUI(data))
       .catch((err) => console.log(err));
@@ -204,19 +195,18 @@ tempToggleBtn.addEventListener("click", () => {
 
 //Update weather table on language switch
 langSwitchBtn.addEventListener("click", () => {
+  // Update GUI only if there is a city selected.
   getLang() === "sv" ? setLang("en") : setLang("sv");
-  // console.log(getLang());
-  forecastTableTitleEl.innerText =
-    getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
-  dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
-  windHeadingEl.innerHTML =
-    getLang() === "sv" ? `${windSwe}${gustSwe}` : `${windEng}${gustEng}`;
-  precHeadingEl.innerHTML =
-    getLang() === "sv"
-      ? `${precipLongSwe}${precipShortSwe}`
-      : `${precipLongEng}${precipShortEng}`;
-  // Update city after switch toggle
   if (localStorage.getItem("city") !== null) {
+    forecastTableTitleEl.innerText =
+      getLang() === "sv" ? "5-dygnsprognos" : "5 day forecast";
+    dayHeadingEl.innerText = getLang() === "sv" ? "Dygn" : "Day";
+    windHeadingEl.innerHTML =
+      getLang() === "sv" ? `${windSwe}${gustSwe}` : `${windEng}${gustEng}`;
+    precHeadingEl.innerHTML =
+      getLang() === "sv"
+        ? `${precipLongSwe}${precipShortSwe}`
+        : `${precipLongEng}${precipShortEng}`;
     updateCity(currentCity)
       .then((data) => updateUI(data))
       .catch((err) => console.log(err));

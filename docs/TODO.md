@@ -1,5 +1,7 @@
 ## Bugs
 
+Switch positions are not based on local storage when loaded.
+
 Summarize both rain and snow prec?
 
 ## App general
