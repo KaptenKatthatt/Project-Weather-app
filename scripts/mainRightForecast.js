@@ -69,7 +69,7 @@ export function mainRightForecast(weatherListItem, timezone) {
       }-deg"></i>
           <p>
         ${Math.round(weatherListItem.wind.speed)}
-        <!-- If gust show, else none -->
+        <!-- If gust show, else nothing -->
         ${
           weatherListItem.wind.gust === undefined
             ? ""
