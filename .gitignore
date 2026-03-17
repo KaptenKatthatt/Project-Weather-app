@@ -5,5 +5,8 @@ forecast_pretty.json
 ideas
 stuff
 archive/
+node_modules/
+dist/
 *.env*
 .vercel
+.vscode

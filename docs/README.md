@@ -29,6 +29,7 @@ Functionality:
 ## Technologies and Tools
 
 - Built with Vanilla JS and ES Modules.
+- Vite används som utvecklingsmiljö och byggverktyg.
 - Bootstrap for styling and UI https://getbootstrap.com/
 - OpenWeatherMap weather API https://openweathermap.org/
 - Flag CDN from https://flagpedia.net
@@ -40,6 +41,13 @@ Functionality:
 - Vanilla JS handles API calling and functionality
 
 Data flow: User input -> API request -> Parse response -> Display.
+
+## Deployment
+
+- Appen deployas till Vercel.
+- Frontend byggs med Vite och serverless-endpointen `/api/openweather` hanteras av `api/openweather.js`.
+- Lägg API-nyckeln i Vercel under Project Settings -> Environment Variables med namn `API_KEY`.
+- Full deployguide finns i `docs/DEPLOYMENT.md`.
 
 ## Implementation and Code
 

@@ -1,4 +1,9 @@
 export default async function handler(req, res) {
+  if (!process.env.API_KEY) {
+    res.status(500).json({ error: "API key is not configured" });
+    return;
+  }
+
   const {
     lat,
     lon,
@@ -9,7 +14,7 @@ export default async function handler(req, res) {
   } = req.query;
   let base;
   if (type === "geo") {
-    base = `http://api.openweathermap.org/geo/1.0/direct`;
+    base = `https://api.openweathermap.org/geo/1.0/direct`;
   } else {
     base = `https://api.openweathermap.org/data/2.5/${type}`;
   }
