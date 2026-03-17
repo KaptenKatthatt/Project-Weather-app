@@ -36,6 +36,9 @@
 }
 /* 992px - infinity */
 @media (min-width: 992px) {
+  main {
+    max-width: 80vw;
+  }
   .mainWeatherContainer {
     display: grid;
     grid-template-columns: 1fr 2fr;
